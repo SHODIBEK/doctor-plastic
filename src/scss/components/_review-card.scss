@@ -1,0 +1,124 @@
+// Карточка отзыва. На мобильных кнопка видна всегда, с 1024 — по hover
+.review-card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	gap: 20px;
+
+	&__photo {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		overflow: hidden;
+		border-radius: 15px;
+		padding: 20px 20px 0;
+		height: 340px;
+		background-color: var(--dp-color-surface-canvas);
+		transition: height $duration-normal, background-color $duration-normal;
+
+		@include laptop {
+			border-radius: 0;
+			padding: 30px 30px 0;
+			height: 520px;
+		}
+	}
+
+	&__image {
+		flex-shrink: 0;
+		width: 100%;
+		min-height: 0;
+		height: 100%;
+		max-width: none;
+		// Фото — вырезанные PNG разных пропорций: вписываем целиком, прижимаем к низу
+		object-fit: contain;
+		object-position: center bottom;
+
+		@include laptop {
+			height: 490px;
+		}
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+
+		@include laptop {
+			gap: 24px;
+		}
+	}
+
+	&__name {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		font-weight: 500;
+		font-size: 24px;
+		gap: 8px;
+	}
+
+	&__last-name {
+		display: flex;
+		align-items: center;
+		font-weight: 400;
+		gap: 8px;
+
+		@include laptop {
+			font-size: 40px;
+		}
+	}
+
+	&__text {
+		// stylelint-disable-next-line value-no-vendor-prefix
+		display: -webkit-box;
+		overflow: hidden;
+		font-size: 15px;
+		line-height: 22px;
+		// stylelint-disable-next-line property-no-vendor-prefix
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 4;
+
+		@include laptop {
+			font-size: 16px;
+			-webkit-line-clamp: 5;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		margin-top: auto;
+
+		@include laptop {
+			margin-top: 30px;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity $duration-normal, visibility $duration-normal;
+		}
+	}
+
+	&__play {
+		display: none;
+
+		@include laptop {
+			display: flex;
+		}
+	}
+
+	&__btn {
+		flex: 1;
+	}
+
+	@include laptop {
+		@include hover {
+			.review-card__photo {
+				height: 400px;
+				background-color: rgba(19, 25, 35, 0.3);
+			}
+
+			.review-card__actions {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+}

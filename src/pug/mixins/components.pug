@@ -1,0 +1,223 @@
+//- Компоненты UI-кита. Данные передаются объектом — так видно, что подставит WordPress
+
+//- @demo +switcher({ name: 'notify', checked: true, label: 'Уведомления' })
+mixin switcher(data)
+	label.switcher&attributes(attributes)
+		input.switcher__input(type="checkbox" name=data.name checked=data.checked aria-label=data.label)
+		span.switcher__track
+
+//- @demo +radio({ name: 'type', value: '1', label: 'Вариант', checked: true })
+mixin radio(data)
+	label.radio&attributes(attributes)
+		input.radio__input(type="radio" name=data.name value=data.value checked=data.checked)
+		span.radio__box
+		if data.label
+			span.radio__text= data.label
+
+//- @demo +checkbox({ name: 'agree', label: 'Согласен', checked: true })
+mixin checkbox(data)
+	label.checkbox.checkbox--plain&attributes(attributes)
+		input.checkbox__input(type="checkbox" name=data.name value=data.value || '1' checked=data.checked)
+		span.checkbox__box
+		if data.label
+			span.checkbox__text= data.label
+
+//- Select. clearable — с кнопкой очистки
+//- @demo +select({ name: 'service', options: ['Имя', 'Вариант'], clearable: true })
+mixin select(data)
+	label.select(class=data.clearable ? 'select--clearable' : null)&attributes(attributes)
+		select.select__control(name=data.name aria-label=data.label || data.options[0] data-select)
+			each option in data.options
+				option= option
+		if data.clearable
+			button.select__clear(type="button" aria-label="Очистить" data-select-clear)
+				+svg('close').select__clear-icon
+		+svg('dropdown').select__icon.select__icon--dropdown
+
+//- @demo +fileField({ name: 'photo', label: 'Прикрепить фото' })
+mixin fileField(data)
+	label.file-field&attributes(attributes)
+		input.file-field__input(type="file" name=data.name accept=data.accept || 'image/*' multiple)
+		+svg('file').file-field__icon
+		span.file-field__text(data-file-label)= data.label
+
+//- @demo +dropList({ name: 'services[]', items: ['Увеличение груди'] })
+mixin dropList(data)
+	.drop-list&attributes(attributes)
+		ul.drop-list__list
+			each item in data.items
+				li.drop-list__item
+					label.checkbox.checkbox--plain
+						input.checkbox__input(type="checkbox" name=data.name value=item)
+						span.checkbox__box
+						span.drop-list__label= item
+
+//- @demo +collapse({ title: 'Гинекология', open: false }) Контент
+mixin collapse(data)
+	.collapse(class=data.open ? 'is-open' : null data-collapse)&attributes(attributes)
+		button.collapse__head(type="button" aria-expanded=data.open ? 'true' : 'false' data-collapse-toggle)
+			span.collapse__title= data.title
+			span.btn-round.btn-round--down.collapse__btn(class=data.open ? 'is-open' : null)
+				+svg('arrow-right').btn-round__icon
+		.collapse__body(aria-hidden=data.open ? 'false' : 'true')
+			.collapse__inner
+				.collapse__content
+					block
+
+//- Строка прайса: { name, price, oldPrice, note }
+mixin priceLine(item)
+	li.price-line(class=item.note ? 'price-line--include' : null)&attributes(attributes)
+		if item.note
+			.price-line__info
+				p.price-line__name= item.name
+				p.price-line__note= item.note
+		else
+			p.price-line__name= item.name
+		p.price-line__value
+			if item.oldPrice
+				s.price-line__old= item.oldPrice
+			span.price-line__price= item.price
+
+//- @demo +serviceRow({ title: 'Увеличение груди', href: '#' })
+mixin serviceRow(data)
+	a.service-row(href=data.href)&attributes(attributes)
+		span.service-row__title= data.title
+		span.btn-round.btn-round--link.service-row__btn
+			+svg('arrow-right').btn-round__icon
+		if data.preview
+			span.service-row__preview(aria-hidden="true")
+				+picture(data.preview, '', 361, 481).service-row__preview-image
+				img.service-row__mark.service-row__mark--first(src=`${baseDir}images/content/ui/service-mark-1.png` width="56" height="30" alt="")
+				img.service-row__mark.service-row__mark--second(src=`${baseDir}images/content/ui/service-mark-2.png` width="60" height="30" alt="")
+
+//- @demo +categoryTab({ title: 'Грудь', image: 'ui/tab-breast', active: true })
+mixin categoryTab(data)
+	button.category-tab(class=data.active ? 'is-active' : null type="button" aria-pressed=data.active ? 'true' : 'false')&attributes(attributes)
+		+picture(data.image, '', 135, 96).category-tab__image
+		span.category-tab__title= data.title
+
+//- @demo +breadcrumbs([{ title: 'Главная', href: '/' }, { title: 'Текущая' }])
+mixin breadcrumbs(items)
+	nav.breadcrumbs(aria-label="Хлебные крошки")&attributes(attributes)
+		ol.breadcrumbs__list
+			each item, index in items
+				li.breadcrumbs__item
+					if item.href
+						a.breadcrumbs__link(href=item.href)= item.title
+					else
+						span.breadcrumbs__current(aria-current="page")= item.title
+					if index < items.length - 1
+						+svg('chevron-down').breadcrumbs__separator
+
+//- Пагинация. Страницы с desktop: true скрыты на мобильных
+//- @demo +pagination({ current: 1, pages: ['1', '2', { page: '3', desktop: true }, '...', '40'] })
+mixin pagination(data)
+	nav.pagination(aria-label="Пагинация")&attributes(attributes)
+		+btnRound('prev', 'Предыдущая страница').pagination__btn
+		ul.pagination__list
+			each entry in data.pages
+				- const page = typeof entry === 'object' ? entry.page : entry
+				li.pagination__item(class=entry.desktop ? 'pagination__item--desktop' : null)
+					if page === '...'
+						span.pagination__link ...
+					else
+						a.pagination__link(class=page === String(data.current) ? 'is-active' : null href="#" aria-current=page === String(data.current) ? 'page' : null)= page
+		+btnRound('next', 'Следующая страница').pagination__btn
+
+//- Карточка статьи: { title, text, date, image, href }
+mixin articleCard(data)
+	article.article-card&attributes(attributes)
+		a.article-card__photo(href=data.href)
+			+picture(data.image, data.title, 423, 280).article-card__image
+		.article-card__body
+			h3.article-card__title
+				a(href=data.href)= data.title
+			p.article-card__text= data.text
+			time.article-card__date(datetime=data.datetime)= data.date
+
+//- Карточка новости: { title, text, date, image, href }
+mixin newsCard(data)
+	article.news-card&attributes(attributes)
+		.news-card__photo
+			+picture(data.image, data.title, 512, 340).news-card__image
+		.news-card__body
+			.news-card__head
+				h3.news-card__title= data.title
+				time.news-card__date(datetime=data.datetime)= data.date
+			p.news-card__text= data.text
+			a.btn-play.news-card__more(href=data.href aria-label="Читать новость")
+				+svg('arrow-right').btn-play__icon.btn-play__icon--stroke
+
+//- Карточка врача с кнопкой «Оставить отзыв»: { lastName, name, position, image, href }
+mixin doctorTeaser(data)
+	article.doctor-teaser&attributes(attributes)
+		.doctor-teaser__main
+			.doctor-teaser__photo
+				+picture(data.image, `${data.lastName} ${data.name}`, 130, 87).doctor-teaser__image
+			.doctor-teaser__info
+				h3.doctor-teaser__name
+					span.doctor-teaser__last-name= data.lastName
+					span.doctor-teaser__first-name= data.name
+				p.doctor-teaser__position= data.position
+		+btn('Оставить отзыв', { href: data.href }).doctor-teaser__btn
+
+//- Карточка услуги с фото: { title, image, href }
+mixin serviceCard(item)
+	a.service-card(href=item.href)&attributes(attributes)
+		.service-card__visual
+			span.service-card__circle
+			.service-card__image-wrap
+				+picture(item.image, item.title, 290, 193).service-card__image
+		span.service-card__title= item.title
+
+//- Карточка «до/после»: { title, before, after, counter }
+mixin resultCard(work)
+	.result-card(data-compare)&attributes(attributes)
+		.result-card__media
+			.result-card__side.result-card__side--before
+				+picture(work.before, `${work.title} — до`, 798, 455).result-card__image
+				span.result-card__mark.result-card__mark--desktop.result-card__mark--before
+				span.result-card__mark.result-card__mark--mobile.result-card__mark--left
+				span.result-card__mark.result-card__mark--mobile.result-card__mark--right
+			.result-card__side.result-card__side--after
+				+picture(work.after, `${work.title} — после`, 798, 455).result-card__image
+				span.result-card__mark.result-card__mark--desktop.result-card__mark--after
+				span.result-card__mark.result-card__mark--mobile.result-card__mark--left
+				span.result-card__mark.result-card__mark--mobile.result-card__mark--right
+			.result-card__handle(data-compare-handle)
+				img.result-card__handle-icon(src=`${baseDir}images/icons/compare-handle.svg` width="72" height="72" alt="")
+		.result-card__caption
+			span.result-card__name= work.title
+			span.result-card__counter= work.counter
+
+//- Карточка врача: { lastName, name, photo, operations, text }
+mixin doctorCard(doctor)
+	article.doctor-card&attributes(attributes)
+		.doctor-card__photo
+			p.doctor-card__operations= doctor.operations
+			+picture(doctor.photo, `${doctor.lastName} ${doctor.name}`, 365, 463).doctor-card__image
+		.doctor-card__body
+			h3.doctor-card__name
+				span.doctor-card__last-name
+					= doctor.lastName
+					+verified
+				span.doctor-card__first-name= doctor.name
+			p.doctor-card__text= doctor.text
+		+btn('Записаться на консультацию', { href: '#signup' }).btn--full.doctor-card__btn
+
+//- Карточка отзыва: { lastName, name, photo, text, video }
+mixin reviewCard(review)
+	article.review-card&attributes(attributes)
+		.review-card__photo
+			+picture(review.photo, `${review.lastName} ${review.name}`, 425, 490).review-card__image
+		.review-card__body
+			h3.review-card__name
+				span.review-card__last-name
+					= review.lastName
+					+verified
+				span.review-card__first-name= review.name
+			p.review-card__text= review.text
+		.review-card__actions
+			a.btn-play.review-card__play(href=review.video aria-label="Смотреть видеоотзыв" data-fancybox)
+				+svg('play').btn-play__icon
+			+btn('Видеоотзыв', { href: review.video }).review-card__btn(data-fancybox)

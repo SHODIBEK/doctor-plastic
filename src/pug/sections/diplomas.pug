@@ -1,0 +1,24 @@
+-
+	const diplomas = [
+		{ image: 'diplomas/diploma-1', size: 'wide', width: 289, height: 200 },
+		{ image: 'diplomas/diploma-2', size: 'narrow', width: 136, height: 200 },
+		{ image: 'diplomas/diploma-3', size: 'narrow', width: 136, height: 200 },
+		{ image: 'diplomas/diploma-4', size: 'large', width: 396, height: 280 },
+		{ image: 'diplomas/diploma-5', size: 'narrow', width: 136, height: 200 },
+		{ image: 'diplomas/diploma-6', size: 'wide', width: 289, height: 200 },
+		{ image: 'diplomas/diploma-5', size: 'narrow', width: 136, height: 200 },
+		{ image: 'diplomas/diploma-1', size: 'wide', width: 289, height: 200 },
+	]
+
+section.diplomas
+	.container.diplomas__container
+		h2.title.diplomas__title Дипломы и сертификаты
+		.diplomas__slider
+			.diplomas__viewport.swiper(data-diplomas-swiper)
+				.diplomas__track.swiper-wrapper
+					each item in diplomas
+						a.diplomas__item.swiper-slide(class=`diplomas__item--${item.size}` href=`${baseDir}images/content/${item.image}@2x.webp` data-fancybox="diplomas")
+							+picture(item.image, 'Диплом', item.width, item.height).diplomas__image
+			.diplomas__nav
+				+btnRound('prev').diplomas__nav-btn(data-diplomas-prev)
+				+btnRound('next').diplomas__nav-btn(data-diplomas-next)

@@ -1,0 +1,24 @@
+-
+	const included = [
+		{ icon: 'time', text: 'Операция<br>не более 40 минут' },
+		{ icon: 'monitor', text: 'Компьютерное 3D моделирования результата' },
+		{ icon: 'board-activity', text: 'Быстрый<br>реабилитационный период' },
+		{ icon: 'breast-implant', text: 'Импланты<br>нового поколения' },
+		{ icon: 'heart', text: 'Индивидуальный<br>подход к пациентам' },
+		{ icon: 'surgical-instrument', text: 'Самое современное<br>оборудование' },
+	]
+
+section.included
+	.container.included__container
+		.included__visual
+			+picture('included/woman', 'Пациентка клиники', 760, 507).included__image
+		.included__content
+			h2.title.included__title
+				| Что входит
+				br
+				| в стоимость операции
+			ul.included__list
+				each item in included
+					li.included__item
+						img.included__icon(src=`${baseDir}images/icons/included/${item.icon}.svg` width="40" height="40" alt="")
+						p.included__text!= item.text

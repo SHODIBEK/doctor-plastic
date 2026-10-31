@@ -1,0 +1,186 @@
+// Переключатель
+.switcher {
+	position: relative;
+	display: inline-flex;
+	cursor: pointer;
+
+	&__input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	&__track {
+		position: relative;
+		flex-shrink: 0;
+		border-radius: 10px;
+		width: 32px;
+		height: 20px;
+		background-color: var(--dp-color-action-secondary);
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 3px;
+			top: 3px;
+			border-radius: 50%;
+			width: 14px;
+			height: 14px;
+			background-color: $color-white;
+			transition: transform $duration-normal;
+		}
+	}
+
+	&__input:checked + &__track::after {
+		transform: translateX(12px);
+	}
+
+	&__input:focus-visible + &__track {
+		outline: 2px solid var(--dp-color-action-primary);
+		outline-offset: 2px;
+	}
+}
+
+// Радиокнопка
+.radio {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	font-size: 16px;
+	cursor: pointer;
+	gap: 15px;
+
+	&__input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	&__box {
+		flex-shrink: 0;
+		border: 1px solid var(--dp-color-action-secondary);
+		border-radius: 50%;
+		width: 24px;
+		height: 24px;
+		background-color: $color-white;
+		transition: border-width $duration-normal;
+	}
+
+	&__input:checked + &__box {
+		border-width: 6px;
+	}
+
+	&__input:focus-visible + &__box {
+		outline: 2px solid var(--dp-color-action-primary);
+		outline-offset: 2px;
+	}
+}
+
+// Выпадающий список с чекбоксами
+.drop-list {
+	border-radius: 0 0 20px 20px;
+	padding: 20px 24px;
+	background-color: $color-white;
+	filter: drop-shadow(0 20px 10px rgba(0, 0, 0, 0.05));
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		padding-right: 20px;
+		max-height: 238px;
+		gap: 20px;
+		scrollbar-color: var(--dp-color-action-secondary) #dfdfe0;
+		scrollbar-width: thin;
+
+		&::-webkit-scrollbar {
+			border-radius: 10px;
+			width: 5px;
+			background-color: #dfdfe0;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			border-radius: 10px;
+			background-color: var(--dp-color-action-secondary);
+		}
+	}
+
+	&__label {
+		font-weight: 300;
+		font-size: 16px;
+		line-height: normal;
+		color: var(--dp-color-text-input);
+	}
+}
+
+// Раскрывающийся заголовок (collapse)
+.collapse {
+	&__head {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		font-family: inherit;
+		text-align: left;
+		color: var(--dp-color-text);
+		gap: 10px;
+	}
+
+	&__title {
+		flex: 1;
+		font-weight: 300;
+		font-size: 30px;
+		line-height: 1.1;
+
+		@include laptop {
+			font-size: 40px;
+		}
+	}
+
+	&__btn {
+		width: 50px;
+		height: 50px;
+		pointer-events: none;
+
+		.btn-round__icon {
+			width: 20px;
+			height: 20px;
+		}
+
+		@include laptop {
+			width: 72px;
+			height: 72px;
+
+			.btn-round__icon {
+				width: 24px;
+				height: 24px;
+			}
+		}
+	}
+
+	// Плавное раскрытие на auto-высоту через grid 0fr → 1fr
+	&__body {
+		display: grid;
+		grid-template-rows: 0fr;
+		opacity: 0;
+		transition: grid-template-rows 0.4s ease, opacity 0.4s ease;
+
+		.collapse.is-open & {
+			grid-template-rows: 1fr;
+			opacity: 1;
+		}
+	}
+
+	&__inner {
+		overflow: hidden;
+		min-height: 0;
+	}
+
+	&__content {
+		padding-top: 20px;
+
+		@include laptop {
+			padding-top: 30px;
+		}
+	}
+
+}

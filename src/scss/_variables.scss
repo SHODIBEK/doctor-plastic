@@ -1,0 +1,68 @@
+// stylelint-disable scss/dollar-variable-empty-line-before
+
+@import "mixins";
+
+// COLORS
+$color-black: #000;
+$color-white: #fff;
+$color-gray: #eee;
+$color-canvas: #131923;
+
+// FONTS
+// stylelint-disable-next-line
+$font-primary: var(--font-family);
+
+$html-font-size: 16px;
+
+// EASING TRANSITIONS
+$duration-normal: 0.3s;
+$easing-back-out: cubic-bezier(
+	0.25,
+	0.74,
+	0.22,
+	1.1
+); // http://cubic-bezier.com/#.25,.74,.22,1.1
+$easing-back-in: cubic-bezier(
+	0.47,
+	-0.1,
+	0.5,
+	-0.06
+); // http://cubic-bezier.com/#.47,-0.1,.5,-.06
+$easing-out: ease-out;
+$easing-in: ease-in;
+
+// Settings
+$desktop: 1299;
+$desktop-xl: 1600;
+$laptop: 1024;
+$tablet: 768;
+$mobile: 376;
+$desktop-vh: 750;
+
+:root {
+	--font-family: "Mulish", sans-serif;
+	--primary-color: #1e78ff;
+	--text-color: #131923;
+
+	// Figma tokens
+	--dp-color-action-primary: #1e78ff;
+	--dp-color-action-secondary: #78dccd;
+	--dp-color-action-inverse: #fff;
+	--dp-color-action-disabled: #b9babd;
+	--dp-color-surface-canvas: #131923;
+	--dp-color-surface-subtle: #f3f3f3;
+	--dp-color-surface-input: rgba(232, 232, 233, 0.5);
+	--dp-color-surface-panel: #fff;
+	--dp-color-text: #131923;
+	--dp-color-text-input: #151116;
+	--dp-color-text-muted: #7c7c7c;
+	--dp-color-text-placeholder: #636363;
+	--dp-color-text-old-price: #a4a4a4;
+	--dp-color-line: #a1a3a7;
+	--dp-color-line-dark: #42474f;
+	--dp-color-light-yellow: #faf7fb;
+	--dp-color-light-gray: #f1ecf5;
+	--dp-color-pdf: #de2c2c;
+	--dp-gradient-accent: linear-gradient(77.27deg, #1e78ff 0%, #78dccd 35.873%, #1e78ff 76.497%);
+	--dp-radius-panel: 80px;
+}

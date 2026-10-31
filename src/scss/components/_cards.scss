@@ -1,0 +1,385 @@
+// Строка услуги со стрелкой; по hover — превью фото
+.service-row {
+	position: relative;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid var(--dp-color-text);
+	padding: 15px 0;
+	gap: 20px;
+
+	&__title {
+		flex: 1;
+		font-weight: 300;
+		font-size: 24px;
+		line-height: 1.1;
+		color: var(--dp-color-text);
+	}
+
+	&__btn {
+		width: 50px;
+		height: 50px;
+		pointer-events: none;
+
+		@include laptop {
+			width: 72px;
+			height: 72px;
+		}
+	}
+
+	&__preview {
+		position: absolute;
+		left: 59.5%;
+		top: 50%;
+		z-index: 2;
+		display: none;
+		width: 388px;
+		height: 481px;
+		transform: translate(-50%, -50%) rotate(13.84deg);
+		pointer-events: none;
+	}
+
+	&__preview-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__mark {
+		position: absolute;
+		height: 30px;
+		max-width: none;
+
+		&--first {
+			left: 254px;
+			top: 114px;
+			width: 56px;
+			transform: rotate(-13.84deg);
+		}
+
+		&--second {
+			left: 127px;
+			top: 154px;
+			width: 60px;
+			transform: rotate(-27.68deg);
+		}
+	}
+
+	@include laptop {
+		padding: 25px 0;
+		gap: 50px;
+
+		&__title {
+			font-size: 40px;
+		}
+
+		@include hover {
+			.service-row__preview {
+				display: block;
+			}
+
+			.service-row__btn {
+				border-color: var(--dp-color-action-primary);
+				color: $color-white;
+				background-color: var(--dp-color-action-primary);
+			}
+
+			.service-row__btn .btn-round__icon {
+				transform: none;
+			}
+		}
+	}
+}
+
+// Карточка статьи
+.article-card {
+	display: flex;
+	flex-direction: column;
+	width: 273px;
+	gap: 20px;
+
+	&__photo {
+		display: block;
+		overflow: hidden;
+		border-radius: 15px;
+		height: 180px;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	&__title {
+		// stylelint-disable-next-line value-no-vendor-prefix
+		display: -webkit-box;
+		overflow: hidden;
+		margin: 0;
+		height: 80px;
+		font-weight: 300;
+		font-size: 24px;
+		line-height: 1.1;
+		// stylelint-disable-next-line property-no-vendor-prefix
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+	}
+
+	&__text {
+		// stylelint-disable-next-line value-no-vendor-prefix
+		display: -webkit-box;
+		overflow: hidden;
+		font-size: 16px;
+		line-height: 22px;
+		// stylelint-disable-next-line property-no-vendor-prefix
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 5;
+	}
+
+	&__date {
+		font-size: 16px;
+		line-height: 22px;
+		color: var(--dp-color-line);
+	}
+
+	@include laptop {
+		width: 423px;
+
+		&__photo {
+			border-radius: 0;
+			height: 280px;
+		}
+
+		&__body {
+			gap: 20px;
+		}
+
+		&__title {
+			height: 60px;
+			line-height: 30px;
+			-webkit-line-clamp: 2;
+		}
+	}
+}
+
+// Карточка новости
+.news-card {
+	display: flex;
+	flex-direction: column;
+	border-radius: 15px;
+	padding: 15px;
+	background-color: var(--dp-color-surface-subtle);
+	gap: 15px;
+
+	&__photo {
+		flex-shrink: 0;
+		overflow: hidden;
+		border-radius: 10px;
+		aspect-ratio: 512 / 354;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	&__head {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	&__title {
+		// stylelint-disable-next-line value-no-vendor-prefix
+		display: -webkit-box;
+		overflow: hidden;
+		margin: 0;
+		font-weight: 300;
+		font-size: 24px;
+		line-height: 1.1;
+		// stylelint-disable-next-line property-no-vendor-prefix
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+	}
+
+	&__date {
+		font-size: 14px;
+		line-height: 1;
+		color: var(--dp-color-text-muted);
+	}
+
+	&__text {
+		// stylelint-disable-next-line value-no-vendor-prefix
+		display: -webkit-box;
+		overflow: hidden;
+		font-size: 16px;
+		line-height: 22px;
+		// stylelint-disable-next-line property-no-vendor-prefix
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+	}
+
+	&__more {
+		display: none;
+	}
+
+	@include laptop {
+		flex-direction: row;
+		align-items: center;
+		border-radius: 30px;
+		padding: 55px;
+		gap: 55px;
+
+		&__photo {
+			width: 512px;
+			height: 354px;
+		}
+
+		&__body {
+			max-width: 641px;
+			gap: 40px;
+		}
+
+		&__title {
+			font-size: 40px;
+		}
+
+		&__date {
+			font-size: 16px;
+			line-height: 22px;
+		}
+
+		&__more {
+			display: flex;
+		}
+	}
+}
+
+// Карточка врача для отзыва (review-form-card)
+.doctor-teaser {
+	--btn-notch: var(--dp-color-surface-panel);
+
+	display: flex;
+	flex-direction: column;
+	border: 3px solid var(--dp-color-action-secondary);
+	border-radius: 20px;
+	padding: 15px 10px;
+	gap: 20px;
+
+	&__main {
+		display: flex;
+		flex: 1;
+		align-items: flex-start;
+		gap: 10px;
+	}
+
+	&__photo {
+		flex-shrink: 0;
+		overflow: hidden;
+		border-radius: 10px;
+		width: 80px;
+		height: 80px;
+		background-color: var(--dp-color-surface-canvas);
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: bottom;
+	}
+
+	&__info {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		color: $color-black;
+		gap: 10px;
+	}
+
+	&__name {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		font-weight: 600;
+	}
+
+	&__last-name {
+		font-size: 24px;
+		line-height: 1;
+	}
+
+	&__first-name {
+		font-size: 18px;
+		line-height: 1.1;
+	}
+
+	&__position {
+		font-size: 14px;
+		line-height: 1.3;
+	}
+
+	&__btn {
+		width: 100%;
+	}
+
+	@include laptop {
+		flex-direction: row;
+		align-items: center;
+		padding: 20px;
+		gap: 10px;
+
+		&__main {
+			align-items: center;
+			gap: 20px;
+		}
+
+		&__photo {
+			width: 130px;
+			height: 130px;
+		}
+
+		&__name {
+			line-height: 1.1;
+		}
+
+		&__last-name {
+			font-size: 30px;
+			line-height: 1.1;
+		}
+
+		&__first-name {
+			font-size: 22px;
+		}
+
+		&__position {
+			font-size: 16px;
+			line-height: 1.2;
+		}
+
+		&__btn {
+			border-radius: 15px;
+			padding: 0 15px;
+			width: auto;
+			height: 54px;
+			font-size: 14px;
+			line-height: 14px;
+		}
+	}
+}

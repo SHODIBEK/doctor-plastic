@@ -1,0 +1,47 @@
+// // stylelint-disable at-rule-empty-line-before
+@import "variables";
+@import "functions";
+@import "mixins";
+@import "sprites";
+@import "fonts";
+@import "vendor";
+@import "base";
+@import "helpers";
+
+// Components
+@import "components/typo";
+@import "components/btn";
+@import "components/title";
+@import "components/field";
+@import "components/controls";
+@import "components/navigation";
+@import "components/price-line";
+@import "components/cards";
+@import "components/service-card";
+@import "components/result-card";
+@import "components/doctor-card";
+@import "components/review-card";
+@import "components/panel";
+@import "components/card-slider";
+@import "components/header";
+@import "components/footer";
+
+// Sections
+@import "sections/hero";
+@import "sections/services";
+@import "sections/works";
+@import "sections/testimonials";
+@import "sections/included";
+@import "sections/prices";
+@import "sections/calc";
+@import "sections/signup";
+@import "sections/advantages";
+@import "sections/video";
+@import "sections/gallery";
+@import "sections/faq";
+@import "sections/article";
+@import "sections/diplomas";
+
+// Pages
+@import "pages/pages-list";
+@import "pages/ui-kit";

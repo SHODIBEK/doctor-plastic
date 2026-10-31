@@ -1,0 +1,23 @@
+-
+	const faqAnswer = 'Методики, применяемые в нашей клинике, сводят такой риск к минимуму. Молочная железа во время коррекции либо не повреждается, либо ее повреждения незначительны. Так что сама операция на грудное вскармливание большого влияния не оказывает.'
+	const faq = [
+		{ question: 'Можно ли сохранить способность к грудному вскармливанию после увеличения груди?', answer: faqAnswer, open: true },
+		{ question: 'Какие анализы сдают перед операцией по увеличению груди?', answer: faqAnswer },
+		{ question: 'Остаются ли шрамы после увеличения груди?', answer: faqAnswer },
+		{ question: 'Какой период реабилитации после проведенной операции по увеличению груди?', answer: faqAnswer },
+	]
+
+section.faq
+	.container.faq__container
+		h2.title.faq__title Вопрос-ответ
+		ul.faq__list(data-faq)
+			each item, index in faq
+				li.faq__item(class=item.open ? 'is-open' : null data-faq-item)
+					button.faq__question(type="button" aria-expanded=item.open ? 'true' : 'false' aria-controls=`faq-answer-${index}` data-faq-toggle)
+						img.faq__logo(src=`${baseDir}images/icons/logo-sign.svg` width="32" height="32" alt="")
+						span.faq__question-text= item.question
+						+svg('chevron-down').faq__arrow
+					.faq__answer(id=`faq-answer-${index}` aria-hidden=item.open ? 'false' : 'true')
+						.faq__answer-inner
+							p.faq__answer-text= item.answer
+		+btn('Задать свой вопрос', { href: '#signup' }).faq__btn

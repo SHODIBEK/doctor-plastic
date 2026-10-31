@@ -1,0 +1,13 @@
+-
+	const services = [
+		{ title: 'Увеличение груди', image: 'services/service-1', href: '#' },
+		{ title: 'Подтяжка груди', image: 'services/service-2', href: '#' },
+		{ title: 'Абдоминопластика', image: 'services/service-3', href: '#' },
+	]
+
+section.services#services
+	.container.services__container
+		ul.services__list
+			each item in services
+				li.services__item
+					+serviceCard(item)

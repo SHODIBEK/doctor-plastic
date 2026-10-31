@@ -1,0 +1,105 @@
+.included {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		@include laptop {
+			flex-direction: row;
+			align-items: center;
+			gap: 24px;
+		}
+	}
+
+	&__visual {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		order: 1;
+		height: 270px;
+		background: radial-gradient(circle 94.4px at 191.79px 124.78px, var(--dp-color-action-secondary) 99.99%, transparent 100%);
+
+		&::after {
+			content: "";
+			position: absolute;
+			background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 68.924%, rgba(255, 255, 255, 0.7) 84.263%, #{$color-white} 100%);
+			inset: 0;
+		}
+
+		@include laptop {
+			flex-shrink: 0;
+			justify-content: flex-start;
+			order: 0;
+			width: 425px;
+			height: 502px;
+			background: radial-gradient(circle 160.6px at 247px 232px, var(--dp-color-action-secondary) 99.99%, transparent 100%);
+		}
+	}
+
+	&__image {
+		position: relative;
+		z-index: 0;
+		width: auto;
+		height: 100%;
+		max-width: none;
+		object-fit: fill;
+		aspect-ratio: 369 / 502;
+	}
+
+	&__content {
+		display: contents;
+
+		@include laptop {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+			gap: 80px;
+		}
+	}
+
+	&__list {
+		display: grid;
+		order: 2;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 30px 10px;
+
+		@include laptop {
+			gap: 80px 24px;
+		}
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+
+		@include laptop {
+			flex-direction: row;
+			align-items: center;
+			gap: 24px;
+		}
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 32px;
+		height: 32px;
+
+		@include laptop {
+			width: 40px;
+			height: 40px;
+		}
+	}
+
+	&__text {
+		font-size: 15px;
+		line-height: 1.2;
+		color: $color-black;
+
+		@include laptop {
+			max-width: 243px;
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+}

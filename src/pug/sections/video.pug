@@ -1,0 +1,7 @@
+section.video
+	.container
+		figure.video__figure
+			a.video__link(href="https://www.youtube.com/watch?v=" aria-label="Смотреть видео" data-fancybox)
+				+picture('video/poster', 'Доктор Сергеев', 1024, 556).video__poster
+				img.video__play(src=`${baseDir}images/icons/play-circle.svg` width="72" height="72" alt="")
+			figcaption.video__caption Доктор Сергеев. Подробнее о пластическом хирурге и основателе клиники

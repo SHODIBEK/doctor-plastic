@@ -1,0 +1,63 @@
+// Слайдер карточек с заголовком слева (Врачи, Отзывы)
+.card-slider {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	&__aside {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		@include laptop {
+			flex-shrink: 0;
+			width: 425px;
+			height: 500px;
+		}
+	}
+
+	&__nav {
+		display: none;
+
+		@include laptop {
+			display: flex;
+			gap: 24px;
+		}
+	}
+
+	&__viewport {
+		margin-right: -15px;
+		width: calc(100% + 15px);
+
+		@include tablet {
+			margin-right: -30px;
+			width: calc(100% + 30px);
+		}
+
+		@include laptop {
+			flex: 1;
+			margin-right: 0;
+			min-width: 0;
+		}
+	}
+
+	&__track {
+		display: flex;
+	}
+
+	&__slide {
+		flex-shrink: 0;
+		width: 273px;
+		height: auto;
+
+		@include laptop {
+			width: calc((100% - 24px) / 2);
+		}
+	}
+
+	@include laptop {
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 24px;
+	}
+}

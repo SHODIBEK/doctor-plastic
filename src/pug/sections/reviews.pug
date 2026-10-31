@@ -1,0 +1,19 @@
+-
+	const reviews = [
+		{ lastName: 'Бухинбальта', name: 'Кристина', photo: 'reviews/card-1', video: '#', text: '„Вот и прошёл месяц со дня долгожданной операции по увеличению груди! Чувства переполняют, конечно же! Знаю, что „не открою Америку „своим отзывам, но не выразить благодарность доктору Сергееву я не могу! Илья Вячеславович, вы просто настоящий мастер своего дела!' },
+		{ lastName: 'Сафарова', name: 'Екатерина', photo: 'reviews/card-2', video: '#', text: '«Илья Вячеславович, это пост признания в любви! Как я Рада, что попала именно к вам. Долгий мучительный выбор лучшего хирурга закончился у меня успехом. К моему счастью реабилитация для меня прошла совсем безболезненно. Сожалею только о том что раньше не пришла к вам!»' },
+		{ lastName: 'Бухинбальта', name: 'Кристина', photo: 'reviews/card-1', video: '#', text: '„Вот и прошёл месяц со дня долгожданной операции по увеличению груди! Чувства переполняют, конечно же! Знаю, что „не открою Америку „своим отзывам, но не выразить благодарность доктору Сергееву я не могу! Илья Вячеславович, вы просто настоящий мастер своего дела!' },
+	]
+
+section.reviews
+	.container.card-slider(data-card-slider)
+		.card-slider__aside
+			h2.title.card-slider__title Отзывы
+			.card-slider__nav
+				+btnRound('prev')(data-card-slider-prev)
+				+btnRound('next')(data-card-slider-next)
+		.card-slider__viewport.swiper(data-card-slider-swiper)
+			ul.card-slider__track.swiper-wrapper
+				each review in reviews
+					li.card-slider__slide.swiper-slide
+						+reviewCard(review)

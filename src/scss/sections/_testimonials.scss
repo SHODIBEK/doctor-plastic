@@ -1,0 +1,198 @@
+.testimonials {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	&__tabs {
+		display: flex;
+		overflow-x: auto;
+		padding: 0 15px;
+		gap: 10px;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		@include tablet {
+			justify-content: center;
+			gap: 24px;
+		}
+	}
+
+	&__tab {
+		display: flex;
+		flex-shrink: 0;
+		flex-direction: column;
+		align-items: center;
+		font-family: inherit;
+		gap: 8px;
+	}
+
+	&__avatar {
+		position: relative;
+		display: block;
+		border-radius: 50%;
+		padding: 4px;
+		width: 96px;
+		height: 96px;
+		background-image: linear-gradient(42deg, #1e78ff 0%, #78dccd 100%);
+
+		.testimonials__tab.is-active & {
+			background-image: none;
+			background-color: $color-white;
+		}
+	}
+
+	&__avatar-image {
+		display: block;
+		border: 4px solid $color-white;
+		border-radius: 50%;
+		width: 88px;
+		height: 88px;
+		object-fit: cover;
+	}
+
+	&__ring,
+	&__ring-progress {
+		position: absolute;
+		display: none;
+		max-width: none;
+
+		.testimonials__tab.is-active & {
+			display: block;
+		}
+	}
+
+	&__ring {
+		left: 0;
+		top: 0;
+		width: 96px;
+		height: 96px;
+	}
+
+	&__ring-progress {
+		left: 49.7px;
+		top: 0;
+		width: 46.15px;
+		height: 45.79px;
+	}
+
+	&__tab-name {
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 16px;
+		white-space: nowrap;
+		color: var(--dp-color-text-muted);
+	}
+
+	&__item {
+		display: none;
+		flex-direction: column;
+		gap: 20px;
+
+		&.is-active {
+			display: flex;
+		}
+
+		@include laptop {
+			flex-direction: row;
+			align-items: center;
+			gap: 24px;
+		}
+	}
+
+	&__photo {
+		position: relative;
+		flex-shrink: 0;
+		align-self: center;
+		overflow: hidden;
+		width: 231px;
+		height: 273px;
+
+		&::after {
+			content: "";
+			position: absolute;
+			background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 61.498%, #{$color-white} 100%);
+			inset: 0;
+		}
+
+		@include laptop {
+			align-self: auto;
+			width: 425px;
+			height: 502px;
+		}
+	}
+
+	&__photo-image {
+		position: absolute;
+		left: -2.18%;
+		top: -0.04%;
+		width: 102.25%;
+		height: 108.11%;
+		max-width: none;
+		object-fit: cover;
+	}
+
+	&__content {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 30px;
+
+		@include laptop {
+			gap: 50px;
+		}
+	}
+
+	&__head {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	&__name {
+		display: flex;
+		align-items: center;
+		font-weight: 300;
+		font-size: 32px;
+		line-height: 32px;
+		gap: 10px;
+
+		@include laptop {
+			font-size: 56px;
+			line-height: 56px;
+		}
+	}
+
+	&__about {
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 16px;
+		color: var(--dp-color-text-muted);
+	}
+
+	&__text {
+		padding-left: 7.2px;
+		font-size: 16px;
+		line-height: 22px;
+		text-indent: -7.2px;
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+	}
+
+	&__video {
+		flex: 1;
+
+		@include laptop {
+			flex: none;
+		}
+	}
+
+	@include laptop {
+		gap: 50px;
+	}
+}

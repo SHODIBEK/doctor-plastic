@@ -1,0 +1,245 @@
+// Служебная страница со списком готовых страниц (index.html)
+.pages-list {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	color: $color-white;
+	background-color: var(--dp-color-surface-canvas);
+
+	&__header {
+		border-bottom: 1px solid var(--dp-color-line-dark);
+	}
+
+	&__bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		gap: 20px;
+	}
+
+	&__logo {
+		display: block;
+		width: 126px;
+		height: 32px;
+	}
+
+	&__figma {
+		border: 1px solid var(--dp-color-line-dark);
+		border-radius: 15px;
+		padding: 10px 16px;
+		font-weight: 600;
+		font-size: 14px;
+		transition: border-color $duration-normal, color $duration-normal;
+
+		@include hover {
+			border-color: var(--dp-color-action-secondary);
+			color: var(--dp-color-action-secondary);
+		}
+	}
+
+	&__main {
+		flex: 1;
+		padding: 50px 0 70px;
+
+		@include laptop {
+			padding: 100px 0 120px;
+		}
+	}
+
+	&__intro {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 40px;
+		gap: 20px;
+
+		@include laptop {
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: flex-end;
+			justify-content: space-between;
+			margin-bottom: 70px;
+		}
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 300;
+		font-size: 48px;
+		line-height: 1;
+
+		@include laptop {
+			font-size: 96px;
+		}
+	}
+
+	&__accent {
+		// stylelint-disable-next-line property-no-vendor-prefix
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		background-image: var(--dp-gradient-accent);
+	}
+
+	&__count {
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	&__count-value {
+		font-weight: 300;
+		font-size: 40px;
+		color: $color-white;
+	}
+
+	&__items {
+		display: grid;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		gap: 15px;
+
+		@include tablet {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include laptop {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 24px;
+		}
+	}
+
+	&__card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		border-radius: 20px;
+		padding: 20px;
+		height: 100%;
+		min-height: 260px;
+		color: var(--dp-color-text);
+		background-color: var(--dp-color-surface-panel);
+		transition: transform $duration-normal, box-shadow $duration-normal;
+		gap: 15px;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: -80px;
+			right: -80px;
+			border-radius: 50%;
+			width: 200px;
+			height: 200px;
+			background-color: var(--dp-color-action-secondary);
+			opacity: 0.25;
+			transition: transform 0.5s ease, opacity $duration-normal;
+		}
+
+		@include laptop {
+			border-radius: 30px;
+			padding: 30px;
+			min-height: 300px;
+		}
+
+		@include hover {
+			box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+			transform: translateY(-6px);
+
+			&::before {
+				opacity: 0.45;
+				transform: scale(1.3);
+			}
+
+			.pages-list__arrow {
+				border-color: var(--dp-color-action-primary);
+				color: $color-white;
+				background-color: var(--dp-color-action-primary);
+			}
+
+			.pages-list__arrow .btn-round__icon {
+				transform: none;
+			}
+		}
+	}
+
+	&__top {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+	}
+
+	&__num {
+		font-weight: 300;
+		font-size: 16px;
+		color: var(--dp-color-text-muted);
+	}
+
+	&__tag {
+		border-radius: 100px;
+		padding: 6px 12px;
+		font-weight: 600;
+		font-size: 12px;
+
+		&--page {
+			color: $color-white;
+			background-color: var(--dp-color-action-primary);
+		}
+
+		&--service {
+			color: var(--dp-color-text);
+			background-color: var(--dp-color-surface-subtle);
+		}
+	}
+
+	&__name {
+		position: relative;
+		margin-top: 10px;
+		font-weight: 300;
+		font-size: 32px;
+		line-height: 1.1;
+
+		@include laptop {
+			font-size: 40px;
+		}
+	}
+
+	&__desc {
+		position: relative;
+		font-size: 15px;
+		line-height: 1.4;
+		color: rgba(19, 25, 35, 0.7);
+	}
+
+	&__bottom {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: auto;
+		padding-top: 10px;
+		gap: 10px;
+	}
+
+	&__file {
+		font-family: Consolas, Monaco, monospace;
+		font-size: 14px;
+		color: var(--dp-color-text-muted);
+	}
+
+	&__empty {
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	&__footer {
+		border-top: 1px solid var(--dp-color-line-dark);
+		padding: 20px 0;
+	}
+
+	&__note {
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.4);
+	}
+}

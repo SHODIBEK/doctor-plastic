@@ -1,0 +1,21 @@
+section.signup#signup
+	.container.container--narrow.signup__container
+		form.signup__form(action="#" method="post" data-signup-form)
+			h2.title.signup__title Записаться
+			.signup__fields
+				input.field.signup__field(type="text" name="your-name" placeholder="Имя" autocomplete="name" required)
+				input.field.signup__field(type="tel" name="your-phone" placeholder="Телефон" autocomplete="tel" required)
+				label.checkbox.signup__checkbox
+					input.checkbox__input(type="checkbox" name="marketing" value="1" checked)
+					span.checkbox__box
+					span.checkbox__text Получать маркетинговые предложения и рекламу
+				p.signup__policy
+					| Нажимая на кнопку, вы даете согласие на обработку данных
+					br.signup__break
+					|  и соглашаетесь с
+					a.signup__policy-link(href="#") Политикой конфиденциальности
+					| .
+			button.btn.btn--full.signup__submit(type="submit")
+				span Записаться на консультацию
+		.signup__visual
+			+picture('form/woman', 'Записаться на консультацию', 770, 513).signup__image

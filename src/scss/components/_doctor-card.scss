@@ -1,0 +1,132 @@
+// Карточка врача. На мобильных — развернутая, с 1024 описание и кнопка по hover
+.doctor-card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	gap: 20px;
+
+	&__photo {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		overflow: hidden;
+		border-radius: 15px;
+		padding: 20px 20px 0;
+		height: 340px;
+		background-color: var(--dp-color-surface-canvas);
+		transition: height $duration-normal, background-color $duration-normal;
+
+		@include laptop {
+			border-radius: 0;
+			padding: 30px 30px 0;
+			height: 495px;
+		}
+	}
+
+	&__operations {
+		position: relative;
+		z-index: 1;
+		align-self: flex-end;
+		margin-bottom: -30px;
+		width: 79px;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 16px;
+		color: $color-white;
+	}
+
+	&__image {
+		flex-shrink: 0;
+		width: 100%;
+		min-height: 0;
+		height: 100%;
+		max-width: none;
+		// Фото — вырезанные PNG разных пропорций: вписываем целиком, прижимаем к низу
+		object-fit: contain;
+		object-position: center bottom;
+
+		@include laptop {
+			width: 365px;
+			height: 463px;
+		}
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		@include laptop {
+			padding-right: 50px;
+			transition: gap $duration-normal;
+			gap: 0;
+		}
+	}
+
+	&__name {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		font-weight: 500;
+		font-size: 24px;
+		gap: 8px;
+	}
+
+	&__last-name {
+		display: flex;
+		align-items: center;
+		font-weight: 400;
+		gap: 8px;
+
+		@include laptop {
+			font-size: 40px;
+		}
+	}
+
+	&__text {
+		font-size: 16px;
+		line-height: 22px;
+
+		@include laptop {
+			overflow: hidden;
+			max-height: 0;
+			opacity: 0;
+			transition: max-height $duration-normal, opacity $duration-normal;
+		}
+	}
+
+	&__btn {
+		margin-top: auto;
+
+		@include laptop {
+			margin-top: 30px;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity $duration-normal, visibility $duration-normal;
+		}
+	}
+
+	@include laptop {
+		@include hover {
+			.doctor-card__photo {
+				height: 425px;
+				background-color: rgba(19, 25, 35, 0.3);
+			}
+
+			.doctor-card__body {
+				gap: 24px;
+			}
+
+			.doctor-card__text {
+				max-height: 110px;
+				opacity: 1;
+			}
+
+			.doctor-card__btn {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+}

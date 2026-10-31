@@ -1,0 +1,34 @@
+-
+	const menu = [
+		{ title: 'Услуги', href: '#services' },
+		{ title: 'Цены', href: '#prices' },
+		{ title: 'Специалисты', href: '#doctors' },
+		{ title: 'Наши работы', href: '#works' },
+		{ title: 'О клинике', href: '#advantages' },
+		{ title: 'Контакты', href: '#contacts' },
+	]
+
+header.header(data-header)
+	.container.header__container
+		button.header__burger(type="button" aria-label="Меню" aria-expanded="false" aria-controls="header-nav" data-header-burger)
+			+svg('menu').header__burger-icon.header__burger-icon--open
+			+svg('close').header__burger-icon.header__burger-icon--close
+		a.header__logo(href="./index.html" aria-label="Доктор Пластик")
+			img.header__logo-image(src="./images/icons/logo.svg" width="126" height="32" alt="Доктор Пластик")
+		nav.header__nav#header-nav
+			ul.header__menu
+				each item in menu
+					li.header__menu-item
+						a.header__menu-link(href=item.href)= item.title
+			//- Подвал мобильного меню: поиск
+			.header__nav-footer
+				form.header__search-form(action="/" method="get" role="search")
+					input.header__search-input(type="search" name="s" placeholder="Поиск по сайту" aria-label="Поиск по сайту")
+					button.header__search-submit(type="submit" aria-label="Найти")
+						+svg('search').header__search-icon
+		.header__actions
+			button.header__search(type="button" aria-label="Поиск")
+				+svg('search').header__search-icon
+			a.header__phone(href="tel:+74992262189" aria-label="Позвонить")
+				+svg('phone').header__phone-icon
+				span.header__phone-text +7 (499) 226 21 89

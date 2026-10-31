@@ -1,0 +1,153 @@
+*,
+*::before,
+*::after {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	box-sizing: border-box;
+}
+
+html {
+	position: relative;
+	min-height: 100vh;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+
+	&.has-cursor,
+	&.has-cursor * {
+		// stylelint-disable-next-line
+		cursor: none !important;
+	}
+
+	&.is-lock-scroll,
+	&.is-lock-scroll body {
+		overflow: hidden;
+	}
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	text-decoration-skip: objects;
+	text-rendering: optimizeLegibility;
+	text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent;
+	font-family: var(--font-family);
+	font-feature-settings: "lnum" 1, "tnum" 1;
+	color: var(--dp-color-text);
+	background-color: var(--dp-color-surface-canvas);
+
+	&.mobile-menu-open {
+		touch-action: none;
+		-webkit-overflow-scrolling: none;
+		overflow: hidden;
+		overscroll-behavior: none;
+	}
+}
+
+.site {
+	overflow-x: hidden;
+}
+
+main {
+	flex: 1;
+}
+
+.main {
+	position: relative;
+}
+
+p {
+	margin: 0;
+}
+
+a,
+button {
+	outline: none;
+	transition: $duration-normal;
+	cursor: pointer;
+}
+
+button {
+	padding: 0;
+	border: none;
+	color: inherit;
+	background: transparent;
+}
+
+a {
+	text-decoration: none;
+	color: currentColor;
+}
+
+figure,
+picture {
+	display: inline-block;
+	margin: 0;
+	line-height: 0;
+
+	img {
+		width: 100%;
+	}
+}
+
+img {
+	vertical-align: top;
+	max-width: 100%;
+	user-select: none;
+}
+
+fieldset {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+ul,
+li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+video {
+	outline: none;
+	width: 100%;
+	height: 100%;
+}
+
+iframe {
+	display: block;
+}
+
+.site {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh; // fallback
+	// stylelint-disable-next-line
+	min-height: var(--vh);
+}
+
+.container {
+	padding: 0 15px;
+	margin: 0 auto;
+	width: 100%;
+
+	@include tablet {
+		padding: 0 30px;
+	}
+
+	@include laptop {
+		padding: 0 55px;
+		max-width: 1432px;
+	}
+
+	&--narrow {
+		@include desktop {
+			padding: 0 167px;
+		}
+	}
+}
+
+.text-uppercase {
+	text-transform: uppercase !important;
+}
+

@@ -1,0 +1,22 @@
+-
+	const doctors = [
+		{ lastName: 'Сергеев', name: 'Илья Вячеславович', photo: 'doctors/sergeev', operations: '35 000+ операций', text: 'Основатель клиники «ДокторПластик», пластический хирург, профессор, основатель собственной школы маммопластики.' },
+		{ lastName: 'Труфанов', name: 'Дмитрий Игоревич', photo: 'doctors/trufanov', operations: '35 000+ операций', text: 'Пластический хирург, кандидат медицинских наук, специалист по эстетической хирургии груди и тела.' },
+		{ lastName: 'Сергеев', name: 'Илья Вячеславович', photo: 'doctors/sergeev', operations: '35 000+ операций', text: 'Основатель клиники «ДокторПластик», пластический хирург, профессор, основатель собственной школы маммопластики.' },
+	]
+
+section.doctors#doctors
+	.container.card-slider(data-card-slider)
+		.card-slider__aside
+			h2.title.card-slider__title
+				| Ведущие
+				br
+				| специалисты
+			.card-slider__nav
+				+btnRound('prev')(data-card-slider-prev)
+				+btnRound('next')(data-card-slider-next)
+		.card-slider__viewport.swiper(data-card-slider-swiper)
+			ul.card-slider__track.swiper-wrapper
+				each doctor in doctors
+					li.card-slider__slide.swiper-slide
+						+doctorCard(doctor)

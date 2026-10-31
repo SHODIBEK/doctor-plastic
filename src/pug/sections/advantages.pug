@@ -1,0 +1,22 @@
+-
+	const advantages = [
+		{ icon: 'time', text: 'Операция<br>не более 40 минут' },
+		{ icon: 'monitor', text: 'Компьютерное 3D моделирования результата' },
+		{ icon: 'board-activity', text: 'Быстрый<br>реабилитационный период' },
+		{ icon: 'breast-implant', text: 'Импланты<br>нового поколения' },
+		{ icon: 'heart', text: 'Индивидуальный<br>подход к пациентам' },
+		{ icon: 'surgical-instrument', text: 'Самое современное<br>оборудование' },
+	]
+
+section.advantages#advantages
+	.container.container--narrow.advantages__container
+		.advantages__visual
+			+picture('advantages/woman', 'Пациентка клиники', 486, 486).advantages__image
+		.advantages__content
+			h2.title.advantages__title Преимущества
+			ul.advantages__list
+				each item in advantages
+					li.advantages__item
+						span.advantages__icon-wrap
+							img.advantages__icon(src=`${baseDir}images/icons/included/${item.icon}.svg` width="40" height="40" alt="")
+						p.advantages__text!= item.text

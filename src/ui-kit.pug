@@ -1,0 +1,205 @@
+extends pug/layout
+
+append vars
+	- title = 'UI-кит — Доктор Пластик'
+
+block main
+	-
+		const kitColors = [
+			{ name: 'action-primary', value: '#1E78FF' },
+			{ name: 'action-secondary', value: '#78DCCD' },
+			{ name: 'action-active', value: '#0E55C0' },
+			{ name: 'action-disabled', value: '#B9BABD' },
+			{ name: 'surface-canvas', value: '#131923' },
+			{ name: 'surface-subtle', value: '#F3F3F3' },
+			{ name: 'surface-input', value: 'rgba(232, 232, 233, .5)' },
+			{ name: 'text', value: '#131923' },
+			{ name: 'text-muted', value: '#7C7C7C' },
+			{ name: 'line', value: '#A1A3A7' },
+			{ name: 'line-dark', value: '#42474F' },
+			{ name: 'pdf', value: '#DE2C2C' },
+		]
+		const kitTypo = [
+			{ mod: 'display-l', name: 'Display/L', spec: 'Mulish Light 56 / 110%', text: 'Пластика у ведущего хирурга' },
+			{ mod: 'heading-l', name: 'Heading/L', spec: 'Mulish Light 40 / 110%', text: 'Красота, которую может позволить себе каждая' },
+			{ mod: 'heading-m', name: 'Heading/M', spec: 'Mulish Light 32 / 40', text: 'Онлайн-калькулятор рассрочки' },
+			{ mod: 'heading-s', name: 'Heading/S', spec: 'Mulish Light 24 / 30', text: 'Подтяжка без имплантов: когда это реально хватает?' },
+			{ mod: 'body-l', name: 'Body/L', spec: 'Mulish Regular 24 / 30', text: '+7 (499) 226 21 89' },
+			{ mod: 'body-m', name: 'Body/M', spec: 'Mulish Regular 16 / 22', text: 'Методики, применяемые в нашей клинике, сводят такой риск к минимуму.' },
+		]
+		const kitIcons = ['health', 'surgical-instrument', 'health-care', 'board-activity', 'stethoscope', 'gift', 'time', 'monitor', 'breast-implant', 'heart', 'breast-2', 'breast-implant-2', 'legs', 'time-clock', 'diet', 'toothbrush', 'bra', 'necklace', 'wallet', 'cards', 'document', 'calendar', 'location']
+		const kitSprite = ['search', 'close', 'check', 'telegram', 'vk', 'arrow-right', 'chevron-down', 'download', 'file', 'phone', 'map', 'mail', 'time-alarm', 'menu', 'play', 'glasses']
+		const kitDropList = ['Увеличение груди', 'Подтяжка груди', 'Абдоминопластика', 'Повторная пластика груди', 'Коррекция асимметрии', 'Ринопластика', 'Отопластика']
+		const kitPrices = [
+			{ name: 'Увеличение груди (без стоимости имплантов, компрессионного белья)', price: '295 400 ₽' },
+			{ name: 'Увеличение груди (без стоимости имплантов, компрессионного белья)', price: '295 400 ₽', oldPrice: '295 400 ₽' },
+			{ name: 'Увеличение груди (без стоимости имплантов, компрессионного белья)', note: 'В стоимость входит: 3D моделирование, импланты, операция, реабилитационный период', price: '295 400 ₽' },
+			{ name: 'Увеличение груди (без стоимости имплантов, компрессионного белья)', note: 'В стоимость входит: 3D моделирование, импланты, операция, реабилитационный период', price: '295 400 ₽', oldPrice: '295 400 ₽' },
+		]
+		const kitArticle = { title: 'Подтяжка без имплантов: когда это реально хватает?', text: 'Многие женщины сталкиваются с тем, что после грудного вскармливания или резкого похудения грудь теряет былую высоту, но при этом сохраняет достаточный объем мягких тканей. Возникает эффект пустого конверта или выраженный птоз, когда сосок опускается ниже подгрудной складки.', date: '30.01.2026', datetime: '2026-01-30', image: 'gallery/gallery-2', href: '#' }
+		const kitNews = { title: 'Новость этой весны: у клиники «ДокторПластик» две награды!', text: 'Состоялась IX церемония награждения лауреатов всемирно известной премии «Хрустальный Лотос». У нас две замечательные новости: пластические хирурги нашей клиники в очередной раз признаны одними из лучших.', date: '04.05.2023', datetime: '2023-05-04', image: 'ui/news', href: '#' }
+
+	section.ui-kit-hero
+		.container
+			+breadcrumbs([{ title: 'Главная', href: './index.html' }, { title: 'Служебные', href: '#' }, { title: 'UI-кит' }])
+			h1.ui-kit-hero__title UI-кит
+	.panel.ui-kit
+		//- Цвета
+		section.ui-kit__section
+			.container
+				h2.ui-kit__title Цвета
+				ul.ui-kit__colors
+					each color in kitColors
+						li.ui-kit__color
+							span.ui-kit__swatch(class=`ui-kit__swatch--${color.name}`)
+							span.ui-kit__label= `--dp-color-${color.name}`
+							span.ui-kit__hint= color.value
+
+		//- Типографика
+		section.ui-kit__section
+			.container
+				h2.ui-kit__title Типографика
+				ul.ui-kit__list
+					each item in kitTypo
+						li.ui-kit__typo
+							span.ui-kit__hint= `${item.name} · ${item.spec}`
+							p.typo(class=`typo--${item.mod}`)= item.text
+
+		//- Кнопки
+		section.ui-kit__section
+			.container
+				h2.ui-kit__title Кнопки
+				.ui-kit__row
+					+btn('Записаться на консультацию')
+					+btn('Записаться на консультацию').is-active
+					+btn('Записаться на консультацию').btn--small
+					button.btn(type="button")
+						span Записаться
+						+svg('close').btn__icon
+					+btn('Очистить').btn--gray
+				h3.ui-kit__subtitle Круглые кнопки
+				.ui-kit__row
+					+btnRound('link')
+					+btnRound('next')
+					+btnRound('down')
+					+btnRound('next').is-active
+					+btnRound('up').is-open
+				.ui-kit__row
+					+btnRound('link').btn-round--small
+					+btnRound('next').btn-round--small
+					+btnRound('down').btn-round--small
+					+btnRound('next').btn-round--small.is-active
+					+btnRound('up').btn-round--small.is-open
+				h3.ui-kit__subtitle Play
+				.ui-kit__row
+					a.btn-play(href="#" aria-label="Смотреть видео")
+						+svg('play').btn-play__icon
+					a.btn-play(href="#" aria-label="Читать")
+						+svg('arrow-right').btn-play__icon.btn-play__icon--stroke
+
+		//- Формы
+		section.ui-kit__section
+			.container
+				h2.ui-kit__title Формы
+				form.ui-kit__grid(action="#")
+					.ui-kit__col
+						input.field(type="text" name="kit-name" placeholder="Имя")
+						+select({ name: 'kit-select', options: ['Имя', 'Вариант 1', 'Вариант 2'] })
+						+select({ name: 'kit-select-clear', options: ['Имя', 'Вариант 1', 'Вариант 2'], clearable: true })
+						+fileField({ name: 'kit-photo', label: 'Прикрепить фото' })
+						+select({ name: 'kit-select-active', options: ['Пластика тела', 'Пластика груди'] }).is-active
+					.ui-kit__col
+						+dropList({ name: 'kit-services[]', items: kitDropList })
+						.ui-kit__row
+							+checkbox({ name: 'kit-check-1', label: 'Выбрано', checked: true })
+							+checkbox({ name: 'kit-check-2', label: 'Не выбрано' })
+						.ui-kit__row
+							+radio({ name: 'kit-radio', value: '1', label: 'Выбрано', checked: true })
+							+radio({ name: 'kit-radio', value: '2', label: 'Не выбрано' })
+						.ui-kit__row
+							+switcher({ name: 'kit-switch-1', label: 'Выключено' })
+							+switcher({ name: 'kit-switch-2', label: 'Включено', checked: true })
+
+		//- Навигация
+		section.ui-kit__section
+			.container
+				h2.ui-kit__title Навигация
+				h3.ui-kit__subtitle Табы
+				.ui-kit__row(data-category-tabs)
+					+categoryTab({ title: 'Грудь', image: 'ui/tab-breast', active: true })
+					+categoryTab({ title: 'Лицо', image: 'ui/tab-breast' })
+				h3.ui-kit__subtitle Пагинация
+				+pagination({ current: 1, pages: ['1', '2', { page: '3', desktop: true }, { page: '4', desktop: true }, { page: '5', desktop: true }, '...', '40'] })
+				h3.ui-kit__subtitle Хлебные крошки
+				.ui-kit__dark
+					+breadcrumbs([{ title: 'Главная', href: '#' }, { title: 'Пластическая хирургия', href: '#' }, { title: 'Увеличение груди' }])
+				h3.ui-kit__subtitle Логотип
+				.ui-kit__row
+					.ui-kit__dark
+						img(src=`${baseDir}images/icons/logo.svg` width="126" height="32" alt="Доктор Пластик")
+					img(src=`${baseDir}images/icons/logo-dark.svg` width="126" height="32" alt="Доктор Пластик")
+					img(src=`${baseDir}images/icons/logo-sign.svg` width="32" height="32" alt="Доктор Пластик")
+
+		//- Списки
+		section.ui-kit__section
+			.container
+				h2.ui-kit__title Списки
+				h3.ui-kit__subtitle Строка прайса
+				ul.ui-kit__prices
+					each item in kitPrices
+						+priceLine(item)
+				h3.ui-kit__subtitle Collapse
+				+collapse({ title: 'Гинекология' })
+					p.typo.typo--body-m Контент раздела
+				+collapse({ title: 'Гинекология', open: true })
+					p.typo.typo--body-m Контент раздела
+				h3.ui-kit__subtitle Услуга
+				ul.ui-kit__list
+					li
+						+serviceRow({ title: 'Увеличение груди', href: '#', preview: 'ui/service-preview' })
+					li
+						+serviceRow({ title: 'Подтяжка груди', href: '#', preview: 'ui/service-preview' })
+
+		//- Карточки
+		section.ui-kit__section
+			.container
+				h2.ui-kit__title Карточки
+				h3.ui-kit__subtitle Услуга
+				ul.ui-kit__row
+					li.ui-kit__service
+						+serviceCard({ title: 'Увеличение груди', image: 'services/service-1', href: '#' })
+					li.ui-kit__service
+						+serviceCard({ title: 'Подтяжка груди', image: 'services/service-2', href: '#' })
+				h3.ui-kit__subtitle Врач и отзыв
+				.ui-kit__row.ui-kit__row--top
+					.ui-kit__card
+						+doctorCard({ lastName: 'Сергеев', name: 'Илья Вячеславович', photo: 'doctors/sergeev', operations: '35 000+ операций', text: 'Основатель клиники «ДокторПластик», пластический хирург, профессор, основатель собственной школы маммопластики.' })
+					.ui-kit__card
+						+reviewCard({ lastName: 'Сафарова', name: 'Екатерина', photo: 'reviews/card-2', video: '#', text: '«Илья Вячеславович, это пост признания в любви! Как я Рада, что попала именно к вам. Долгий мучительный выбор лучшего хирурга закончился у меня успехом.»' })
+					.ui-kit__card
+						+articleCard(kitArticle)
+				h3.ui-kit__subtitle Результат до/после
+				.ui-kit__result
+					+resultCard({ title: 'Увеличение груди', before: 'works/before', after: 'works/after', counter: '01/16' })
+				h3.ui-kit__subtitle Новость
+				+newsCard(kitNews)
+				h3.ui-kit__subtitle Врач для отзыва
+				.ui-kit__teaser
+					+doctorTeaser({ lastName: 'Володин', name: 'Александр Владимирович', position: 'Заведующая отделением пластической хирургии', image: 'ui/doctor-volodin', href: '#' })
+
+		//- Иконки
+		section.ui-kit__section
+			.container
+				h2.ui-kit__title Иконки
+				h3.ui-kit__subtitle Спрайт (+svg, цвет через color)
+				ul.ui-kit__icons
+					each name in kitSprite
+						li.ui-kit__icon
+							+svg(name).ui-kit__icon-svg
+							span.ui-kit__hint= name
+				h3.ui-kit__subtitle Двухцветные (images/icons/set)
+				ul.ui-kit__icons
+					each name in kitIcons
+						li.ui-kit__icon
+							img.ui-kit__icon-image(src=`${baseDir}images/icons/set/${name}.svg` width="40" height="40" alt="")
+							span.ui-kit__hint= name

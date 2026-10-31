@@ -1,0 +1,233 @@
+// Служебная страница UI-кита
+.ui-kit-hero {
+	padding: 30px 0 40px;
+	color: $color-white;
+
+	&__title {
+		margin: 20px 0 0;
+		font-weight: 300;
+		font-size: 40px;
+		line-height: 1.1;
+
+		@include laptop {
+			font-size: 56px;
+		}
+	}
+}
+
+.ui-kit {
+	&__section {
+		position: relative;
+	}
+
+	&__title {
+		margin: 0 0 30px;
+		border-bottom: 1px solid var(--dp-color-line);
+		padding-bottom: 15px;
+		font-weight: 300;
+		font-size: 30px;
+		line-height: 1.1;
+
+		@include laptop {
+			font-size: 40px;
+		}
+	}
+
+	&__subtitle {
+		margin: 40px 0 20px;
+		font-weight: 600;
+		font-size: 16px;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: var(--dp-color-text-muted);
+	}
+
+	&__row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 20px;
+
+		&--top {
+			align-items: flex-start;
+		}
+
+		& + & {
+			margin-top: 20px;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+
+	&__grid {
+		display: grid;
+		gap: 30px;
+
+		@include laptop {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	&__col {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	&__colors {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 20px;
+
+		@include tablet {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		@include laptop {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+		}
+	}
+
+	&__color {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__swatch {
+		border: 1px solid rgba(19, 25, 35, 0.1);
+		border-radius: 15px;
+		height: 80px;
+
+		&--action-primary {
+			background-color: var(--dp-color-action-primary);
+		}
+
+		&--action-secondary {
+			background-color: var(--dp-color-action-secondary);
+		}
+
+		&--action-active {
+			background-color: #0e55c0;
+		}
+
+		&--action-disabled {
+			background-color: var(--dp-color-action-disabled);
+		}
+
+		&--surface-canvas {
+			background-color: var(--dp-color-surface-canvas);
+		}
+
+		&--surface-subtle {
+			background-color: var(--dp-color-surface-subtle);
+		}
+
+		&--surface-input {
+			background-color: var(--dp-color-surface-input);
+		}
+
+		&--text {
+			background-color: var(--dp-color-text);
+		}
+
+		&--text-muted {
+			background-color: var(--dp-color-text-muted);
+		}
+
+		&--line {
+			background-color: var(--dp-color-line);
+		}
+
+		&--line-dark {
+			background-color: var(--dp-color-line-dark);
+		}
+
+		&--pdf {
+			background-color: var(--dp-color-pdf);
+		}
+	}
+
+	&__label {
+		font-weight: 600;
+		font-size: 14px;
+	}
+
+	&__hint {
+		font-size: 14px;
+		color: var(--dp-color-text-muted);
+	}
+
+	&__typo {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__dark {
+		display: inline-flex;
+		border-radius: 15px;
+		padding: 20px;
+		background-color: var(--dp-color-surface-canvas);
+	}
+
+	&__prices {
+		max-width: 956px;
+	}
+
+	&__service {
+		width: 160px;
+
+		@include laptop {
+			width: 434px;
+		}
+	}
+
+	&__card {
+		width: 273px;
+
+		@include laptop {
+			width: 425px;
+		}
+	}
+
+	&__result {
+		max-width: 798px;
+	}
+
+	&__teaser {
+		max-width: 648px;
+	}
+
+	&__icons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+	&__icon {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100px;
+		gap: 8px;
+	}
+
+	&__icon-svg {
+		border-radius: 10px;
+		padding: 8px;
+		width: 40px;
+		height: 40px;
+		color: var(--dp-color-text);
+		background-color: var(--dp-color-surface-subtle);
+	}
+
+	&__icon-image {
+		width: 40px;
+		height: 40px;
+	}
+}

@@ -1,0 +1,91 @@
+-
+	const footerRequisites = ['ИНН: 7708698635', 'ОГРН: 1097746190970', 'Лицензия: № Л041-01137-77/00368153', 'Юр.адрес: Россия, 105066, г. Москва, ул. Ольховская, д. 27']
+	const footerMenus = [
+		{ title: 'Направления', mod: 'directions', items: ['Пластика', 'Косметология', 'Гинекология'] },
+		{ title: 'Популярные услуги', mod: 'services', items: ['Увеличение груди', 'Подтяжка груди', 'Ринопластика', 'Отопластика'] },
+		{ title: 'О клинике', mod: 'about', items: ['Цены', 'Наши работы', 'Специалисты', 'Пациентам'] },
+	]
+	const footerPayments = [
+		{ src: 'icons/footer/pay-mir.svg', width: 79, alt: 'МИР' },
+		{ src: 'icons/footer/pay-sber.png', width: 101, alt: 'СБЕР' },
+		{ src: 'icons/footer/pay-sbp.svg', width: 73, alt: 'СБП' },
+		{ src: 'icons/footer/pay-tbank.svg', width: 99, alt: 'Т-Банк' },
+	]
+	const footerRatings = [
+		{ src: 'icons/footer/yandex-maps.svg', width: 189, alt: 'Яндекс Карты', href: '#' },
+		{ src: 'icons/footer/2gis.png', width: 109, alt: '2ГИС', href: '#' },
+		{ src: 'icons/footer/prodoctorov.svg', width: 197, alt: 'ПроДокторов', href: '#' },
+		{ src: 'icons/footer/sber-health.svg', width: 255, alt: 'СберЗдоровье', href: '#' },
+		{ src: 'icons/footer/medotzyv.png', width: 115, alt: 'Med-Otzyv.ru', href: '#' },
+	]
+
+footer.footer#contacts
+	.footer__row.footer__row--contacts
+		.container.footer__contacts
+			.footer__map
+				+picture('footer/map', 'Карта проезда', 600, 354).footer__map-image
+			.footer__info
+				.footer__head
+					a.footer__logo(href="./index.html" aria-label="Доктор Пластик")
+						img.footer__logo-image(src=`${baseDir}images/icons/logo.svg` width="126" height="32" alt="Доктор Пластик")
+					a.footer__phone(href="tel:+74992262189") +7 (499) 226 21 89
+				address.footer__address
+					p.footer__address-main г. Москва, ул. Мясницкая 32, м. Чистые Пруды
+					p.footer__hours с 9.00 до 21.00
+					p.footer__parking Для удобства гостей предусмотрена отдельная парковка по две стороны от входа с въездом под шлагбаум. Для того, чтобы попасть на парковку необходимо подъехать к шлагбауму с левой или с правой стороны здания. При наличии свободных мест охрана вас запустит.
+				.footer__socials
+					p.footer__socials-title Соцсети:
+					ul.footer__socials-list
+						li
+							a.footer__social(href="#" target="_blank" rel="noopener" aria-label="Telegram")
+								+svg('telegram').footer__social-icon
+						li
+							a.footer__social(href="#" target="_blank" rel="noopener" aria-label="ВКонтакте")
+								+svg('vk').footer__social-icon
+	.footer__row
+		.container.footer__links
+			.footer__columns
+				.footer__column.footer__column--requisites
+					p.footer__column-title Реквизиты
+					ul.footer__requisites
+						each item in footerRequisites
+							li.footer__requisite= item
+				each menu in footerMenus
+					nav.footer__column(class=`footer__column--${menu.mod}`)
+						p.footer__column-title= menu.title
+						ul.footer__menu
+							each item in menu.items
+								li.footer__menu-item
+									a.footer__menu-link(href="#")= item
+			.footer__payments
+				p.footer__column-title Принимаем к оплате:
+				ul.footer__payments-list
+					each pay in footerPayments
+						li
+							img.footer__payment(src=`${baseDir}images/${pay.src}` width=pay.width height="41" alt=pay.alt)
+	.footer__row.footer__row--ratings
+		.container
+			ul.footer__ratings
+				each rating in footerRatings
+					li.footer__rating
+						a.footer__rating-link(href=rating.href target="_blank" rel="noopener")
+							img.footer__rating-logo(src=`${baseDir}images/${rating.src}` width=rating.width height="30" alt=rating.alt)
+							span.footer__rating-score
+								span.footer__rating-value 5.0
+								img.footer__rating-stars(src=`${baseDir}images/icons/footer/stars.svg` width="83" height="14" alt="5 из 5")
+	.footer__row.footer__row--legal
+		.container.footer__legal
+			ul.footer__legal-links
+				li
+					a.footer__legal-link(href="#") Пользовательское соглашение
+				li
+					a.footer__legal-link(href="#") Политика конфиденциальности
+			button.footer__eye(type="button")
+				+svg('glasses').footer__eye-icon
+				span Версия для слабовидящих
+	.container.footer__disclaimer
+		.footer__disclaimer-text
+			p.footer__note Информация, представленная на сайте, не может быть использована для постановки диагноза, назначения лечения и не заменяет прием врача. Не является публичной офертой. 18+
+			p.footer__note.footer__note--upper Имеются противопоказания. Проконсультируйтесь со специалистом
+			p.footer__note © 2005–#[span(data-actual-year) 2023] ДокторПластик. Пластическая хирургия и косметология
+		a.footer__note.footer__dev(href="#" target="_blank" rel="noopener") by ITmaestro

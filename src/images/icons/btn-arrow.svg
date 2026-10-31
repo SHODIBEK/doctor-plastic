@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="btn-rounded">
+<path id="Ellipse 892" d="M71.5 36C71.5 55.6061 55.6061 71.5 36 71.5C16.3939 71.5 0.5 55.6061 0.5 36C0.5 16.3939 16.3939 0.5 36 0.5C55.6061 0.5 71.5 16.3939 71.5 36Z" fill="white" stroke="#131923"/>
+<g id="arrow-down-left" clip-path="url(#clip0_0_172)">
+<path id="Icon" d="M28.9289 36L43.0711 36M36 43.0711L43.0711 36L36 28.9289" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="#131923"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_172">
+<rect width="24" height="24" fill="white" transform="translate(36 52.9706) rotate(-135)"/>
+</clipPath>
+</defs>
+</svg>

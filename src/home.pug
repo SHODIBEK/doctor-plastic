@@ -1,0 +1,22 @@
+extends pug/layout
+
+append vars
+	- title = 'Доктор Пластик — пластика у ведущего российского хирурга'
+
+block main
+	include pug/sections/hero
+	.panel
+		include pug/sections/services
+		include pug/sections/works
+		include pug/sections/testimonials
+		include pug/sections/doctors
+		include pug/sections/included
+		include pug/sections/prices
+		include pug/sections/signup
+		include pug/sections/advantages
+		include pug/sections/video
+		include pug/sections/gallery
+		include pug/sections/faq
+		include pug/sections/article
+		include pug/sections/reviews
+		include pug/sections/diplomas

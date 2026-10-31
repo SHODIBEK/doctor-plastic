@@ -1,0 +1,20 @@
+// Белая подложка с контентными секциями поверх тёмного фона
+.panel {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	overflow: hidden;
+	border-radius: 20px;
+	padding: 20px 0;
+	background-color: var(--dp-color-surface-panel);
+	gap: 70px;
+
+	@include laptop {
+		margin: 0 auto 80px;
+		border-radius: var(--dp-radius-panel);
+		padding: 50px 0 70px;
+		max-width: 1432px;
+		gap: 150px;
+	}
+}

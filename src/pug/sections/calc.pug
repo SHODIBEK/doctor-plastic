@@ -1,0 +1,42 @@
+-
+	const calcRanges = [
+		{ name: 'amount', label: 'Сумма кредита:', min: 10000, max: 2000000, step: 10000, value: 300000, marks: ['10 000', '1 000 000', '2 000 000'] },
+		{ name: 'term', label: 'Срок в меяц:', min: 1, max: 120, step: 1, value: 12, marks: ['1', '60', '120'] },
+	]
+
+.calc
+	.container
+		form.calc__card(action="#" method="post" data-calc-rate="0.0629" data-calc)
+			h3.title.title--h3.calc__title
+				| Онлайн-калькулятор
+				br
+				| рассрочки на пластические операции
+			.calc__ranges
+				each range in calcRanges
+					.calc__range
+						label.calc__row
+							span.calc__label= range.label
+							input.field.field--white.calc__input(type="text" inputmode="numeric" name=range.name value=range.value data-calc-input=range.name)
+						input.calc__slider(type="range" min=range.min max=range.max step=range.step value=range.value aria-label=range.label data-calc-slider=range.name)
+						.calc__marks
+							each mark in range.marks
+								span= mark
+			p.calc__note
+				| Данный расчет примерный,
+				br
+				| точный расчет у администраторов.
+			.calc__results
+				label.calc__row.calc__row--result
+					span.calc__label.calc__label--result Ежемесячный платеж, ₽
+					input.field.field--white.calc__input.calc__input--result(type="text" name="monthly" value="36 352" readonly data-calc-monthly)
+				label.calc__row.calc__row--result
+					span.calc__label.calc__label--result Общая сумма платежа, ₽
+					input.field.field--white.calc__input.calc__input--result(type="text" name="total" value="436 279" readonly data-calc-total)
+				a.calc__pdf(href="#" download)
+					span.calc__pdf-icon pdf
+					span.calc__pdf-text
+						| Скачать
+						br
+						| график платежей
+			button.btn.btn--full.calc__submit(type="submit")
+				span Получить расчет

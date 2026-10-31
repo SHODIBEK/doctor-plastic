@@ -1,0 +1,73 @@
+.video {
+	&__figure {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		line-height: normal;
+		gap: 20px;
+
+		@include laptop {
+			gap: 30px;
+		}
+	}
+
+	&__link {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		border-radius: 15px;
+		height: 182px;
+
+		&::after {
+			content: "";
+			position: absolute;
+			background-image: linear-gradient(180deg, rgba(19, 25, 35, 0.4) 0%, rgba(19, 25, 35, 0) 126.86%);
+			inset: 0;
+		}
+
+		@include tablet {
+			height: 400px;
+		}
+
+		@include laptop {
+			border-radius: 20px;
+			height: 730px;
+		}
+	}
+
+	&__poster {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: bottom;
+		inset: 0;
+	}
+
+	&__play {
+		position: relative;
+		z-index: 1;
+		width: 56px;
+		height: 56px;
+
+		@include laptop {
+			width: 72px;
+			height: 72px;
+		}
+	}
+
+	&__caption {
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 1.4;
+		text-align: center;
+
+		@include laptop {
+			font-size: 24px;
+			line-height: normal;
+			text-align: left;
+		}
+	}
+}

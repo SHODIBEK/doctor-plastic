@@ -1,0 +1,215 @@
+// Карточка «до/после». Мобильная — две половины, с 1024 — сравнение с ползунком
+.result-card {
+	--pos: 50%;
+
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border-radius: 15px;
+	height: 176px;
+	background-color: rgba(19, 25, 35, 0.1);
+
+	&__media {
+		position: relative;
+		display: flex;
+		height: 130px;
+		background-color: $color-white;
+		gap: 1px;
+
+		@include laptop {
+			display: block;
+			height: 100%;
+			background-color: transparent;
+			user-select: none;
+		}
+	}
+
+	&__side {
+		position: relative;
+		flex: 1;
+		overflow: hidden;
+		background-color: #dfdfe0;
+
+		@include laptop {
+			position: absolute;
+			background-color: transparent;
+			inset: 0;
+
+			&--before {
+				clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+			}
+
+			&--after {
+				clip-path: inset(0 0 0 var(--pos));
+			}
+		}
+	}
+
+	&__image {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		object-fit: cover;
+
+		@include laptop {
+			.result-card__side--before & {
+				width: 97.74%;
+			}
+
+			.result-card__side--after & {
+				left: -2.26%;
+				width: 102.26%;
+			}
+		}
+	}
+
+	// Размытые маски из макета
+	&__mark {
+		position: absolute;
+		background: url("../images/content/works/mark-left.svg") no-repeat center / 100% 100%;
+
+		&::before {
+			content: "";
+			position: absolute;
+			mask: url("../images/content/works/mark-left.svg") no-repeat center / 100% 100%;
+			backdrop-filter: blur(5px);
+			inset: 0;
+		}
+
+		&--desktop {
+			display: none;
+			width: 7.075%;
+			aspect-ratio: 56.46 / 41.91;
+
+			@include laptop {
+				display: block;
+			}
+		}
+
+		&--before {
+			left: 31.95%;
+			top: 53.19%;
+			transform: scaleX(-1);
+		}
+
+		&--after {
+			left: 62.41%;
+			top: 49.01%;
+			background-image: url("../images/content/works/mark-right.svg");
+
+			&::before {
+				mask-image: url("../images/content/works/mark-right.svg");
+			}
+		}
+
+		&--mobile {
+			top: 50.8%;
+			width: 24px;
+			height: 18px;
+			background-image: url("../images/content/works/mark-left-m.svg");
+
+			&::before {
+				mask-image: url("../images/content/works/mark-left-m.svg");
+			}
+
+			@include laptop {
+				display: none;
+			}
+		}
+
+		&--left {
+			left: 21.3%;
+			transform: scaleX(-1);
+		}
+
+		&--right {
+			left: 68.4%;
+			width: 23px;
+			background-image: url("../images/content/works/mark-right-m.svg");
+
+			&::before {
+				mask-image: url("../images/content/works/mark-right-m.svg");
+			}
+		}
+
+		.result-card__side--after &--mobile {
+			top: 47.7%;
+		}
+
+		.result-card__side--after &--left {
+			left: 19.9%;
+		}
+
+		.result-card__side--after &--right {
+			left: 66.9%;
+		}
+	}
+
+	&__handle {
+		display: none;
+
+		@include laptop {
+			position: absolute;
+			left: var(--pos);
+			top: 0;
+			z-index: 1;
+			display: block;
+			margin-left: -1px;
+			width: 2px;
+			height: 100%;
+			background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.784) 28.362%, #{$color-white} 49.905%, rgba(255, 255, 255, 0.94) 56.176%, rgba(255, 255, 255, 0.788) 72.149%, rgba(255, 255, 255, 0) 100%);
+			cursor: ew-resize;
+			touch-action: none;
+		}
+	}
+
+	&__handle-icon {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 72px;
+		height: 72px;
+		max-width: none;
+		transform: translate(-50%, -50%);
+	}
+
+	&__caption {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 5px 0;
+		font-weight: 600;
+		font-size: 14px;
+		color: $color-black;
+		background-color: rgba(255, 255, 255, 0.5);
+
+		@include laptop {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			flex-direction: row;
+			align-items: flex-end;
+			justify-content: space-between;
+			padding: 40px;
+			font-size: 16px;
+			background-color: transparent;
+			pointer-events: none;
+		}
+	}
+
+	&__name {
+		@include laptop {
+			width: 90px;
+		}
+	}
+
+	@include laptop {
+		border-radius: 0;
+		height: 455px;
+	}
+}

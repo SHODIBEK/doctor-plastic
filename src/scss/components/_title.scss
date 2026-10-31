@@ -1,0 +1,29 @@
+.title {
+	margin: 0;
+	font-weight: 300;
+	font-size: 30px;
+	line-height: 1.1;
+	color: var(--dp-color-text);
+
+	&#{&}--h3 {
+		font-size: 26px;
+
+		@include laptop {
+			font-size: 32px;
+			line-height: 40px;
+		}
+	}
+
+	@include laptop {
+		font-size: 56px;
+	}
+}
+
+// Галочка «проверено» рядом с именем
+.verified {
+	display: inline-block;
+	flex-shrink: 0;
+	vertical-align: middle;
+	width: 24px;
+	height: 24px;
+}

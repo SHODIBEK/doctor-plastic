@@ -1,0 +1,19 @@
+-
+	const galleryGroups = [
+		['gallery/gallery-1', 'gallery/gallery-2', 'gallery/gallery-3', 'gallery/gallery-2', 'gallery/gallery-4'],
+		['gallery/gallery-2', 'gallery/gallery-1', 'gallery/gallery-4', 'gallery/gallery-3', 'gallery/gallery-2'],
+	]
+
+section.gallery(data-gallery)
+	.container.gallery__container
+		h2.title.gallery__title Фотогалерея
+		.gallery__slider.swiper(data-gallery-swiper)
+			.gallery__track.swiper-wrapper
+				each group in galleryGroups
+					.gallery__slide.swiper-slide
+						each image in group
+							a.gallery__item(href=`${baseDir}images/content/${image}@2x.webp` data-fancybox="gallery")
+								+picture(image, 'Клиника «Доктор Пластик»', 540, 360).gallery__image
+		.gallery__nav
+			+btnRound('prev')(data-gallery-prev)
+			+btnRound('next')(data-gallery-next)

@@ -1,0 +1,46 @@
+-
+	const worksFilters = [
+		{ name: 'type', active: true, options: ['Пластика тела', 'Пластика груди', 'Пластика лица'] },
+		{ name: 'body', options: ['Выберите телосложение', 'Худощавое', 'Среднее', 'Плотное'] },
+		{ name: 'surgeon', options: ['Все хирурги', 'Сергеев И. В.', 'Труфанов Д. И.'] },
+	]
+	const works = [
+		{ title: 'Увеличение груди', before: 'works/before', after: 'works/after' },
+		{ title: 'Увеличение груди', before: 'works/before', after: 'works/after' },
+		{ title: 'Увеличение груди', before: 'works/before', after: 'works/after' },
+		{ title: 'Увеличение груди', before: 'works/before', after: 'works/after' },
+		{ title: 'Увеличение груди', before: 'works/before', after: 'works/after' },
+		{ title: 'Увеличение груди', before: 'works/before', after: 'works/after' },
+	]
+	const worksAvatars = ['works/avatar-1', 'works/avatar-2', 'works/avatar-3', 'works/avatar-4', 'works/avatar-5']
+
+section.works#works
+	.container
+		h2.title.works__title Наши работы
+		form.works__filters(action="#" data-works-filters)
+			each filter in worksFilters
+				label.select.works__select(class=filter.active ? 'is-active' : null)
+					select.select__control(name=filter.name aria-label=filter.options[0])
+						each option in filter.options
+							option= option
+					+svg('dropdown').select__icon.select__icon--dropdown
+					+svg('close').select__icon.select__icon--close
+			button.btn.btn--gray.works__reset(type="reset")
+				span Очистить
+				+svg('close').btn__icon
+	.works__slider.swiper(data-works-slider)
+		.works__track.swiper-wrapper
+			each work, index in works
+				.works__slide.swiper-slide
+					+resultCard(Object.assign({ counter: `${String(index + 1).padStart(2, '0')}/16` }, work))
+	.container.works__footer
+		.works__nav
+			+btnRound('prev').works__prev(data-works-prev)
+			+btnRound('next').works__next(data-works-next)
+		.works__bottom
+			+btn('Смотреть все работы', { href: '#' }).works__all
+			.works__more
+				.works__avatars
+					each avatar in worksAvatars
+						+picture(avatar, '', 80, 80).works__avatar
+				p.works__count +500 до/после

@@ -1,0 +1,9 @@
+//- Обёртка страниц сайта: header + main + footer
+extends base
+
+block content
+	.site
+		include components/header
+		main.main
+			block main
+		include components/footer

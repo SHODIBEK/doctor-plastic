@@ -1,0 +1,39 @@
+-
+	const priceGroups = [
+		{
+			title: 'Все пластические хирурги',
+			items: [
+				{ name: 'Увеличение груди (без стоимости имплантов, компрессионного белья)', price: '295 400 ₽' },
+				{ name: 'Замена имплантов 1 категории (без стоимости имплантов, компрессионного белья)', price: '320 000 ₽' },
+				{ name: 'Замена имплантов 2 категории (без стоимости имплантов, компрессионного белья)', price: '368 000 ₽' },
+			],
+		},
+		{
+			title: 'Профессор Сергеев И. В.',
+			items: [
+				{ name: 'Увеличение груди – доступ через субмаммарную складку (без стоимости имплантов)', price: '502 400 ₽' },
+				{ name: 'Увеличение груди – периареолярный доступ (без стоимости имплантов)', price: '295 400 ₽', oldPrice: '502 400 ₽' },
+				{ name: 'Увеличение груди – подмышечный доступ (без стоимости имплантов)', price: '579 500 ₽' },
+				{ name: 'Увеличение груди с коррекцией ассиметрии (без стоимости импланта)', price: '590 000 ₽' },
+				{ name: 'Увеличение одной груди (без стоимости импланта)', price: '295 400 ₽', oldPrice: '354 000 ₽' },
+				{ name: 'Подтяжка груди с увеличением 2 кат. сложности с вертикальным рубцом (без стоимости имплантов)', price: '665 000 ₽' },
+			],
+		},
+	]
+
+section.prices#prices(data-prices)
+	.container
+		h2.title.prices__title Цены
+		.prices__body(data-prices-body)
+			each group in priceGroups
+				.prices__group
+					h3.prices__group-title= group.title
+					ul.prices__list
+						each item in group.items
+							+priceLine(item)
+			.prices__more
+				button.prices__expand(type="button" data-prices-expand) Развернуть прайс
+				.prices__actions
+					+btn('Смотреть полный прайс', { href: '#' }).prices__full
+					+btnRound('down', 'Развернуть прайс').prices__toggle(data-prices-expand)
+	include calc

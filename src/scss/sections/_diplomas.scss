@@ -1,0 +1,102 @@
+.diplomas {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		@include laptop {
+			gap: 50px;
+		}
+	}
+
+	&__slider {
+		position: relative;
+		margin-right: -15px;
+		min-width: 0;
+
+		@include tablet {
+			margin-right: -30px;
+		}
+
+		@include laptop {
+			margin-right: 0;
+
+			&::after {
+				content: "";
+				position: absolute;
+				z-index: 2;
+				background-image:
+					linear-gradient(270deg, #{$color-white} 4.752%, rgba(255, 255, 255, 0) 18.169%),
+					linear-gradient(90deg, #{$color-white} 4.053%, rgba(255, 255, 255, 0) 18.239%);
+				pointer-events: none;
+				inset: 0;
+			}
+		}
+	}
+
+	&__track {
+		align-items: center;
+	}
+
+	&__item {
+		display: block;
+		flex-shrink: 0;
+		height: 192px;
+
+		&--wide {
+			width: 277px;
+
+			@include laptop {
+				width: 289px;
+			}
+		}
+
+		&--narrow {
+			width: 131px;
+
+			@include laptop {
+				width: 136px;
+			}
+		}
+
+		&#{&}--large {
+			width: 272px;
+
+			@include laptop {
+				width: 396px;
+				height: 280px;
+			}
+		}
+
+		@include laptop {
+			height: 200px;
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__nav {
+		display: none;
+
+		@include laptop {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 50%;
+			z-index: 3;
+			display: flex;
+			justify-content: space-between;
+			transform: translateY(-50%);
+			pointer-events: none;
+		}
+	}
+
+	&__nav-btn {
+		pointer-events: auto;
+	}
+}

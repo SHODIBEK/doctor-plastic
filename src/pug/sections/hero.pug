@@ -1,0 +1,28 @@
+section.hero
+	.hero__graphic(aria-hidden="true")
+		img.hero__circle.hero__circle--top(src=`${baseDir}images/content/hero/circle-1.webp` srcset=`${baseDir}images/content/hero/circle-1@2x.webp 2x` width="461" height="461" alt="")
+		img.hero__circle.hero__circle--middle(src=`${baseDir}images/content/hero/circle-2.svg` width="461" height="461" alt="")
+		img.hero__circle.hero__circle--bottom(src=`${baseDir}images/content/hero/circle-3.webp` srcset=`${baseDir}images/content/hero/circle-3@2x.webp 2x` width="461" height="461" alt="")
+		.hero__glow
+			img.hero__glow-image(src=`${baseDir}images/content/hero/glow.svg` width="700" height="331" alt="")
+		.hero__doctor
+			img.hero__shadow(src=`${baseDir}images/content/hero/shadow.svg` width="1125" height="1498" alt="")
+			img.hero__photo(src=`${baseDir}images/content/hero/doctor.webp` srcset=`${baseDir}images/content/hero/doctor@2x.webp 2x` width="1240" height="1238" alt="")
+	.container.hero__container
+		h1.hero__title
+			| Пластика
+			br
+			| у ведущего
+			br
+			| российского
+			br
+			span.hero__title-accent хирурга
+		.hero__person
+			+verified.hero__verified
+			.hero__person-text
+				p.hero__name Илья Вячеславович
+				p.hero__position
+					| Основатель
+					br
+					| клиники
+		+btn('Записаться на консультацию', { href: '#signup' }).hero__btn

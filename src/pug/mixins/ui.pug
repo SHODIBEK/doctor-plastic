@@ -1,0 +1,32 @@
+//- Контентное изображение: webp @1x + @2x из images/content
+//- @demo +picture('hero/doctor', 'Доктор', 1240, 1238).class
+mixin picture(name, alt, width, height)
+	+lazyImage({
+		src: `${baseDir}images/content/${name}.webp`,
+		srcset: `${baseDir}images/content/${name}@2x.webp 2x`,
+		alt: alt || '',
+	})(width=width height=height)&attributes(attributes)
+
+//- Кнопка с вырезами. href → <a>, иначе <button>
+//- @demo +btn('Записаться', { href: '#signup' }).btn--full
+mixin btn(text, options)
+	- const opts = options || {}
+	if opts.href
+		a.btn(href=opts.href)&attributes(attributes)
+			span= text
+			block
+	else
+		button.btn(type=opts.type || 'button')&attributes(attributes)
+			span= text
+			block
+
+//- Круглая кнопка со стрелкой: dir = 'prev' | 'next' | 'link' | 'down' | 'up'
+//- @demo +btnRound('next').btn-round--small
+mixin btnRound(dir, label)
+	- const labels = { prev: 'Назад', next: 'Вперёд', link: 'Подробнее', down: 'Развернуть', up: 'Свернуть' }
+	button.btn-round(class=`btn-round--${dir}` type="button" aria-label=label || labels[dir])&attributes(attributes)
+		+svg('arrow-right').btn-round__icon
+
+//- Галочка «проверено»
+mixin verified
+	img.verified(src=`${baseDir}images/icons/check-verified.svg` width="24" height="24" alt="")&attributes(attributes)

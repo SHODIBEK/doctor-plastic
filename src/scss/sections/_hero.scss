@@ -1,0 +1,226 @@
+// Координаты графики — из макета 1920, ниже 1920 пропорционально сжимаются
+@function hero-fl($value) {
+	@return unquote("min(#{$value}px, #{$value / 1920 * 100}vw)");
+}
+
+.hero {
+	--btn-notch: var(--dp-color-surface-canvas);
+
+	position: relative;
+	color: var(--dp-color-action-inverse);
+
+	&__graphic {
+		position: absolute;
+		left: 85px;
+		top: 18px;
+		width: 436px;
+		height: 435px;
+		pointer-events: none;
+
+		@include tablet {
+			left: auto;
+			right: -40px;
+		}
+
+		@include laptop {
+			width: auto;
+			height: auto;
+			inset: 0;
+		}
+	}
+
+	&__circle {
+		display: none;
+
+		&--top {
+			top: hero-fl(203);
+		}
+
+		&--middle {
+			top: hero-fl(664);
+		}
+
+		&--bottom {
+			top: hero-fl(1125);
+		}
+
+		@include laptop {
+			position: absolute;
+			right: hero-fl(30);
+			display: block;
+			width: hero-fl(461);
+			height: hero-fl(461);
+		}
+	}
+
+	&__glow {
+		display: none;
+
+		@include laptop {
+			position: absolute;
+			right: hero-fl(347.4);
+			top: hero-fl(531.45);
+			display: block;
+		}
+	}
+
+	&__glow-image {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: hero-fl(699.9);
+		height: hero-fl(330.6);
+		max-width: none;
+		transform: translate(-50%, -50%) rotate(34.28deg);
+	}
+
+	&__doctor {
+		position: absolute;
+		inset: 0;
+
+		@include laptop {
+			left: auto;
+			right: hero-fl(45.58);
+			top: hero-fl(60);
+			bottom: auto;
+			overflow: hidden;
+			width: hero-fl(1240.4);
+			height: hero-fl(1192.18);
+		}
+	}
+
+	&__shadow {
+		display: none;
+
+		@include laptop {
+			position: absolute;
+			left: hero-fl(35.25);
+			top: hero-fl(177.6);
+			display: block;
+			width: hero-fl(1124.8);
+			height: hero-fl(1498.4);
+			max-width: none;
+		}
+	}
+
+	&__photo {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		max-width: none;
+		object-fit: cover;
+		inset: 0;
+
+		@include laptop {
+			left: 0;
+			top: hero-fl(-45.94);
+			bottom: auto;
+			width: hero-fl(1240.4);
+			height: hero-fl(1238.12);
+		}
+	}
+
+	&__container {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding-top: 30px;
+		padding-bottom: 30px;
+
+		@include laptop {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 300;
+		font-size: 40px;
+		line-height: 1;
+
+		@include laptop {
+			font-size: 72px;
+		}
+
+		@include desktop {
+			font-size: 96px;
+		}
+	}
+
+	&__title-accent {
+		color: transparent;
+		background-image: var(--dp-gradient-accent);
+		// stylelint-disable-next-line property-no-vendor-prefix
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
+
+	&__person {
+		display: flex;
+		align-items: flex-start;
+		margin-top: 50px;
+		font-weight: 600;
+		gap: 8px;
+
+		@include laptop {
+			order: 2;
+			margin-top: 40px;
+			margin-left: 380px;
+		}
+	}
+
+	&__verified {
+		order: 2;
+
+		@include laptop {
+			order: 0;
+		}
+	}
+
+	&__person-text {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+
+		@include laptop {
+			gap: 8px;
+		}
+	}
+
+	&__name {
+		font-size: 16px;
+		line-height: 24px;
+
+		@include laptop {
+			font-size: 24px;
+		}
+	}
+
+	&__position {
+		font-size: 16px;
+		line-height: 16px;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	&__btn {
+		margin-top: 50px;
+		width: 100%;
+
+		@include tablet {
+			width: 330px;
+		}
+
+		@include laptop {
+			order: 1;
+			margin-top: 70px;
+			width: auto;
+		}
+	}
+
+	@include laptop {
+		padding: 140px 0 80px;
+		min-height: 850px;
+	}
+}

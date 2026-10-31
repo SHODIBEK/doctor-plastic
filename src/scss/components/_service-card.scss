@@ -1,0 +1,100 @@
+.service-card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border-radius: 15px;
+	padding: 10px 10px 20px;
+	height: 150px;
+	background-color: var(--dp-color-surface-subtle);
+	transition: background-color $duration-normal;
+
+	&__visual {
+		position: relative;
+		display: flex;
+		flex: 1;
+		justify-content: center;
+		overflow: hidden;
+		border-radius: 10px;
+		padding: 10px 10px 10px 60px;
+		min-height: 0;
+	}
+
+	&__circle {
+		display: block;
+		flex-shrink: 0;
+		border-radius: 50%;
+		height: 100%;
+		background-color: var(--dp-color-action-secondary);
+		transition: background-color $duration-normal;
+		aspect-ratio: 1;
+	}
+
+	&__image-wrap {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		bottom: 0;
+		width: 303px;
+		transform: translateX(-50%);
+
+		// Затемнение краёв фото цветом карточки: маска + background-color, чтобы цвет плавно менялся при hover
+		&::after {
+			content: "";
+			position: absolute;
+			mask-image:
+				linear-gradient(0deg, transparent 74.656%, rgba(0, 0, 0, 0.72) 87.414%, #000 100%),
+				linear-gradient(180deg, transparent 78.694%, rgba(0, 0, 0, 0.72) 89.261%, #000 99.828%);
+			background-color: var(--dp-color-surface-subtle);
+			transition: background-color $duration-normal;
+			inset: 0;
+		}
+	}
+
+	&__image {
+		position: absolute;
+		left: 50%;
+		top: 0;
+		width: auto;
+		height: 100%;
+		max-width: none;
+		object-fit: cover;
+		object-position: bottom;
+		transform: translateX(-50%);
+		aspect-ratio: 3 / 2;
+	}
+
+	&__title {
+		display: block;
+		font-size: 14px;
+		line-height: 1;
+		text-align: center;
+		color: var(--dp-color-text);
+		transition: color $duration-normal;
+
+		@include laptop {
+			font-weight: 300;
+			font-size: 18px;
+		}
+	}
+
+	@include laptop {
+		border-radius: 20px;
+		height: 230px;
+	}
+
+	@include hover {
+		background-color: var(--dp-color-surface-canvas);
+
+		.service-card__circle {
+			background-color: var(--dp-color-action-primary);
+		}
+
+		.service-card__image-wrap::after {
+			background-color: var(--dp-color-surface-canvas);
+		}
+
+		.service-card__title {
+			color: $color-white;
+		}
+	}
+}

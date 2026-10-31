@@ -1,0 +1,35 @@
+-
+	const testimonialText = '«Узнала об Илье Вячеславовиче от подруги. Она и её знакомая делали у него подобные операции ранее. После меня по моей рекомендации к нему попали ещё четыре счастливицы и знаете, ни одна не пожалела! Последняя вышла от него снова от меня буквально три недели назад и ждёт не дождётся, когда выйдет на пляж!»'
+	const testimonials = [
+		{ short: 'Горбань', name: 'Мария Горбань', about: 'Актриса театра и кино', avatar: 'reviews/person-1', photo: 'reviews/review-1', text: testimonialText, video: '#' },
+		{ short: 'Усманова', name: 'Усманова', about: 'Актриса театра и кино', avatar: 'reviews/person-2', photo: 'reviews/review-1', text: testimonialText, video: '#' },
+		{ short: 'Сафарова', name: 'Сафарова', about: 'Актриса театра и кино', avatar: 'reviews/person-3', photo: 'reviews/review-1', text: testimonialText, video: '#' },
+		{ short: 'Инстасамка', name: 'Инстасамка', about: 'Актриса театра и кино', avatar: 'reviews/person-4', photo: 'reviews/review-1', text: testimonialText, video: '#' },
+		{ short: 'Шафеева', name: 'Шафеева', about: 'Актриса театра и кино', avatar: 'reviews/person-5', photo: 'reviews/review-1', text: testimonialText, video: '#' },
+	]
+
+section.testimonials(data-testimonials)
+	.testimonials__tabs(role="tablist")
+		each item, index in testimonials
+			button.testimonials__tab(class=index === 0 ? 'is-active' : null type="button" role="tab" aria-selected=index === 0 ? 'true' : 'false' data-testimonials-tab=index)
+				span.testimonials__avatar
+					+picture(item.avatar, item.name, 88, 88).testimonials__avatar-image
+					img.testimonials__ring(src=`${baseDir}images/icons/ring.svg` width="96" height="96" alt="")
+					img.testimonials__ring-progress(src=`${baseDir}images/icons/ring-progress.svg` width="46" height="46" alt="")
+				span.testimonials__tab-name= item.short
+	.container.container--narrow
+		each item, index in testimonials
+			.testimonials__item(class=index === 0 ? 'is-active' : null role="tabpanel" data-testimonials-panel=index)
+				.testimonials__photo
+					+picture(item.photo, item.name, 440, 548).testimonials__photo-image
+				.testimonials__content
+					.testimonials__head
+						p.testimonials__name
+							span= item.name
+							+verified
+						p.testimonials__about= item.about
+					p.testimonials__text= item.text
+					.testimonials__actions
+						a.btn-play(href=item.video aria-label="Смотреть видеоотзыв" data-fancybox)
+							+svg('play').btn-play__icon
+						+btn('Видеоотзыв', { href: item.video }).testimonials__video(data-fancybox)

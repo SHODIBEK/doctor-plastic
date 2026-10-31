@@ -1,0 +1,28 @@
+.services {
+	&__container {
+		padding-right: 0;
+
+		@include tablet {
+			padding-right: 30px;
+		}
+
+		@include laptop {
+			padding-right: 55px;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+
+	&__item {
+		width: 160px;
+
+		@include tablet {
+			flex: 1;
+			width: auto;
+		}
+	}
+}

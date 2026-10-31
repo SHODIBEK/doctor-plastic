@@ -1,0 +1,51 @@
+extends pug/base
+
+append vars
+	- title = 'Доктор Пластик — готовые страницы'
+
+block content
+	include pug/data
+	-
+		const tagNames = { page: 'Страница', service: 'Служебная' }
+		const figmaUrl = 'https://www.figma.com/design/C9zzjxY4OLv051waCwXJ6l/'
+
+	.pages-list
+		header.pages-list__header
+			.container.pages-list__bar
+				img.pages-list__logo(src=`${baseDir}images/icons/logo.svg` width="126" height="32" alt="Доктор Пластик")
+				a.pages-list__figma(href=figmaUrl target="_blank" rel="noopener") Макет в Figma
+
+		main.pages-list__main
+			.container
+				.pages-list__intro
+					h1.pages-list__title
+						| Готовые
+						br
+						span.pages-list__accent страницы
+					p.pages-list__count
+						span.pages-list__count-value= pages.length
+						|  в сборке
+
+				if pages.length
+					ol.pages-list__items
+						each page, index in pages
+							li.pages-list__item
+								a.pages-list__card(href=page.file)
+									span.pages-list__top
+										span.pages-list__num= String(index + 1).padStart(2, '0')
+										if page.tag
+											span.pages-list__tag(class=`pages-list__tag--${page.tag}`)= tagNames[page.tag]
+									span.pages-list__name= page.title
+									if page.desc
+										span.pages-list__desc= page.desc
+									span.pages-list__bottom
+										span.pages-list__file= page.file
+										span.btn-round.btn-round--small.btn-round--link.pages-list__arrow
+											+svg('arrow-right').btn-round__icon
+				else
+					p.pages-list__empty Пока нет готовых страниц
+
+		footer.pages-list__footer
+			.container
+				p.pages-list__note
+					| Собрано #{new Date().toLocaleDateString('ru-RU')} · build/

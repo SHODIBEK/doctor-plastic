@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build
+build/
+dist/
+zip/
+*.zip
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.*
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Claude
+CLAUDE.md
+.claude/
