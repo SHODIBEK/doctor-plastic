@@ -11,7 +11,7 @@
 ![Swiper](https://img.shields.io/badge/Swiper_11-6332F6?style=flat-square&logo=swiper&logoColor=white)
 ![Node](https://img.shields.io/badge/Node-24-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 
-[Макет в Figma](https://www.figma.com/design/C9zzjxY4OLv051waCwXJ6l/) · [Документация сборки](https://github.com/ninelines-team/ninelines-docs)
+[Документация сборки](https://github.com/ninelines-team/ninelines-docs)
 
 </div>
 
