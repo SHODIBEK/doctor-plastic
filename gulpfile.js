@@ -280,7 +280,8 @@ gulp.task("js", () => {
 				errorHandler,
 			})
 		)
-		.pipe($.webpackStream(webpackConfig))
+		// Передаём установленный webpack 5: встроенный в webpack-stream webpack 4 падает на Node 17+ (md4 / OpenSSL 3)
+		.pipe($.webpackStream(webpackConfig, require("webpack")))
 		.pipe(gulp.dest(webpackConfig.output.path));
 });
 

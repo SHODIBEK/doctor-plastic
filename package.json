@@ -63,7 +63,7 @@
 		"stylelint-scss": "3.20.1",
 		"tailwindcss": "3.4.3",
 		"vinyl-buffer": "1.0.1",
-		"webpack": "5.47.0",
+		"webpack": "5.112.2",
 		"webpack-stream": "6.1.2",
 		"yargs": "17.0.1"
 	},
@@ -87,10 +87,10 @@
 		"mouse-follower": "1.1.2",
 		"ninelines-sharing": "1.5.8",
 		"ninelines-ua-parser": "1.1.6",
-		"sass": "1.77.8",
 		"normalize.css": "8.0.1",
 		"object-fit-images": "3.2.4",
 		"object-fit-videos": "1.0.4",
+		"sass": "1.77.8",
 		"split-type": "0.3.3",
 		"svg4everybody": "2.1.9",
 		"vanilla-marquee": "1.1.2"
