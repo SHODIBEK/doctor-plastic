@@ -1,0 +1,4 @@
+[build.environment]
+  # webpack-stream bundles webpack 4, which hashes with MD4 — unsupported by
+  # OpenSSL 3 in Node 17+ unless the legacy provider is enabled.
+  NODE_OPTIONS = "--openssl-legacy-provider"
