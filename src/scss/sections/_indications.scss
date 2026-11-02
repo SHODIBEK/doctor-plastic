@@ -1,0 +1,84 @@
+// Показания и противопоказания
+.indications {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include laptop {
+			flex-direction: row;
+			gap: 24px;
+		}
+	}
+
+	&__group {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		@include laptop {
+			flex: 1;
+			gap: 48px;
+		}
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 300;
+		font-size: 32px;
+		line-height: 1.1;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			font-size: 40px;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 15px;
+
+		@include laptop {
+			gap: 24px;
+		}
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		font-size: 16px;
+		line-height: 22px;
+		color: $color-black;
+		gap: 10px;
+
+		&::before {
+			content: "";
+			flex-shrink: 0;
+			border-radius: 50%;
+			width: 8px;
+			height: 8px;
+			background-color: var(--dp-color-action-secondary);
+		}
+
+		@include laptop {
+			max-width: 512px;
+			gap: 24px;
+		}
+	}
+
+	&__break {
+		display: none;
+
+		@include desktop {
+			display: inline;
+		}
+	}
+
+	&__list--no &__item::before {
+		background-color: var(--dp-color-action-primary);
+	}
+}

@@ -1,13 +1,26 @@
+//- Список услуг. Страница может задать servicesList = { items, modifier, visible, mobileVisible, more }:
+//- карточки после visible (на мобильном — после mobileVisible) скрыты до нажатия «Развернуть»
 -
-	const services = [
-		{ title: 'Увеличение груди', image: 'services/service-1', href: '#' },
-		{ title: 'Подтяжка груди', image: 'services/service-2', href: '#' },
-		{ title: 'Абдоминопластика', image: 'services/service-3', href: '#' },
-	]
+	const servicesData = typeof servicesList !== 'undefined' ? servicesList : {
+		items: [
+			{ title: 'Увеличение груди', image: 'services/service-1', href: '#' },
+			{ title: 'Подтяжка груди', image: 'services/service-2', href: '#' },
+			{ title: 'Абдоминопластика', image: 'services/service-3', href: '#' },
+		],
+	}
+	const servicesHidden = (index) => {
+		if (servicesData.visible && index >= servicesData.visible) {
+			return 'services__item--hidden'
+		}
 
-section.services#services
+		return servicesData.mobileVisible && index >= servicesData.mobileVisible ? 'services__item--mobile-hidden' : null
+	}
+
+section.services#services(class=servicesData.modifier ? `services--${servicesData.modifier}` : null data-expand)
 	.container.services__container
 		ul.services__list
-			each item in services
-				li.services__item
-					+serviceCard(item)
+			each item, index in servicesData.items
+				li.services__item(class=servicesHidden(index))
+					+serviceCard(item)(class=servicesData.modifier === 'catalog' ? 'service-card--compact' : null)
+		if servicesData.more
+			+btn(servicesData.more).services__more(data-expand-toggle)

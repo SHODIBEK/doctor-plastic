@@ -8,10 +8,13 @@
 section.doctors#doctors
 	.container.card-slider(data-card-slider)
 		.card-slider__aside
-			h2.title.card-slider__title
-				| Ведущие
-				br
-				| специалисты
+			if typeof doctorsTitle !== 'undefined'
+				h2.title.card-slider__title!= doctorsTitle
+			else
+				h2.title.card-slider__title
+					| Ведущие
+					br
+					| специалисты
 			.card-slider__nav
 				+btnRound('prev')(data-card-slider-prev)
 				+btnRound('next')(data-card-slider-next)

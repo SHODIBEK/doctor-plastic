@@ -1,0 +1,60 @@
+extends pug/layout
+
+append vars
+	- title = 'Увеличение груди в Москве — цены, отзывы, врачи | Доктор Пластик'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Увеличение груди в клинике «Доктор Пластик»: всё включено за 279 900 ₽ — операция, имплантаты, палата, наркоз. Показания, ход операции, работы до/после, отзывы, ответы на вопросы.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'service',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Пластическая хирургия', href: './services.html' }, { title: 'Увеличение груди' }],
+			accent: 'Увеличение',
+			title: 'груди',
+			woman: { desktop: 'service-head/woman', desktopWidth: 445, desktopHeight: 930, retina: true, mobile: 'service-head/woman-mobile', mobileWidth: 391, mobileHeight: 391 },
+		}
+		const servicesList = {
+			modifier: 'catalog',
+			visible: 12,
+			mobileVisible: 3,
+			more: 'Развернуть список услуг',
+			items: [
+				{ title: 'Увеличение груди', image: 'service-list/service-1', href: '#' },
+				{ title: 'Подтяжка груди', image: 'service-list/service-2', href: '#' },
+				{ title: 'Абдоминопластика', image: 'service-list/service-3', href: '#' },
+				{ title: 'Повторная пластика груди', image: 'service-list/service-4', href: '#' },
+				{ title: 'Коррекция асимметрии', image: 'service-list/service-5', href: '#' },
+				{ title: 'Уменьшение груди', image: 'service-list/service-6', href: '#' },
+				{ title: 'Липофилинг груди', image: 'service-list/service-7', href: '#' },
+				{ title: 'Коррекция тубулярности груди', image: 'service-list/service-8', href: '#' },
+				{ title: 'Абдоминопластика', image: 'service-list/service-3', href: '#' },
+				{ title: 'Повторная пластика груди', image: 'service-list/service-4', href: '#' },
+				{ title: 'Коррекция асимметрии', image: 'service-list/service-5', href: '#' },
+				{ title: 'Уменьшение груди', image: 'service-list/service-6', href: '#' },
+				{ title: 'Подтяжка груди', image: 'service-list/service-2', href: '#' },
+				{ title: 'Липофилинг груди', image: 'service-list/service-7', href: '#' },
+			],
+		}
+		const relatedTitle = 'Статьи<br class="card-slider__break"> по теме'
+		const doctorsTitle = 'К кому<br class="card-slider__break"> записаться'
+
+block main
+	include pug/sections/page-head
+	.panel
+		include pug/sections/service-offer
+		include pug/sections/services
+		include pug/sections/contents
+		include pug/sections/article
+		include pug/sections/works
+		include pug/sections/reviews
+		include pug/sections/indications
+		include pug/sections/doctors
+		include pug/sections/prices
+		include pug/sections/included
+		include pug/sections/signup
+		include pug/sections/advantages
+		include pug/sections/video
+		include pug/sections/gallery
+		include pug/sections/faq
+		include pug/sections/steps
+		include pug/sections/related
+		include pug/sections/diplomas

@@ -17,7 +17,14 @@
 		justify-content: center;
 		order: 1;
 		height: 270px;
-		background: radial-gradient(circle 94.4px at 191.79px 124.78px, var(--dp-color-action-secondary) 99.99%, transparent 100%);
+
+		// Круг от центра блока: в макете 330px центр круга на 26.79px правее середины
+		background:
+			radial-gradient(
+				circle 94.4px at calc(50% + 26.79px) 124.78px,
+				var(--dp-color-action-secondary) 99.99%,
+				transparent 100%
+			);
 
 		&::after {
 			content: "";

@@ -1,14 +1,18 @@
 //- Заголовок внутренней страницы: крошки + h1 + графика.
-//- Данные: pageHead = { crumbs, title, accent }. Картинки — первый экран, поэтому без lazy
-section.page-head
+//- Данные: pageHead = { crumbs, title, accent, modifier, woman }. Картинки — первый экран, поэтому без lazy
+-
+	const headWoman = pageHead.woman || { desktop: 'page-head/woman', desktopWidth: 1024, desktopHeight: 1024, mobile: 'page-head/woman-mobile', mobileWidth: 350, mobileHeight: 350 }
+	const headWomanSrc = `${baseDir}images/content/${headWoman.desktop}`
+
+section.page-head(class=pageHead.modifier ? `page-head--${pageHead.modifier}` : null)
 	.page-head__graphic(aria-hidden="true")
 		img.page-head__ellipse(src=`${baseDir}images/content/page-head/ellipse.svg` width="405" height="405" alt="" loading="lazy" decoding="async")
 		img.page-head__circle(src=`${baseDir}images/content/page-head/circle.webp` srcset=`${baseDir}images/content/page-head/circle@2x.webp 2x` width="403" height="403" alt="" loading="lazy" decoding="async")
 		picture.page-head__woman
-			source(media="(min-width: 1024px)" srcset=`${baseDir}images/content/page-head/woman.webp` width="1024" height="1024")
-			img.page-head__woman-image(src=`${baseDir}images/content/page-head/woman-mobile.webp` srcset=`${baseDir}images/content/page-head/woman-mobile@2x.webp 2x` width="350" height="350" alt="" fetchpriority="high")
+			source(media="(min-width: 1024px)" srcset=headWoman.retina ? `${headWomanSrc}.webp 1x, ${headWomanSrc}@2x.webp 2x` : `${headWomanSrc}.webp` width=headWoman.desktopWidth height=headWoman.desktopHeight)
+			img.page-head__woman-image(src=`${baseDir}images/content/${headWoman.mobile}.webp` srcset=`${baseDir}images/content/${headWoman.mobile}@2x.webp 2x` width=headWoman.mobileWidth height=headWoman.mobileHeight alt="" fetchpriority="high")
 	.container.page-head__container
-		+breadcrumbs(pageHead.crumbs).page-head__breadcrumbs
+		+breadcrumbs(pageHead.crumbs).page-head__breadcrumbs(data-overflow-fade)
 		h1.page-head__title
 			span.page-head__title-accent= pageHead.accent
 			= ' '

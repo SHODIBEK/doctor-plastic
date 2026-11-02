@@ -1,0 +1,146 @@
+// Ход операции: шаги + фото на круге. На мобильном фото между заголовком и шагами
+.steps {
+	&__container {
+		display: grid;
+		grid-template-areas:
+			"title"
+			"visual"
+			"list";
+
+		@include laptop {
+			grid-template:
+				"title visual" auto
+				"list visual" 1fr / minmax(0, 536fr) minmax(0, 538fr);
+			gap: 50px;
+		}
+
+		// Фото в макете выходит за узкий контейнер на 26px
+		@include desktop {
+			grid-template-columns: 536px 538px;
+		}
+	}
+
+	&__title {
+		grid-area: title;
+	}
+
+	&__visual {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		grid-area: visual;
+		height: 390px;
+		background-image:
+			radial-gradient(
+				circle at calc(50% + 9.5px) 168.8px,
+				var(--dp-color-action-secondary) 131px,
+				transparent 131.5px
+			);
+
+		&::after {
+			content: "";
+			position: absolute;
+			background-image:
+				linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0) 68.924%,
+					rgba(255, 255, 255, 0.7) 84.263%,
+					#{$color-white} 100%
+				);
+			inset: 0;
+		}
+
+		@include laptop {
+			align-self: start;
+			height: auto;
+			background-image:
+				radial-gradient(
+					43.87% 30.3% at 56.13% 46.22%,
+					var(--dp-color-action-secondary) 99.8%,
+					transparent 100%
+				);
+			aspect-ratio: 538 / 779;
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 268px;
+		height: 388px;
+		object-fit: cover;
+		object-position: bottom;
+
+		@include laptop {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		grid-area: list;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 20px;
+
+		@include laptop {
+			gap: 50px;
+		}
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		@include laptop {
+			gap: 30px;
+		}
+	}
+
+	&__head {
+		display: flex;
+		align-items: center;
+		margin: 0;
+		font-size: 24px;
+		gap: 15px;
+
+		@include laptop {
+			align-items: flex-start;
+			font-size: 40px;
+			gap: 32px;
+		}
+	}
+
+	&__number {
+		font-weight: 700;
+		line-height: normal;
+		color: var(--dp-color-action-primary);
+	}
+
+	&__name {
+		font-weight: 300;
+		line-height: 1.1;
+		color: var(--dp-color-text);
+	}
+
+	&__text {
+		font-size: 16px;
+		line-height: 22px;
+		color: $color-black;
+
+		@include laptop {
+			max-width: 512px;
+		}
+	}
+
+	&__break {
+		display: none;
+
+		@include desktop {
+			display: inline;
+		}
+	}
+}

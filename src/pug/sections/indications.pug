@@ -1,0 +1,23 @@
+-
+	const indications = [
+		{
+			title: 'Показания',
+			modifier: 'yes',
+			items: ['Появлении косметических дефектов (растяжек, потери упругости и формы после родов или резкого похудения)', 'Выраженное недоразвитие молочных желез', 'Врожденное отсутствие молочных желез', 'Асимметрия молочных желез', 'Частичное или полное удаление молочной железы<br>в последствии болезни или травмы'],
+		},
+		{
+			title: 'Противопоказания',
+			modifier: 'no',
+			items: ['Тяжелые заболевания внутренних органов и систем, неврологические расстройства', 'Сахарный диабет', 'Нарушения первичного и вторичного гемостаза', 'Онкопатологии', 'Острые воспалительные, инфекционные заболевания', 'Возрастные ограничения — пластическое увеличение<br class="indications__break"> груди не проводится до 18&nbsp;лет'],
+		},
+	]
+
+section.indications#indications
+	.container.container--narrow.indications__container
+		each group in indications
+			.indications__group
+				h2.indications__title= group.title
+				ul.indications__list(class=`indications__list--${group.modifier}`)
+					each item in group.items
+						li.indications__item
+							span.indications__text!= item

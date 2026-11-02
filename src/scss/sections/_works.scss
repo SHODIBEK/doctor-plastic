@@ -88,15 +88,24 @@
 		}
 	}
 
+	// Правый отступ в конце прокрутки, как слева; ширина по контенту, иначе padding встанет у края экрана
 	&__track {
 		display: grid;
 		grid-auto-columns: 273px;
 		grid-auto-flow: column;
 		grid-template-rows: repeat(2, auto);
+		padding-right: 15px;
+		width: max-content;
 		gap: 10px;
+
+		@include tablet {
+			padding-right: 30px;
+		}
 
 		@include laptop {
 			display: flex;
+			padding-right: 0;
+			width: auto;
 			gap: 0;
 		}
 	}

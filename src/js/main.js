@@ -10,6 +10,8 @@ import sliders from "./modules/sliders";
 import home from "./modules/home";
 import calc from "./modules/calc";
 import components from "./modules/components";
+import expand from "./modules/expand";
+import overflowFade from "./modules/overflowFade";
 
 ieFix();
 vhFix();
@@ -19,4 +21,6 @@ sliders.init();
 home.init();
 calc.init();
 components.init();
+expand.init();
+overflowFade.init();
 Fancybox.bind("[data-fancybox]");
