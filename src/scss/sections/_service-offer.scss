@@ -1,0 +1,261 @@
+// Цена услуги «всё включено» + короткая форма записи
+.service-offer {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include laptop {
+			gap: 40px;
+		}
+	}
+
+	&__card {
+		display: flex;
+		flex-direction: column;
+		border: 3px solid var(--dp-color-action-secondary);
+		border-radius: 20px;
+		padding: 20px;
+		gap: 10px;
+
+		@include laptop {
+			padding: 30px 50px;
+		}
+	}
+
+	&__prices {
+		display: flex;
+		align-items: flex-start;
+		font-weight: 600;
+		line-height: 1;
+		white-space: nowrap;
+		gap: 15px;
+
+		@include laptop {
+			gap: 20px;
+		}
+	}
+
+	&__price {
+		font-size: 32px;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			font-size: 56px;
+		}
+	}
+
+	&__old-price {
+		font-size: 20px;
+		color: var(--dp-color-text-strike);
+
+		@include laptop {
+			font-size: 30px;
+		}
+	}
+
+	&__note {
+		font-weight: 300;
+		font-size: 24px;
+		line-height: 1.2;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			font-size: 32px;
+			line-height: 40px;
+		}
+	}
+
+	&__gifts {
+		display: flex;
+		flex-direction: column;
+		list-style: none;
+		margin: 0;
+		padding: 10px 0 0;
+		gap: 10px;
+
+		@include laptop {
+			flex-direction: row;
+		}
+	}
+
+	&__gift {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+
+		@include laptop {
+			width: 450px;
+			gap: 20px;
+		}
+	}
+
+	&__gift-icon {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		width: 56px;
+		height: 56px;
+		background-color: var(--dp-color-surface-subtle);
+
+		@include laptop {
+			width: 70px;
+			height: 70px;
+		}
+	}
+
+	&__gift-image {
+		width: 32px;
+		height: 32px;
+
+		@include laptop {
+			width: 40px;
+			height: 40px;
+		}
+	}
+
+	&__gift-text {
+		display: flex;
+		flex-direction: column;
+		font-size: 16px;
+		line-height: 1.2;
+		gap: 3px;
+
+		@include laptop {
+			font-size: 18px;
+		}
+	}
+
+	&__gift-title {
+		color: $color-black;
+	}
+
+	&__gift-price {
+		font-weight: 600;
+		color: var(--dp-color-action-primary);
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		@include laptop {
+			flex-direction: row;
+		}
+	}
+
+	&__about {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include laptop {
+			flex: 1;
+			justify-content: space-between;
+			padding: 10px;
+		}
+	}
+
+	&__text {
+		font-size: 16px;
+		line-height: 22px;
+		color: $color-black;
+
+		@include laptop {
+			max-width: 512px;
+		}
+	}
+
+	&__patients {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 16px;
+
+		@include laptop {
+			align-items: flex-start;
+		}
+	}
+
+	&__patients-count {
+		font-size: 16px;
+		line-height: 20px;
+		color: $color-black;
+	}
+
+	&__avatars {
+		display: flex;
+	}
+
+	// Картинка 80px с белой обводкой вокруг круга 72px — шаг 48px, как в макете
+	&__avatar {
+		flex-shrink: 0;
+		margin: -4px -28px -4px -4px;
+		width: 80px;
+		height: 80px;
+		max-width: none;
+
+		&:last-child {
+			margin-right: -4px;
+		}
+
+		&:nth-child(1) {
+			opacity: 0.1;
+		}
+
+		&:nth-child(2) {
+			opacity: 0.6;
+		}
+
+		&:nth-child(3) {
+			opacity: 0.9;
+		}
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		@include laptop {
+			flex-shrink: 0;
+			width: 527px;
+			gap: 50px;
+		}
+	}
+
+	&__fields {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		@include laptop {
+			gap: 24px;
+		}
+	}
+
+	&__policy {
+		font-size: 16px;
+		line-height: 22px;
+		color: rgba(19, 25, 35, 0.6);
+
+		@include laptop {
+			max-width: 480px;
+		}
+	}
+
+	&__policy-link {
+		text-decoration: underline;
+	}
+
+	&__paragraph + &__paragraph {
+		margin-top: 24px;
+	}
+
+	@include laptop {
+		margin-top: 20px;
+	}
+}

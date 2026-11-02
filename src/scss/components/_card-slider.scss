@@ -4,6 +4,15 @@
 	flex-direction: column;
 	gap: 20px;
 
+	// Перенос заголовка только с десктопа
+	&__break {
+		display: none;
+
+		@include laptop {
+			display: inline;
+		}
+	}
+
 	&__title {
 		font-size: 32px;
 

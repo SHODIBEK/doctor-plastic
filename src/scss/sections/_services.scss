@@ -25,4 +25,62 @@
 			width: auto;
 		}
 	}
+
+	&__item--hidden {
+		display: none;
+	}
+
+	&__item--mobile-hidden {
+		display: none;
+
+		@include tablet {
+			display: block;
+		}
+	}
+
+	&__more {
+		display: flex;
+		margin: 10px auto 0;
+		width: fit-content;
+	}
+
+	&.is-open &__item--hidden,
+	&.is-open &__item--mobile-hidden {
+		display: block;
+	}
+
+	&.is-open &__more {
+		display: none;
+	}
+
+	// Каталог услуг: сетка, лишние карточки раскрываются кнопкой
+	// На мобильном две колонки на всю ширину контейнера
+	&--catalog &__container {
+		padding-right: 15px;
+
+		@include tablet {
+			padding-right: 30px;
+		}
+
+		@include laptop {
+			padding-right: 55px;
+		}
+	}
+
+	&--catalog &__list {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+
+		@include tablet {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		@include laptop {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	&--catalog &__item {
+		width: auto;
+	}
 }

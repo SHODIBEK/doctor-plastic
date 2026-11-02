@@ -112,12 +112,62 @@
 		}
 	}
 
+	// Ширина по слову: градиент с background-clip рисуется только в пределах блока,
+	// а у заголовка на мобильном max-width 160px
 	&__title-accent {
+		width: max-content;
 		color: transparent;
 		background-image: var(--dp-gradient-accent);
 		// stylelint-disable-next-line property-no-vendor-prefix
 		-webkit-background-clip: text;
 		background-clip: text;
+	}
+
+	// Шапка услуги: другое фото, обрезанное по фигуре (координаты из макета)
+	&--service &__woman {
+		right: -153px;
+		top: -2px;
+		width: 391px;
+		height: 391px;
+
+		@include laptop {
+			left: page-head-fl(731);
+			top: page-head-fl(14);
+			width: page-head-fl(445);
+			height: page-head-fl(930);
+		}
+	}
+
+	// Крошки услуги в одну строку: помещаются — стоят слева, не помещаются — видно конец,
+	// начало уходит под градиент (класс is-overflow ставит JS)
+	&--service &__breadcrumbs {
+		position: relative;
+		display: flex;
+		justify-content: flex-end;
+		overflow: hidden;
+
+		&::before {
+			content: none;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1;
+			width: 35px;
+			height: 100%;
+			background-image: linear-gradient(270deg, rgba(19, 25, 35, 0) 0%, var(--dp-color-surface-canvas) 100%);
+		}
+
+		.breadcrumbs__list {
+			flex-shrink: 0;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			min-width: 100%;
+			white-space: nowrap;
+		}
+
+		&.is-overflow::before {
+			content: "";
+		}
 	}
 
 	@include laptop {

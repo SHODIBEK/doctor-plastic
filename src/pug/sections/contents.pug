@@ -1,0 +1,33 @@
+//- Содержание страницы: якоря на секции
+-
+	const contents = [
+		{ title: 'Типы доступов для установки имплантов', href: '#article' },
+		{ title: 'Наши работы', href: '#works' },
+		{ title: 'Отзывы пациентов', href: '#reviews' },
+		{ title: 'Показания и противопоказания к маммопластике', href: '#indications' },
+		{ title: 'Врачи с международным опытом', href: '#doctors' },
+		{ title: 'Цены на увеличение груди имплантами', href: '#prices' },
+		{ title: 'Что входит в стоимость операции', href: '#included' },
+		{ title: 'Цены на услугу', href: '#service-offer' },
+		{ title: 'Онлайн-калькулятор кредита на пластические операции', href: '#calc' },
+		{ title: 'Сделайте первый шаг к желаемому результату', href: '#signup' },
+		{ title: 'Наши преимущества', href: '#advantages' },
+		{ title: 'Современная методика восстановления всего за 3 дня', href: '#video' },
+		{ title: 'Ведущий центр пластической хирургии в России', href: '#gallery' },
+		{ title: 'Ответы на частые вопросы', href: '#faq' },
+		{ title: 'Этапы подготовки к операции', href: '#steps' },
+		{ title: 'Ход операции', href: '#steps' },
+		{ title: 'Почему стоит выбрать нашу клинику', href: '#article' },
+		{ title: 'Документы и лицензии', href: '#diplomas' },
+	]
+
+nav.contents(aria-labelledby="contents-title")
+	.container.contents__container
+		h2.contents__title#contents-title
+			| Содержание
+			br
+			| страницы
+		ul.contents__list
+			each item in contents
+				li.contents__item
+					a.contents__link(href=item.href)= item.title

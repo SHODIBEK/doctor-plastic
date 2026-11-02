@@ -8,7 +8,7 @@
 section.related
 	.container.card-slider.card-slider--articles(data-card-slider)
 		.card-slider__aside
-			h2.title.card-slider__title Смотрите также
+			h2.title.card-slider__title!= typeof relatedTitle !== 'undefined' ? relatedTitle : 'Смотрите также'
 			.card-slider__nav
 				+btnRound('prev')(data-card-slider-prev)
 				+btnRound('next')(data-card-slider-next)

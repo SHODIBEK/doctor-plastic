@@ -77,6 +77,13 @@
 		}
 	}
 
+	// В каталоге услуг карточка ниже: фото 150px
+	&#{&}--compact {
+		@include laptop {
+			height: 198px;
+		}
+	}
+
 	@include laptop {
 		border-radius: 20px;
 		height: 230px;
