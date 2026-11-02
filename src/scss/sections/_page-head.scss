@@ -153,6 +153,21 @@
 		}
 	}
 
+	// Шапка специалистов: вырезанное фото (координаты из макета)
+	&--team &__woman {
+		right: -145px;
+		top: 18px;
+		width: 392px;
+		height: 392px;
+
+		@include laptop {
+			left: page-head-fl(567);
+			top: page-head-fl(16);
+			width: page-head-fl(708);
+			height: page-head-fl(708);
+		}
+	}
+
 	&--price &__title {
 		max-width: none;
 	}

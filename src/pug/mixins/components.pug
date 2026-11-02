@@ -208,7 +208,8 @@ mixin resultCard(work)
 mixin doctorCard(doctor)
 	article.doctor-card&attributes(attributes)
 		.doctor-card__photo
-			p.doctor-card__operations= doctor.operations
+			if doctor.operations
+				p.doctor-card__operations= doctor.operations
 			+picture(doctor.photo, `${doctor.lastName} ${doctor.name}`, 365, 463).doctor-card__image
 		.doctor-card__body
 			h3.doctor-card__name
@@ -216,8 +217,16 @@ mixin doctorCard(doctor)
 					= doctor.lastName
 					+verified
 				span.doctor-card__first-name= doctor.name
-			p.doctor-card__text= doctor.text
-		+btn('Записаться на консультацию', { href: '#signup' }).btn--full.doctor-card__btn
+		//- Подробности: на мобильных под именем, с 1024 — блок, который по hover поднимается снизу карточки (имя в нём повторяется)
+		if doctor.text
+			.doctor-card__details
+				p.doctor-card__name.doctor-card__details-name(aria-hidden="true")
+					span.doctor-card__last-name
+						= doctor.lastName
+						+verified
+					span.doctor-card__first-name= doctor.name
+				p.doctor-card__text= doctor.text
+				+btn('Записаться на консультацию', { href: '#signup' }).btn--full.doctor-card__btn
 
 //- Карточка отзыва: { lastName, name, photo, text, video }
 mixin reviewCard(review)

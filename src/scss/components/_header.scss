@@ -283,7 +283,10 @@
 		top: 0;
 	}
 
+	// Над шапкой полоса 48px и линия по макету: линия на 48, логотип на 79
 	@include desktop {
+		margin-top: 48px;
+		border-top: 1px solid var(--dp-color-line-dark);
 		border-bottom: none;
 		padding-top: 30px;
 	}
