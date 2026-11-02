@@ -1,0 +1,23 @@
+extends pug/layout
+
+append vars
+	- title = 'Цены на пластические операции в Москве — прайс-лист | Доктор Пластик'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Прайс-лист клиники «Доктор Пластик»: цены на пластику груди, лица, тела, липосакцию, гинекологию и флебологию. Бесплатная консультация хирурга, рассрочка на операции.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'price',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Цены' }],
+			accent: 'Прайс-лист',
+			title: 'на услуги',
+			woman: { desktop: 'price-head/woman', desktopWidth: 526, desktopHeight: 1011, retina: true, mobile: 'price-head/woman-mobile', mobileWidth: 214, mobileHeight: 346 },
+		}
+
+block main
+	include pug/sections/page-head
+	.panel
+		include pug/sections/price-list
+		include pug/sections/included
+		include pug/sections/works
+		include pug/sections/faq
+		include pug/sections/signup

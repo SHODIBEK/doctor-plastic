@@ -52,13 +52,25 @@ mixin dropList(data)
 						span.checkbox__box
 						span.drop-list__label= item
 
-//- @demo +collapse({ title: 'Гинекология', open: false }) Контент
-mixin collapse(data)
-	.collapse(class=data.open ? 'is-open' : null data-collapse)&attributes(attributes)
-		button.collapse__head(type="button" aria-expanded=data.open ? 'true' : 'false' data-collapse-toggle)
-			span.collapse__title= data.title
+//- Кнопка раскрытия collapse. sub — подкатегория: мельче, со стрелкой-шевроном вместо круглой кнопки
+mixin collapseHead(data)
+	button.collapse__head(type="button" aria-expanded=data.open ? 'true' : 'false' data-collapse-toggle)
+		span.collapse__title= data.title
+		if data.sub
+			+svg('chevron-down').collapse__chevron
+		else
 			span.btn-round.btn-round--down.collapse__btn(class=data.open ? 'is-open' : null)
 				+svg('arrow-right').btn-round__icon
+
+//- { title, open, sub, heading } — heading: тег заголовка вокруг кнопки ('h2', 'h3')
+//- @demo +collapse({ title: 'Гинекология', open: false }) Контент
+mixin collapse(data)
+	.collapse(class=[data.sub ? 'collapse--sub' : null, data.open ? 'is-open' : null] data-collapse)&attributes(attributes)
+		if data.heading
+			#{data.heading}.collapse__heading
+				+collapseHead(data)
+		else
+			+collapseHead(data)
 		.collapse__body(aria-hidden=data.open ? 'false' : 'true')
 			.collapse__inner
 				.collapse__content

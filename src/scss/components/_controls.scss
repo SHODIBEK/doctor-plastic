@@ -164,7 +164,8 @@
 		opacity: 0;
 		transition: grid-template-rows 0.4s ease, opacity 0.4s ease;
 
-		.collapse.is-open & {
+		// Только свой body: вложенные collapse раскрываются отдельно
+		.collapse.is-open > & {
 			grid-template-rows: 1fr;
 			opacity: 1;
 		}
@@ -183,4 +184,42 @@
 		}
 	}
 
+	&__heading {
+		margin: 0;
+		font: inherit;
+	}
+
+	&__chevron {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+		color: #292d32;
+		fill: none;
+		transform: scaleY(-1);
+		transition: transform $duration-normal;
+
+		@include laptop {
+			width: 32px;
+			height: 32px;
+		}
+	}
+
+	// Подкатегория: заголовок 20/24px, шеврон вместо круглой кнопки
+	&--sub &__title {
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 30px;
+
+		@include laptop {
+			font-size: 24px;
+		}
+	}
+
+	&--sub &__content {
+		padding-top: 10px;
+	}
+
+	&--sub.is-open &__chevron {
+		transform: none;
+	}
 }

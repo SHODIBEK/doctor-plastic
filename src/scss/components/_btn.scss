@@ -67,6 +67,13 @@
 		background-color: var(--dp-color-action-disabled);
 	}
 
+	// Бирюзовая кнопка с чёрным текстом («Скачать полный прайс-лист»)
+	&--secondary {
+		font-weight: 600;
+		color: $color-black;
+		background-color: var(--dp-color-action-secondary);
+	}
+
 	// Маленькая кнопка (mobile=on, type=small); удвоенный класс — чтобы перебить @include laptop ниже
 	&#{&}--small {
 		--btn-notch-width: 24px;

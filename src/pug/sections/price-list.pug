@@ -1,0 +1,89 @@
+//- Прайс-лист по категориям: категория (h2) → подкатегории (h3) → строки прайса.
+//- В WP: категории и подкатегории — термины, строки — записи/повторитель ACF
+-
+	const priceNote = 'В стоимость входит: 3D моделирование, импланты, операция, реабилитационный период'
+	const priceCategories = [
+		{
+			title: 'Пластическая хирургия',
+			open: true,
+			consult: { name: 'Консультация пластического хирурга', price: 'Бесплатно' },
+			groups: [
+				{
+					title: 'Грудь',
+					open: true,
+					items: [
+						{ name: 'Увеличение груди (без стоимости имплантов, компрессионного белья)', oldPrice: '295 400 ₽', price: '295 400 ₽' },
+						{ name: 'Увеличение одной груди (без стоимости имплантов, компрессионного белья)', oldPrice: '212 400 ₽', price: '295 400 ₽' },
+						{ name: 'Подтяжка груди c увеличением 1 кат. сложности (переареолярн.) (без стоимости имплантов, компрессионного белья)', oldPrice: '355 400 ₽', price: '295 400 ₽' },
+						{ name: 'Подтяжка груди с увеличением 2 кат. сложности (с вертикальным рубцом) (без стоимости имплантов, компрессионного белья)', price: '389 000 ₽' },
+						{ name: 'Подтяжка груди с увеличением 3 кат. сложности (с Т-образным рубцом) (без стоимости имплантов, компрессионного белья)', oldPrice: '415 000 ₽', price: '295 400 ₽' },
+						{ name: 'Замена имплантов - 1 кат. сложности (без стоимости имплантов, компрессионного белья)', price: '320 000 ₽' },
+						{ name: 'Замена имплантов - 2 кат. сложности (без стоимости имплантов, компрессионного белья)', price: '368 000 ₽' },
+						{ name: 'Замена одного импланта (без стоимости имплантов, компрессионного белья)', price: '185 000 ₽' },
+						{ name: 'Гинекомастия', price: '154 000 ₽' },
+						{ name: 'Капсулотомия двусторонняя, в/в', price: '150 000 ₽' },
+						{ name: 'Капсулотомия односторонняя, в/в', oldPrice: '75 000 ₽', price: '295 400 ₽' },
+						{ name: 'Коррекция ареолы', price: '75 000 ₽' },
+						{ name: 'Коррекция местоположения импланта', price: '100 000 ₽' },
+						{ name: 'Коррекция местоположения двух имплантов', price: '150 000 ₽' },
+						{ name: 'Коррекция при втянутости соска', oldPrice: '90 000 ₽', price: '295 400 ₽' },
+						{ name: 'Подтяжка груди (переареолярн.)', price: '194 400 ₽' },
+						{ name: 'Подтяжка груди (с вертикальным рубцом)', oldPrice: '270 000 ₽', price: '295 400 ₽' },
+						{ name: 'Подтяжка груди с Т-рубцом (1 категория сложности)', price: '294 000 ₽' },
+						{ name: 'Подтяжка груди с Т-рубцом (2 категория сложности)', price: '318 000 ₽' },
+						{ name: 'Подтяжка груди с Т-рубцом (3 категория сложности, с редукцией одной груди)', price: '323 400 ₽' },
+						{ name: 'Удаление имплантов (без капсулы)', price: '127 000 ₽' },
+					],
+				},
+				{ title: 'Глаза' },
+				{ title: 'Лицо' },
+				{ title: 'Живот' },
+				{ title: 'Коррекция носа' },
+				{ title: 'Липосакция' },
+				{ title: 'Липосакция на аппарате BODY JET' },
+				{ title: 'Липосакция на аппарате Vaser' },
+				{ title: 'Липоскульптурирование' },
+				{ title: 'Липофилинг' },
+				{ title: 'Протезирование' },
+				{ title: 'Рубцы' },
+				{ title: 'Уши' },
+				{ title: 'Дополнительные услуги' },
+			],
+		},
+		{ title: 'Гинекология', consult: { name: 'Консультация гинеколога', price: 'Бесплатно' } },
+		{ title: 'Флебология', consult: { name: 'Консультация флеболога', price: 'Бесплатно' } },
+		{ title: 'Анализы' },
+		{ title: 'Прайс-лист профессора Сергеева', consult: { name: 'Консультация профессора Сергеева И. В.', price: 'Бесплатно' } },
+	]
+	// Строки закрытых подкатегорий в макете не показаны — до наполнения из WP выводим пример
+	const priceSample = [
+		{ name: 'Консультация и подбор методики', price: 'Бесплатно' },
+		{ name: 'Операция (без стоимости расходных материалов)', price: '150 000 ₽' },
+	]
+
+section.price-list#price-list
+	.container
+		.price-list__categories
+			each category in priceCategories
+				+collapse({ title: category.title, open: category.open, heading: 'h2' }).price-list__category
+					.price-list__body
+						if category.consult
+							p.price-list__consult
+								span.price-list__consult-name= category.consult.name
+								span.price-list__consult-price= category.consult.price
+						if category.groups
+							.price-list__groups
+								each group in category.groups
+									+collapse({ title: group.title, open: group.open, sub: true, heading: 'h3' }).price-list__group
+										ul.price-list__lines
+											each item in group.items || priceSample
+												+priceLine(Object.assign({ note: priceNote }, item)).price-line--divided
+						else
+							ul.price-list__lines
+								each item in priceSample
+									+priceLine(Object.assign({ note: priceNote }, item)).price-line--divided
+		.price-list__actions
+			+btn('Записаться на прием', { href: '#signup' }).price-list__btn
+			+btn('Скачать полный прайс-лист', { href: '#' }).btn--secondary.price-list__btn(download)
+	.price-list__calc
+		include calc

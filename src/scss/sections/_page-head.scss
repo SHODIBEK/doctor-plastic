@@ -138,6 +138,25 @@
 		}
 	}
 
+	// Шапка прайс-листа: фото обрезано по фигуре (координаты из макета)
+	&--price &__woman {
+		right: -94px;
+		top: 34px;
+		width: 214px;
+		height: 346px;
+
+		@include laptop {
+			left: page-head-fl(746);
+			top: page-head-fl(29);
+			width: page-head-fl(526);
+			height: page-head-fl(1011);
+		}
+	}
+
+	&--price &__title {
+		max-width: none;
+	}
+
 	// Крошки услуги в одну строку: помещаются — стоят слева, не помещаются — видно конец,
 	// начало уходит под градиент (класс is-overflow ставит JS)
 	&--service &__breadcrumbs {
