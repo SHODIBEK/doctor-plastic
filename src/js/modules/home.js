@@ -10,9 +10,18 @@ const initHeader = () => {
 		return;
 	}
 
+	const root = document.documentElement;
+
 	const setMenu = (isOpen) => {
+		// Замеряем до фиксации шапки: её высота держит место в потоке, ширина скроллбара — отступ справа
+		if (isOpen) {
+			root.style.setProperty('--header-height', `${header.offsetHeight}px`);
+			root.style.setProperty('--scrollbar-width', `${window.innerWidth - root.clientWidth}px`);
+		}
+
 		header.classList.toggle('is-open', isOpen);
-		document.documentElement.classList.toggle('is-lock-scroll', isOpen);
+		root.classList.toggle('is-lock-scroll', isOpen);
+		root.classList.toggle('is-menu-open', isOpen);
 		burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 		burger.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Меню');
 	};

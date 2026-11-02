@@ -14,6 +14,7 @@
 	&__slider {
 		overflow-x: auto;
 		margin-right: -15px;
+		margin-left: 0; // перебиваем margin-left: auto из .swiper, иначе лента сдвигается на 15px
 		width: 100%;
 		min-width: 0;
 		scrollbar-width: none;

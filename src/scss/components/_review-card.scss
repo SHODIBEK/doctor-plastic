@@ -1,5 +1,10 @@
-// Карточка отзыва. На мобильных кнопка видна всегда, с 1024 — по hover
+// Карточка отзыва. На мобильных кнопка видна всегда, с 1024 — по hover.
+// Hover по макету: фото 520 → 400 (обрезается снизу), имя и текст поднимаются на 120, под текстом кнопки.
+// Делаем через clip-path и transform — без перестройки вёрстки, высота карточки не меняется
+$review-card-shift: 120px;
+
 .review-card {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
@@ -11,14 +16,14 @@
 		justify-content: center;
 		overflow: hidden;
 		border-radius: 15px;
-		padding: 20px 20px 0;
+		padding: 30px 30px 0;
 		height: 340px;
 		background-color: var(--dp-color-surface-canvas);
-		transition: height $duration-normal, background-color $duration-normal;
+		transition: clip-path $duration-normal ease, background-color $duration-normal ease;
 
 		@include laptop {
 			border-radius: 0;
-			padding: 30px 30px 0;
+			padding: 30px 0 0;
 			height: 520px;
 		}
 	}
@@ -41,9 +46,10 @@
 	&__body {
 		display: flex;
 		flex-direction: column;
-		gap: 15px;
+		gap: 20px;
 
 		@include laptop {
+			transition: transform $duration-normal ease;
 			gap: 24px;
 		}
 	}
@@ -54,7 +60,12 @@
 		margin: 0;
 		font-weight: 500;
 		font-size: 24px;
+		line-height: 1;
 		gap: 8px;
+
+		@include laptop {
+			line-height: 1.25;
+		}
 	}
 
 	&__last-name {
@@ -72,16 +83,11 @@
 		// stylelint-disable-next-line value-no-vendor-prefix
 		display: -webkit-box;
 		overflow: hidden;
-		font-size: 15px;
+		font-size: 16px;
 		line-height: 22px;
 		// stylelint-disable-next-line property-no-vendor-prefix
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 4;
-
-		@include laptop {
-			font-size: 16px;
-			-webkit-line-clamp: 5;
-		}
+		-webkit-line-clamp: 5;
 	}
 
 	&__actions {
@@ -89,7 +95,13 @@
 		margin-top: auto;
 
 		@include laptop {
-			margin-top: 30px;
+			position: absolute;
+			left: 0;
+			right: 0;
+
+			// под текстом в hover-состоянии: 642 + 50 по макету
+			top: 692px;
+			margin-top: 0;
 			opacity: 0;
 			visibility: hidden;
 			transition: opacity $duration-normal, visibility $duration-normal;
@@ -108,11 +120,18 @@
 		flex: 1;
 	}
 
+	// С 1024 карточка держит обычную высоту (762), hover-состояние (764) на 2px выходит в отступ секции
 	@include laptop {
-		@include hover {
+		min-height: 762px;
+
+		@include hover-or-touch {
 			.review-card__photo {
-				height: 400px;
+				clip-path: inset(0 0 $review-card-shift 0);
 				background-color: rgba(19, 25, 35, 0.3);
+			}
+
+			.review-card__body {
+				transform: translateY(-$review-card-shift);
 			}
 
 			.review-card__actions {

@@ -103,6 +103,9 @@
 
 		@include desktop {
 			position: static;
+			// у flex-элемента z-index работает и при static: -1 прятал меню под шапку
+			// stylelint-disable-next-line plugin/declaration-block-no-ignored-properties
+			z-index: auto;
 			display: block;
 			flex: 1;
 			overflow: visible;
@@ -276,7 +279,7 @@
 	&.is-open {
 		position: fixed;
 		left: 0;
-		right: 0;
+		right: var(--scrollbar-width, 0);
 		top: 0;
 	}
 

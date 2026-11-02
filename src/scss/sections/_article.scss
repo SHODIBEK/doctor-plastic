@@ -21,15 +21,11 @@
 	}
 
 	&__text {
-		font-size: 15px;
+		font-size: 16px;
 		line-height: 22px;
 
 		& + & {
 			margin-top: 24px;
-		}
-
-		@include laptop {
-			font-size: 16px;
 		}
 	}
 
@@ -58,7 +54,7 @@
 		margin: 0 0 10px;
 		font-weight: 300;
 		font-size: 24px;
-		line-height: 1.25;
+		line-height: 1.2;
 		color: $color-black;
 
 		@include laptop {

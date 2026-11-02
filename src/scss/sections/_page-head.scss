@@ -1,0 +1,126 @@
+// Координаты графики — из макета (контейнер 1432), ниже 1432 пропорционально сжимаются.
+// Для отрицательных значений max(), иначе min() всегда берёт более отрицательное и масштаб ломается
+@function page-head-fl($value) {
+	@if $value < 0 {
+		@return unquote("max(#{$value}px, #{$value / 1432 * 100}vw)");
+	}
+
+	@return unquote("min(#{$value}px, #{$value / 1432 * 100}vw)");
+}
+
+.page-head {
+	position: relative;
+	z-index: 0;
+	padding: 30px 0;
+	color: var(--dp-color-action-inverse);
+
+	&__graphic {
+		position: absolute;
+		z-index: -1;
+		pointer-events: none;
+		inset: 0;
+
+		@include laptop {
+			left: 50%;
+			width: 100%;
+			max-width: 1432px;
+			transform: translateX(-50%);
+		}
+	}
+
+	&__ellipse,
+	&__circle {
+		display: none;
+
+		@include laptop {
+			position: absolute;
+			display: block;
+		}
+	}
+
+	&__ellipse {
+		@include laptop {
+			left: page-head-fl(1141);
+			top: page-head-fl(555);
+			width: page-head-fl(405);
+			height: page-head-fl(405);
+		}
+	}
+
+	&__circle {
+		@include laptop {
+			left: page-head-fl(1087);
+			top: page-head-fl(266);
+			border-radius: 50%;
+			width: page-head-fl(403);
+			height: page-head-fl(403);
+			background-color: var(--dp-color-action-secondary);
+			object-fit: cover;
+		}
+	}
+
+	&__woman {
+		position: absolute;
+		right: -128px;
+		top: 45px;
+		display: block;
+		width: 350px;
+		height: 350px;
+
+		@include laptop {
+			left: page-head-fl(137);
+			right: auto;
+			top: page-head-fl(-253);
+			width: page-head-fl(1439);
+			height: page-head-fl(1439);
+		}
+	}
+
+	&__woman-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: bottom;
+	}
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 50px;
+
+		@include laptop {
+			gap: 40px;
+		}
+	}
+
+	&__title {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		margin: 0;
+		min-height: 200px;
+		max-width: 160px;
+		font-weight: 300;
+		font-size: 40px;
+		line-height: 1;
+
+		@include laptop {
+			min-height: 394px;
+			max-width: none;
+			font-size: 96px;
+		}
+	}
+
+	&__title-accent {
+		color: transparent;
+		background-image: var(--dp-gradient-accent);
+		// stylelint-disable-next-line property-no-vendor-prefix
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
+
+	@include laptop {
+		padding: 80px 0 50px;
+	}
+}

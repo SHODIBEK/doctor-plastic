@@ -19,6 +19,14 @@
 	}
 }
 
+// Состояние по hover, а на устройствах без hover (тач) — сразу: контент за hover не должен быть недоступен
+@mixin hover-or-touch {
+	.has-hover &:not([disabled]):hover,
+	.no-hover & {
+		@content;
+	}
+}
+
 @mixin active-hover {
 	.has-hover &.is-active:hover {
 		@content;

@@ -18,9 +18,16 @@ html {
 		cursor: none !important;
 	}
 
-	&.is-lock-scroll,
-	&.is-lock-scroll body {
+	// Только html: overflow у body сбрасывал позицию прокрутки в 0.
+	// Ширину пропавшего скроллбара компенсируем, чтобы контент не сдвигался вбок
+	&.is-lock-scroll {
 		overflow: hidden;
+		padding-right: var(--scrollbar-width, 0);
+	}
+
+	// Открытая шапка фиксируется и выпадает из потока — держим её место
+	&.is-menu-open body {
+		padding-top: var(--header-height, 0);
 	}
 }
 
