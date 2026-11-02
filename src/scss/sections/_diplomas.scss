@@ -36,6 +36,11 @@
 
 	&__track {
 		align-items: center;
+
+		// Место под увеличенный центральный слайд (200 × 1.4 = 280)
+		@include laptop {
+			height: 280px;
+		}
 	}
 
 	&__item {
@@ -63,13 +68,16 @@
 			width: 272px;
 
 			@include laptop {
-				width: 396px;
-				height: 280px;
+				width: 283px;
 			}
 		}
 
+		// Масштаб и сдвиг выставляет JS (sliders.js → scaleDiplomas), длительность = скорость Swiper
 		@include laptop {
 			height: 200px;
+			transition-property: transform;
+			transition-timing-function: ease;
+			will-change: transform;
 		}
 	}
 

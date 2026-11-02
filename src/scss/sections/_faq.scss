@@ -17,11 +17,21 @@
 		width: 100%;
 	}
 
+	// В макете на мобильном линия добавляет 1px к пункту, на десктопе лежит внутри (пункт ровно 120px)
 	&__item {
 		border-bottom: 1px solid var(--dp-color-text);
 
 		&:last-child {
 			border-bottom: none;
+		}
+
+		@include laptop {
+			border-bottom: none;
+			box-shadow: inset 0 -1px 0 var(--dp-color-text);
+
+			&:last-child {
+				box-shadow: none;
+			}
 		}
 	}
 
@@ -43,8 +53,8 @@
 
 	&__logo {
 		flex-shrink: 0;
-		width: 22px;
-		height: 22px;
+		width: 24px;
+		height: 24px;
 
 		@include laptop {
 			width: 32px;
@@ -56,7 +66,7 @@
 		flex: 1;
 		font-weight: 300;
 		font-size: 18px;
-		line-height: 22px;
+		line-height: 1.2;
 
 		@include laptop {
 			font-size: 32px;
@@ -102,22 +112,22 @@
 	}
 
 	&__answer-text {
-		padding: 0 0 20px 34px;
-		font-size: 15px;
+		padding: 0 0 20px 35px;
+		font-size: 16px;
 		line-height: 22px;
 
 		@include laptop {
 			padding: 0 0 40px 65px;
 			max-width: 815px;
-			font-size: 16px;
 		}
 	}
 
 	&__btn {
-		margin-top: 20px;
+		margin-top: 10px;
 		width: 100%;
 
 		@include tablet {
+			margin-top: 20px;
 			width: auto;
 		}
 	}

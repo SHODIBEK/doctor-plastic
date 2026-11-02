@@ -1,5 +1,9 @@
 // Координаты графики — из макета 1920, ниже 1920 пропорционально сжимаются
 @function hero-fl($value) {
+	@if $value < 0 {
+		@return unquote("max(#{$value}px, #{$value / 1920 * 100}vw)");
+	}
+
 	@return unquote("min(#{$value}px, #{$value / 1920 * 100}vw)");
 }
 

@@ -2,12 +2,20 @@
 	&__container {
 		display: flex;
 		flex-direction: column;
-		gap: 20px;
+		gap: 10px;
 
 		@include laptop {
 			flex-direction: row;
 			align-items: flex-end;
 			gap: 24px;
+		}
+	}
+
+	&__title {
+		line-height: 1;
+
+		@include laptop {
+			line-height: 1.1;
 		}
 	}
 
@@ -19,9 +27,10 @@
 		justify-content: center;
 		order: 1;
 		overflow: hidden;
-		width: 190px;
-		height: 250px;
-		background: radial-gradient(circle 87px at 50% 108px, var(--dp-color-action-secondary) 99.99%, transparent 100%);
+		width: 100%;
+		height: 270px;
+		// Круг привязан к центру, как и фото: в макете 360 он на 7px правее центра
+		background: radial-gradient(circle 86.5px at calc(50% + 7px) 109.5px, var(--dp-color-action-secondary) 99.99%, transparent 100%);
 
 		&::after {
 			content: "";
@@ -51,8 +60,8 @@
 
 	&__image {
 		flex-shrink: 0;
-		width: 196px;
-		height: 266px;
+		width: 199px;
+		height: 270px;
 		max-width: none;
 		object-fit: cover;
 		transform: scaleX(-1);
@@ -77,7 +86,7 @@
 	&__list {
 		display: grid;
 		order: 2;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 10px;
 	}
 
@@ -87,7 +96,7 @@
 		align-items: flex-start;
 		border: 3px solid var(--dp-color-action-secondary);
 		border-radius: 15px;
-		padding: 12px 7px;
+		padding: 7px 7px 12px; // в макете обводка 3px внутри: 10/10/15 минус бордер
 		gap: 10px;
 
 		@include laptop {
@@ -106,8 +115,8 @@
 		align-items: center;
 		justify-content: center;
 		border-radius: 50%;
-		width: 40px;
-		height: 40px;
+		width: 46px;
+		height: 46px;
 		background-color: var(--dp-color-surface-subtle);
 
 		@include laptop {
@@ -117,8 +126,8 @@
 	}
 
 	&__icon {
-		width: 28px;
-		height: 28px;
+		width: 32px;
+		height: 32px;
 
 		@include laptop {
 			width: 40px;
@@ -127,11 +136,14 @@
 	}
 
 	&__text {
-		font-size: 14px;
-		line-height: 18px;
+		overflow-wrap: break-word;
+		height: 55px;
+		font-size: 15px;
+		line-height: 1.2;
 		color: $color-black;
 
 		@include laptop {
+			height: auto;
 			font-size: 16px;
 			line-height: 22px;
 		}

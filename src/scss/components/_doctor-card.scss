@@ -1,5 +1,11 @@
-// Карточка врача. На мобильных — развернутая, с 1024 описание и кнопка по hover
+// Карточка врача. На мобильных — развернутая, с 1024 описание и кнопка по hover.
+// Hover по макету: фото 495 → 425 (обрезается снизу, картинка не масштабируется), блок с именем
+// поднимается на 70, под ним описание и кнопка. Карточка всегда держит высоту hover-состояния (745),
+// поэтому при наведении ничего вокруг не сдвигается. Через clip-path и transform — без перестройки вёрстки
+$doctor-card-shift: 70px;
+
 .doctor-card {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
@@ -12,10 +18,10 @@
 		align-items: center;
 		overflow: hidden;
 		border-radius: 15px;
-		padding: 20px 20px 0;
+		padding: 20px 30px 0;
 		height: 340px;
 		background-color: var(--dp-color-surface-canvas);
-		transition: height $duration-normal, background-color $duration-normal;
+		transition: clip-path $duration-normal ease, background-color $duration-normal ease;
 
 		@include laptop {
 			border-radius: 0;
@@ -38,9 +44,9 @@
 
 	&__image {
 		flex-shrink: 0;
-		width: 100%;
+		width: 251px;
 		min-height: 0;
-		height: 100%;
+		height: 318px;
 		max-width: none;
 		// Фото — вырезанные PNG разных пропорций: вписываем целиком, прижимаем к низу
 		object-fit: contain;
@@ -58,8 +64,9 @@
 		gap: 20px;
 
 		@include laptop {
+			position: relative;
 			padding-right: 50px;
-			transition: gap $duration-normal;
+			transition: transform $duration-normal ease;
 			gap: 0;
 		}
 	}
@@ -70,7 +77,12 @@
 		margin: 0;
 		font-weight: 500;
 		font-size: 24px;
+		line-height: 1;
 		gap: 8px;
+
+		@include laptop {
+			line-height: 1.25;
+		}
 	}
 
 	&__last-name {
@@ -88,11 +100,16 @@
 		font-size: 16px;
 		line-height: 22px;
 
+		// С 1024 описание вынесено из потока: по hover появляется под именем, карточка не меняет высоту
 		@include laptop {
-			overflow: hidden;
-			max-height: 0;
+			position: absolute;
+			left: 0;
+			right: 50px;
+			top: 100%;
+			margin-top: 24px;
 			opacity: 0;
-			transition: max-height $duration-normal, opacity $duration-normal;
+			visibility: hidden;
+			transition: opacity $duration-normal, visibility $duration-normal;
 		}
 	}
 
@@ -100,7 +117,11 @@
 		margin-top: auto;
 
 		@include laptop {
-			margin-top: 30px;
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin-top: 0;
 			opacity: 0;
 			visibility: hidden;
 			transition: opacity $duration-normal, visibility $duration-normal;
@@ -108,21 +129,19 @@
 	}
 
 	@include laptop {
-		@include hover {
+		min-height: 745px;
+
+		@include hover-or-touch {
 			.doctor-card__photo {
-				height: 425px;
+				clip-path: inset(0 0 $doctor-card-shift 0);
 				background-color: rgba(19, 25, 35, 0.3);
 			}
 
 			.doctor-card__body {
-				gap: 24px;
+				transform: translateY(-$doctor-card-shift);
 			}
 
-			.doctor-card__text {
-				max-height: 110px;
-				opacity: 1;
-			}
-
+			.doctor-card__text,
 			.doctor-card__btn {
 				opacity: 1;
 				visibility: visible;

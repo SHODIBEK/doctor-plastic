@@ -1,8 +1,25 @@
-// Слайдер карточек с заголовком слева (Врачи, Отзывы)
+// Слайдер карточек с заголовком слева (Врачи, Отзывы, Статьи)
 .card-slider {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+
+	&__title {
+		font-size: 32px;
+
+		.card-slider--articles & {
+			font-size: 30px;
+		}
+
+		// До 1299 колонка 300px: «специалисты» в 56px не помещается
+		@include laptop {
+			font-size: 44px;
+		}
+
+		@include desktop {
+			font-size: 56px;
+		}
+	}
 
 	&__aside {
 		display: flex;
@@ -11,8 +28,12 @@
 
 		@include laptop {
 			flex-shrink: 0;
-			width: 425px;
+			width: 300px;
 			height: 500px;
+		}
+
+		@include desktop {
+			width: 425px;
 		}
 	}
 
@@ -50,9 +71,30 @@
 		width: 273px;
 		height: auto;
 
+		// Ширина карточки из макета: содержимое (фото 365, статья 423) не сжимается.
+		// На 1440+ ровно два слайда, уже — второй частично виден
 		@include laptop {
-			width: calc((100% - 24px) / 2);
+			width: 425px;
 		}
+	}
+
+	// Статьи по теме: на мобильном заголовок 30px и отступ 24px (у врачей и отзывов — 32px и 20px)
+	&--articles {
+		gap: 24px;
+	}
+
+	// Отзывы: hover-состояние карточки (764) на 2px выходит под неё в отступ секции —
+	// расширяем зону видимости слайдера вниз без изменения высоты; пустая область не перехватывает клики
+	&--hover-cards &__viewport {
+		@include laptop {
+			margin-bottom: -150px;
+			padding-bottom: 150px;
+			pointer-events: none;
+		}
+	}
+
+	&--hover-cards &__slide {
+		pointer-events: auto;
 	}
 
 	@include laptop {
