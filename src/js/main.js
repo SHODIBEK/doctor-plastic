@@ -12,6 +12,7 @@ import calc from "./modules/calc";
 import components from "./modules/components";
 import expand from "./modules/expand";
 import overflowFade from "./modules/overflowFade";
+import megaMenu from "./modules/megaMenu";
 
 ieFix();
 vhFix();
@@ -23,4 +24,5 @@ calc.init();
 components.init();
 expand.init();
 overflowFade.init();
+megaMenu.init();
 Fancybox.bind("[data-fancybox]");
