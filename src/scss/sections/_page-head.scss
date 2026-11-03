@@ -276,6 +276,22 @@
 		}
 	}
 
+	// Шапка отзывов: вырезанное фото, на десктопе рука лежит поверх круга (координаты из макета)
+	&--reviews &__woman {
+		right: 0;
+		top: 18px;
+		width: 247px;
+		height: 307px;
+
+		@include laptop {
+			left: page-head-fl(665);
+			right: auto;
+			top: page-head-fl(-25);
+			width: page-head-fl(1011);
+			height: page-head-fl(1064);
+		}
+	}
+
 	&--price &__title {
 		max-width: none;
 	}

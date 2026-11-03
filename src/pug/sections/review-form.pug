@@ -1,0 +1,26 @@
+//- Форма «Оставить отзыв» (под Contact Form 7 / AJAX)
+-
+	const reviewDoctors = ['Выберите врача', 'Сергеев И.В.', 'Труфанов Д.И.']
+
+section.review-form#review-form
+	.container.container--narrow.review-form__container
+		h2.title.review-form__title Оставить отзыв
+		picture.review-form__visual
+			- const formImage = `${baseDir}images/content/review-form/woman`
+			source(media="(min-width: 1024px)" srcset=`${formImage}.webp 1x, ${formImage}@2x.webp 2x` width="537" height="876")
+			img.review-form__image(src=`${formImage}-mobile.webp` srcset=`${formImage}-mobile@2x.webp 2x` width="330" height="270" alt="" loading="lazy" decoding="async")
+		form.review-form__form(action="#" method="post" enctype="multipart/form-data")
+			input.field(type="text" name="your-name" placeholder="Имя" autocomplete="name" aria-label="Имя" required)
+			input.field(type="email" name="your-email" placeholder="E-mail" autocomplete="email" aria-label="E-mail" required)
+			+select({ name: 'doctor', label: 'Выберите врача', options: reviewDoctors }).select--form
+			textarea.field.field--textarea(name="your-review" placeholder="Текст отзыва" aria-label="Текст отзыва" required)
+			+fileField({ name: 'photo[]', label: 'Прикрепить фото', accept: 'image/gif, image/jpeg, image/png' })
+			dl.review-form__info
+				.review-form__info-row
+					dt.review-form__info-label Максимальный размер файла:
+					dd.review-form__info-value 5 Мб
+				.review-form__info-row
+					dt.review-form__info-label Формат файла:
+					dd.review-form__info-value GIF, JPG, JPEG, PNG
+			button.btn.btn--full.review-form__submit(type="submit")
+				span Отправить

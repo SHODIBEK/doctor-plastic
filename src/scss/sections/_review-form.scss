@@ -1,0 +1,83 @@
+// Форма «Оставить отзыв»: на мобильном заголовок, фото, поля;
+// на десктопе поля слева (537px), фото справа по низу формы
+.review-form {
+	&__container {
+		display: grid;
+		grid-template-areas:
+			"title"
+			"visual"
+			"form";
+		grid-template-columns: minmax(0, 1fr);
+
+		@include laptop {
+			grid-template:
+				"title visual" auto
+				"form visual" 1fr / minmax(0, 537px) minmax(0, 1fr);
+			gap: 24px;
+		}
+	}
+
+	&__title {
+		grid-area: title;
+	}
+
+	&__visual {
+		display: flex;
+		justify-content: center;
+		grid-area: visual;
+
+		@include laptop {
+			align-self: end;
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 330px;
+		height: auto;
+		max-width: 100%;
+
+		@include laptop {
+			width: 100%;
+		}
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		grid-area: form;
+		gap: 15px;
+
+		@include laptop {
+			gap: 24px;
+		}
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		font-size: 16px;
+		line-height: 1.25;
+		color: var(--dp-color-text);
+		gap: 10px;
+
+		@include laptop {
+			gap: 16px;
+		}
+	}
+
+	&__info-row {
+		display: flex;
+		gap: 16px;
+	}
+
+	&__info-label {
+		opacity: 0.6;
+	}
+
+	&__info-value {
+		margin: 0;
+		font-weight: 500;
+	}
+}

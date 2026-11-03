@@ -109,6 +109,17 @@
 		}
 	}
 
+	// На мобильном стрелка 20px, как у btn-round--small
+	&__btn .btn-round__icon {
+		width: 20px;
+		height: 20px;
+
+		@include laptop {
+			width: 24px;
+			height: 24px;
+		}
+	}
+
 	@include laptop {
 		gap: 120px;
 	}

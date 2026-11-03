@@ -8,13 +8,14 @@
 		{ src: 'icons/footer/medotzyv.png', width: 115, alt: 'Med-Otzyv.ru', value: '5.0', count: '326 отзывов', href: '#' },
 	]
 
-//- Страница может задать ratingsOptions = { title, modifier, more: { text, href } }
+//- Страница может задать ratingsOptions = { title, modifier, more: { text, href } }; title: false — без заголовка
 -
 	const ratingsData = typeof ratingsOptions !== 'undefined' ? ratingsOptions : {}
 
 section.ratings#ratings(class=ratingsData.modifier ? `ratings--${ratingsData.modifier}` : null)
 	.container
-		h2.title.ratings__title!= ratingsData.title || 'Рейтинги<br class="ratings__break"> специалиста'
+		if ratingsData.title !== false
+			h2.title.ratings__title!= ratingsData.title || 'Рейтинги<br class="ratings__break"> специалиста'
 		ul.ratings__list
 			each rating in ratings
 				li.ratings__item

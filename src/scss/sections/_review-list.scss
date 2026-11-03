@@ -1,0 +1,174 @@
+// Список отзывов: на мобильном фото над текстом, на десктопе фото 512 слева
+.review-list {
+	&__items {
+		display: flex;
+		flex-direction: column;
+		gap: 50px;
+
+		@include laptop {
+			gap: 100px;
+		}
+	}
+
+	&__pagination {
+		margin-top: 50px;
+
+		@include laptop {
+			margin-top: 100px;
+		}
+	}
+}
+
+.review-item {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	&__photo {
+		overflow: hidden;
+		background-color: #e8e8e9;
+		aspect-ratio: 1;
+
+		// 512 по макету; на узком десктопе фото уменьшается, чтобы тексту хватало ширины
+		@include laptop {
+			flex-shrink: 0;
+			width: min(512px, 36vw);
+			height: min(512px, 36vw);
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		@include laptop {
+			flex: 1;
+			min-width: 0;
+			gap: 30px;
+		}
+	}
+
+	&__main {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include laptop {
+			flex: 1;
+		}
+	}
+
+	&__head {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__name {
+		display: flex;
+		align-items: center;
+		margin: 0;
+		font-weight: 300;
+		font-size: 36px;
+		line-height: 1;
+		color: var(--dp-color-text);
+		gap: 8px;
+
+		@include laptop {
+			font-size: 40px;
+			line-height: 56px;
+		}
+	}
+
+	&__role {
+		margin: 0;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 16px;
+		color: var(--dp-color-text-muted);
+	}
+
+	&__meta {
+		display: grid;
+		justify-content: start;
+		grid-template-columns: 90px auto;
+		margin: 0;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 16px;
+		gap: 10px 16px;
+	}
+
+	&__label {
+		color: var(--dp-color-text-muted);
+	}
+
+	&__value {
+		margin: 0;
+		color: var(--dp-color-text);
+	}
+
+	&__link {
+		color: inherit;
+
+		@include hover {
+			color: var(--dp-color-action-primary);
+		}
+	}
+
+	// На мобильном отзыв обрезается до 5 строк, на десктопе выводится целиком
+	&__text {
+		// stylelint-disable-next-line value-no-vendor-prefix
+		display: -webkit-box;
+		overflow: hidden;
+		margin: 0;
+		font-size: 16px;
+		line-height: 22px;
+		color: var(--dp-color-text);
+		// stylelint-disable-next-line property-no-vendor-prefix
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 5;
+
+		@include laptop {
+			display: block;
+			overflow: visible;
+		}
+	}
+
+	&__video {
+		display: flex;
+
+		@include laptop {
+			align-self: flex-start;
+		}
+	}
+
+	&__play {
+		height: 60px;
+
+		@include laptop {
+			height: 72px;
+		}
+	}
+
+	&__btn {
+		flex: 1;
+
+		@include laptop {
+			flex: none;
+		}
+	}
+
+	@include laptop {
+		flex-direction: row;
+		gap: 80px;
+	}
+}

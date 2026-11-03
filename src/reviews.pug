@@ -1,0 +1,27 @@
+extends pug/layout
+
+append vars
+	- title = 'Отзывы пациентов клиники «Доктор Пластик»'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Отзывы пациентов клиники пластической хирургии «Доктор Пластик»: истории операций, видеоотзывы, рейтинги на площадках. Оставьте свой отзыв о враче.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'reviews',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Отзывы' }],
+			accent: 'Отзывы',
+			title: 'пациентов',
+			circle: 'reviews-head/circle',
+			woman: { desktop: 'reviews-head/woman', desktopWidth: 1011, desktopHeight: 1064, retina: true, mobile: 'reviews-head/woman-mobile', mobileWidth: 247, mobileHeight: 307 },
+		}
+		const ratingsOptions = {
+			title: false,
+			modifier: 'clinic',
+			more: { text: 'Оставить отзыв', href: '#review-form' },
+		}
+
+block main
+	include pug/sections/page-head
+	.panel.panel--reviews
+		include pug/sections/ratings
+		include pug/sections/review-list
+		include pug/sections/review-form

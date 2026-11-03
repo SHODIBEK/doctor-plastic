@@ -11,6 +11,20 @@
 	color: var(--dp-color-text-input);
 	background-color: var(--dp-color-surface-input);
 
+	// Многострочное поле (текст отзыва). Класс удвоен, чтобы перебить @include laptop ниже
+	&#{&}--textarea {
+		display: block;
+		padding: 20px;
+		height: 150px;
+		line-height: 1.25;
+		resize: none;
+
+		@include laptop {
+			padding: 20px 24px;
+			height: 230px;
+		}
+	}
+
 	&--white {
 		background-color: var(--dp-color-surface-panel);
 	}
@@ -96,6 +110,13 @@
 		@include laptop {
 			width: 24px;
 			height: 24px;
+		}
+	}
+
+	// В формах текст выбора того же цвета, что и в остальных полях
+	&--form &__control {
+		@include laptop {
+			color: var(--dp-color-text-input);
 		}
 	}
 
@@ -206,6 +227,9 @@
 		width: 20px;
 		height: 20px;
 		fill: none;
+
+		// В макете иконка отражена по вертикали
+		transform: scaleY(-1);
 
 		@include laptop {
 			width: 24px;
