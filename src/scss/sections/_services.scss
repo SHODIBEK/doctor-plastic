@@ -11,6 +11,16 @@
 		}
 	}
 
+	&__title {
+		margin-bottom: 30px;
+		padding-right: 15px;
+
+		@include laptop {
+			margin-bottom: 50px;
+			padding-right: 0;
+		}
+	}
+
 	&__list {
 		display: flex;
 		flex-wrap: wrap;

@@ -8,9 +8,13 @@ section.page-head(class=pageHead.modifier ? `page-head--${pageHead.modifier}` : 
 	.page-head__graphic(aria-hidden="true")
 		img.page-head__ellipse(src=`${baseDir}images/content/page-head/ellipse.svg` width="405" height="405" alt="" loading="lazy" decoding="async")
 		img.page-head__circle(src=`${baseDir}images/content/page-head/circle.webp` srcset=`${baseDir}images/content/page-head/circle@2x.webp 2x` width="403" height="403" alt="" loading="lazy" decoding="async")
-		picture.page-head__woman
-			source(media="(min-width: 1024px)" srcset=headWoman.retina ? `${headWomanSrc}.webp 1x, ${headWomanSrc}@2x.webp 2x` : `${headWomanSrc}.webp` width=headWoman.desktopWidth height=headWoman.desktopHeight)
-			img.page-head__woman-image(src=`${baseDir}images/content/${headWoman.mobile}.webp` srcset=`${baseDir}images/content/${headWoman.mobile}@2x.webp 2x` width=headWoman.mobileWidth height=headWoman.mobileHeight alt="" fetchpriority="high")
+		if pageHead.photo
+			//- Одно фото на всех ширинах: браузер выбирает размер по sizes
+			img.page-head__photo(src=`${baseDir}images/content/${pageHead.photo.src}.webp` srcset=pageHead.photo.srcset.map((item) => `${baseDir}images/content/${item}`).join(', ') sizes=pageHead.photo.sizes width=pageHead.photo.width height=pageHead.photo.height alt="" fetchpriority="high")
+		else
+			picture.page-head__woman
+				source(media="(min-width: 1024px)" srcset=headWoman.retina ? `${headWomanSrc}.webp 1x, ${headWomanSrc}@2x.webp 2x` : `${headWomanSrc}.webp` width=headWoman.desktopWidth height=headWoman.desktopHeight)
+				img.page-head__woman-image(src=`${baseDir}images/content/${headWoman.mobile}.webp` srcset=`${baseDir}images/content/${headWoman.mobile}@2x.webp 2x` width=headWoman.mobileWidth height=headWoman.mobileHeight alt="" fetchpriority="high")
 	.container.page-head__container
 		+breadcrumbs(pageHead.crumbs).page-head__breadcrumbs(data-overflow-fade)
 		if pageHead.text
@@ -30,5 +34,6 @@ section.page-head(class=pageHead.modifier ? `page-head--${pageHead.modifier}` : 
 		else
 			h1.page-head__title
 				span.page-head__title-accent= pageHead.accent
-				= ' '
-				span.page-head__title-text= pageHead.title
+				if pageHead.title
+					= ' '
+					span.page-head__title-text= pageHead.title

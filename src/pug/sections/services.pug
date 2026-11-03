@@ -18,6 +18,8 @@
 
 section.services#services(class=servicesData.modifier ? `services--${servicesData.modifier}` : null data-expand)
 	.container.services__container
+		if servicesData.title
+			h2.title.services__title= servicesData.title
 		ul.services__list
 			each item, index in servicesData.items
 				li.services__item(class=servicesHidden(index))

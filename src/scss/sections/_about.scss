@@ -1,0 +1,167 @@
+// О клинике: на мобильном вводный текст, рамка с показателями, описание;
+// на десктопе вводный текст и описание в две колонки, рамка во всю ширину под ними
+.about {
+	&__container {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 30px;
+
+		@include laptop {
+			column-gap: 88px;
+			grid-template-areas:
+				"lead text"
+				"stats stats";
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			row-gap: 100px;
+		}
+	}
+
+	&__lead {
+		display: flex;
+		align-items: flex-start;
+		gap: 15px;
+
+		@include laptop {
+			grid-area: lead;
+			gap: 20px;
+		}
+	}
+
+	&__logo {
+		display: block;
+		flex-shrink: 0;
+		margin-top: 5px;
+		width: 32px;
+		height: 32px;
+
+		@include laptop {
+			margin-top: 0;
+		}
+	}
+
+	&__lead-text {
+		margin: 0;
+		font-size: 20px;
+
+		// 20 × 1.3, как в Figma
+		line-height: 26px;
+		color: $color-black;
+
+		@include laptop {
+			font-size: 24px;
+			line-height: 30px;
+		}
+	}
+
+	&__stats {
+		display: flex;
+		flex-direction: column;
+		list-style: none;
+		margin: 0;
+		border: 3px solid var(--dp-color-action-secondary);
+		border-radius: 20px;
+		padding: 20px;
+		gap: 20px;
+
+		@include laptop {
+			flex-direction: row;
+			align-items: center;
+			grid-area: stats;
+			padding: 40px 0 40px 80px;
+			gap: 10px;
+		}
+	}
+
+	&__stat {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+
+		@include laptop {
+			flex: 1;
+			min-width: 0;
+		}
+	}
+
+	&__stat-icon {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		width: 56px;
+		height: 56px;
+		background-color: var(--dp-color-surface-subtle);
+
+		@include laptop {
+			width: 70px;
+			height: 70px;
+		}
+	}
+
+	&__stat-image {
+		display: block;
+		width: 32px;
+		height: 32px;
+
+		@include laptop {
+			width: 40px;
+			height: 40px;
+		}
+	}
+
+	&__stat-info {
+		display: flex;
+		flex-direction: column;
+		font-size: 16px;
+
+		// 16 × 1.2, округлено по строкам, как в Figma
+		line-height: 19px;
+		gap: 3px;
+	}
+
+	&__stat-value {
+		font-weight: 600;
+		color: var(--dp-color-action-primary);
+
+		@include laptop {
+			font-size: 24px;
+			line-height: 24px;
+		}
+	}
+
+	&__stat-label {
+		color: $color-black;
+
+		@include laptop {
+			font-size: 18px;
+			line-height: 22px;
+		}
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		font-size: 16px;
+		line-height: 22px;
+		color: $color-black;
+		gap: 32px;
+
+		@include laptop {
+			grid-area: text;
+		}
+	}
+
+	&__paragraph {
+		margin: 0;
+	}
+
+	// Перенос строки из макета; на узких колонках (1024–1298) текст переносится сам
+	&__break {
+		display: none;
+
+		@include desktop {
+			display: inline;
+		}
+	}
+}

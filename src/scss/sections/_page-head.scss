@@ -84,6 +84,35 @@
 		object-position: bottom;
 	}
 
+	// Фото без picture (шапка «О клинике»). На мобильном кадр крупнее, чем на десктопе:
+	// по макету 360 картинка 416.5px со сдвигом -29.5px и уходит на 7px под низ шапки
+	&__photo {
+		position: absolute;
+		left: calc(-29.5 / 360 * 100vw);
+		bottom: calc(-7.3 / 360 * 100vw);
+		display: block;
+		width: calc(416.5 / 360 * 100vw);
+		height: auto;
+		max-width: none;
+
+		@include tablet {
+			left: auto;
+			right: -20px;
+			bottom: -8px;
+			width: 460px;
+		}
+
+		@include laptop {
+			// Низ фото привязан к низу шапки (высота шапки 580 на всех десктопных ширинах),
+			// иначе на узком экране уменьшенное фото повисает над панелью с обрезанными ногами
+			left: page-head-fl(426);
+			right: auto;
+			bottom: -56px;
+			width: page-head-fl(1024);
+			height: page-head-fl(683);
+		}
+	}
+
 	&__container {
 		display: flex;
 		flex-direction: column;
@@ -314,6 +343,55 @@
 		@include laptop {
 			font-size: 56px;
 			line-height: 1.1;
+		}
+	}
+
+	// Шапка «О клинике»: групповое фото поверх бирюзового круга (координаты из макета)
+	&--clinic &__ellipse,
+	&--clinic &__circle {
+		display: none;
+	}
+
+	&--clinic &__graphic::before {
+		@include laptop {
+			content: "";
+			position: absolute;
+
+			// Привязан к фото: низ круга на 112px ниже низа фото
+			left: page-head-fl(894);
+			bottom: calc(-56px - #{page-head-fl(112)});
+			border-radius: 50%;
+			width: page-head-fl(574);
+			height: page-head-fl(574);
+			background-color: var(--dp-color-action-secondary);
+		}
+	}
+
+	&--clinic &__container {
+		gap: 10px;
+
+		@include laptop {
+			gap: 40px;
+		}
+	}
+
+	// На мобильном заголовок сверху, фото под ним; на десктопе — внизу слева
+	// Высота шапки на мобильном растёт вместе с фото (335 из 360 макета), иначе фото наезжает на заголовок.
+	// 85 = поля шапки 30 × 2 + крошки 15 + отступ 10
+	&--clinic &__title {
+		justify-content: flex-start;
+		min-height: calc(335 / 360 * 100vw - 85px);
+		max-width: none;
+		font-size: 36px;
+
+		@include tablet {
+			min-height: 250px;
+		}
+
+		@include laptop {
+			justify-content: flex-end;
+			min-height: 394px;
+			font-size: 96px;
 		}
 	}
 

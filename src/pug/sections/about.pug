@@ -1,0 +1,29 @@
+//- О клинике: вводный текст с логотипом, описание и показатели в бирюзовой рамке
+-
+	const aboutStats = [
+		{ icon: 'health-care', value: '15 лет', label: 'Успешной<br> и ответственной работы' },
+		{ icon: 'stethoscope', value: '17 лет', label: 'Средний<br> стаж хирургов' },
+		{ icon: 'surgical-instrument', value: '&gt; 70 000', label: 'Проведенных<br> операций' },
+	]
+
+section.about#about
+	.container.about__container
+		.about__lead
+			img.about__logo(src=`${baseDir}images/icons/logo-sign.svg` width="32" height="32" alt="")
+			p.about__lead-text Клиника «Доктор пластик» предоставляет услуги высочайшего класса в области пластической хирургии и косметологии.
+		ul.about__stats
+			each stat in aboutStats
+				li.about__stat
+					span.about__stat-icon
+						img.about__stat-image(src=`${baseDir}images/icons/set/${stat.icon}.svg` width="40" height="40" alt="" loading="lazy")
+					span.about__stat-info
+						span.about__stat-value!= stat.value
+						span.about__stat-label!= stat.label
+		.about__text
+			p.about__paragraph
+				| Все наши хирурги – талантливые специалисты, врачи высшей категории, доктора и кандидаты медицинских наук.
+				br
+				| Мы делаем все виды операций, включая сложнейшие
+				br.about__break
+				|  операции реконструктивной хирургии.
+			p.about__paragraph Каждый день с момента первой консультации и до окончательного восстановления после пластической операции, мы работаем для Вас и делаем все, чтобы воплотить Ваши мечты и желания, обеспечить максимальный комфорт и быструю реабилитацию.

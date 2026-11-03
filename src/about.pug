@@ -1,0 +1,46 @@
+extends pug/layout
+
+append vars
+	- title = 'О клинике пластической хирургии «Доктор Пластик»'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Клиника «Доктор Пластик»: 15 лет работы, средний стаж хирургов 17 лет, более 70 000 операций. Рейтинги, услуги, преимущества, дипломы, фотогалерея и ведущие специалисты.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'clinic',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'О клинике' }],
+			accent: 'Клиника',
+			photo: {
+				src: 'about-head/team',
+				srcset: ['about-head/team-360.webp 360w', 'about-head/team-720.webp 720w', 'about-head/team.webp 1024w', 'about-head/team@2x.webp 2048w'],
+				sizes: '(min-width: 1024px) min(1024px, 71.5vw), (min-width: 768px) 460px, 116vw',
+				width: 1024,
+				height: 683,
+			},
+		}
+		const ratingsOptions = {
+			title: 'Рейтинги клиники',
+			modifier: 'clinic',
+			more: { text: 'Оставить отзыв', href: '#' },
+		}
+		const diplomasTitle = 'Дипломы<br class="diplomas__break"> и сертификаты'
+		const servicesList = {
+			title: 'Услуги клиники',
+			items: [
+				{ title: 'Увеличение груди', image: 'services/service-1', href: '#' },
+				{ title: 'Подтяжка груди', image: 'services/service-2', href: '#' },
+				{ title: 'Абдоминопластика', image: 'services/service-3', href: '#' },
+			],
+		}
+
+block main
+	include pug/sections/page-head
+	.panel.panel--about
+		include pug/sections/about
+		include pug/sections/ratings
+		include pug/sections/services
+		include pug/sections/article
+		include pug/sections/advantages
+		include pug/sections/diplomas
+		include pug/sections/gallery
+		include pug/sections/doctors
+		include pug/sections/signup

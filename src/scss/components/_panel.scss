@@ -11,7 +11,8 @@
 	gap: 70px;
 
 	// Страница врача: сверху 70px по макету (класс удвоен, чтобы перебить @include laptop ниже)
-	&#{&}--doctor {
+	&#{&}--doctor,
+	&#{&}--about {
 		@include laptop {
 			padding-top: 70px;
 		}

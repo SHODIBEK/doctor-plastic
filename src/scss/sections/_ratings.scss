@@ -107,4 +107,84 @@
 			line-height: 22px;
 		}
 	}
+
+	&__more {
+		margin-top: 30px;
+		width: 100%;
+
+		@include laptop {
+			display: flex;
+			margin: 30px auto 0;
+			width: fit-content;
+		}
+	}
+
+	// Рейтинги клиники: заголовок по центру, на мобильном плитки в одну строку с прокруткой до края экрана
+	&--clinic &__title {
+		margin-bottom: 30px;
+
+		@include laptop {
+			text-align: center;
+		}
+	}
+
+	&--clinic &__list {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		margin: 0 -15px;
+		padding: 0 15px;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		@include tablet {
+			margin: 0 -30px;
+			padding: 0 30px;
+		}
+
+		@include laptop {
+			overflow: visible;
+			margin: 0;
+			padding: 15px 0;
+		}
+	}
+
+	&--clinic &__item {
+		flex-shrink: 0;
+		width: auto;
+		max-width: none;
+	}
+
+	&--clinic &__link {
+		padding: 10px 20px;
+		height: auto;
+
+		@include laptop {
+			padding: 10px 40px;
+		}
+	}
+
+	&--clinic &__logo {
+		height: 25px;
+		max-width: none;
+
+		@include laptop {
+			height: 30px;
+		}
+	}
+
+	&--clinic &__stars {
+		width: 83px;
+		height: 14.25px;
+	}
+
+	&--clinic &__count {
+		font-size: 14px;
+
+		@include laptop {
+			font-size: 16px;
+		}
+	}
 }
