@@ -16,7 +16,9 @@
 		flex-direction: column;
 		gap: 20px;
 
+		// Колонка 517px выступает за ряд 513px (высота фото) на 2px сверху и снизу, как в макете
 		@include laptop {
+			margin: -2px 0;
 			gap: 50px;
 		}
 	}

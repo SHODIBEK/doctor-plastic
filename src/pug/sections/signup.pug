@@ -1,7 +1,10 @@
+//- signupTitleTag: 'h1' на странице «Записаться», где форма — основной контент
+- const signupTag = typeof signupTitleTag !== 'undefined' ? signupTitleTag : 'h2'
+
 section.signup#signup
 	.container.container--narrow.signup__container
 		form.signup__form(action="#" method="post" data-signup-form)
-			h2.title.signup__title Записаться
+			#{signupTag}.title.signup__title Записаться
 			.signup__fields
 				input.field.signup__field(type="text" name="your-name" placeholder="Имя" autocomplete="name" required)
 				input.field.signup__field(type="tel" name="your-phone" placeholder="Телефон" autocomplete="tel" required)
@@ -13,9 +16,14 @@ section.signup#signup
 					| Нажимая на кнопку, вы даете согласие на обработку данных
 					br.signup__break
 					|  и соглашаетесь с
+					= ' '
 					a.signup__policy-link(href="#") Политикой конфиденциальности
 					| .
 			button.btn.btn--full.signup__submit(type="submit")
 				span Записаться на консультацию
 		.signup__visual
-			+picture('form/woman', 'Записаться на консультацию', 770, 513).signup__image
+			if signupTag === 'h1'
+				//- Страница «Записаться»: фото на первом экране (LCP), без lazy
+				img.signup__image(src=`${baseDir}images/content/form/woman.webp` srcset=`${baseDir}images/content/form/woman@2x.webp 2x` width="770" height="513" alt="Записаться на консультацию" fetchpriority="high")
+			else
+				+picture('form/woman', 'Записаться на консультацию', 770, 513).signup__image

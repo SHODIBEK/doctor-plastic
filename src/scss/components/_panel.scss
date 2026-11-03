@@ -12,7 +12,8 @@
 
 	// Страница врача: сверху 70px по макету (класс удвоен, чтобы перебить @include laptop ниже)
 	&#{&}--doctor,
-	&#{&}--about {
+	&#{&}--about,
+	&#{&}--signup {
 		@include laptop {
 			padding-top: 70px;
 		}

@@ -1,0 +1,17 @@
+extends pug/layout
+
+append vars
+	- title = 'Записаться на консультацию — Доктор Пластик'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Запись на консультацию к пластическому хирургу клиники «Доктор Пластик». Оставьте имя и телефон — администратор перезвонит и подберёт удобное время.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'crumbs',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Записаться' }],
+		}
+		const signupTitleTag = 'h1'
+
+block main
+	include pug/sections/page-head
+	.panel.panel--signup
+		include pug/sections/signup
