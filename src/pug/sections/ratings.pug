@@ -1,0 +1,25 @@
+//- Рейтинги специалиста на внешних площадках
+-
+	const ratings = [
+		{ src: 'icons/ratings-yandex.svg', width: 189, alt: 'Яндекс Карты', value: '5.0', count: '326 отзывов', href: '#' },
+		{ src: 'icons/ratings-2gis.svg', width: 109, alt: '2ГИС', value: '5.0', count: '326 отзывов', href: '#' },
+		{ src: 'icons/footer/prodoctorov.svg', width: 197, alt: 'ПроДокторов', value: '5.0', count: '326 отзывов', href: '#' },
+		{ src: 'icons/footer/sber-health.svg', width: 255, alt: 'СберЗдоровье', value: '5.0', count: '326 отзывов', href: '#' },
+		{ src: 'icons/footer/medotzyv.png', width: 115, alt: 'Med-Otzyv.ru', value: '5.0', count: '326 отзывов', href: '#' },
+	]
+
+section.ratings#ratings
+	.container
+		h2.title.ratings__title
+			| Рейтинги
+			br.ratings__break
+			|  специалиста
+		ul.ratings__list
+			each rating in ratings
+				li.ratings__item
+					a.ratings__link(href=rating.href target="_blank" rel="noopener")
+						img.ratings__logo(src=`${baseDir}images/${rating.src}` width=rating.width height="30" alt=rating.alt loading="lazy")
+						span.ratings__score
+							span.ratings__value= rating.value
+							img.ratings__stars(src=`${baseDir}images/icons/footer/stars.svg` width="83" height="14" alt=`${rating.value} из 5` loading="lazy")
+						span.ratings__count= rating.count

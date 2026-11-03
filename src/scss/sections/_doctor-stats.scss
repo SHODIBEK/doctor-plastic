@@ -1,0 +1,92 @@
+// Врач: стаж, количество операций, рейтинг в бирюзовой рамке
+.doctor-stats {
+	&__list {
+		display: flex;
+		flex-direction: column;
+		list-style: none;
+		margin: 0;
+		border: 3px solid var(--dp-color-action-secondary);
+		border-radius: 20px;
+		padding: 20px;
+		gap: 10px;
+
+		@include laptop {
+			flex-direction: row;
+			align-items: center;
+			padding: 40px 0 40px 80px;
+		}
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+
+		@include laptop {
+			flex: 1;
+			min-width: 0;
+		}
+	}
+
+	&__icon {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		width: 56px;
+		height: 56px;
+		background-color: var(--dp-color-surface-subtle);
+
+		@include laptop {
+			width: 70px;
+			height: 70px;
+		}
+	}
+
+	&__icon-image {
+		display: block;
+		width: 32px;
+		height: 32px;
+
+		@include laptop {
+			width: 40px;
+			height: 40px;
+		}
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		font-size: 16px;
+		line-height: 1.2;
+		gap: 3px;
+
+		@include laptop {
+			font-size: 18px;
+		}
+	}
+
+	&__label {
+		color: $color-black;
+	}
+
+	&__value {
+		display: flex;
+		align-items: center;
+		font-weight: 600;
+		color: var(--dp-color-action-primary);
+		gap: 5px;
+	}
+
+	&__stars {
+		display: block;
+		width: 83px;
+		height: 14.25px;
+	}
+
+	// На десктопе до биографии 50px вместо общего отступа панели 150px
+	@include laptop {
+		margin-bottom: -100px;
+	}
+}

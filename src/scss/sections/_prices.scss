@@ -105,4 +105,17 @@
 			display: flex;
 		}
 	}
+
+	// Страница врача: один список без групп, свёрнут до высоты макета
+	&--doctor &__body {
+		max-height: 600px;
+
+		&.is-open {
+			max-height: none;
+		}
+
+		@include laptop {
+			max-height: 526px;
+		}
+	}
 }

@@ -123,6 +123,85 @@
 		background-clip: text;
 	}
 
+	&__body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-end;
+		min-height: 200px;
+		gap: 20px;
+
+		@include laptop {
+			min-height: 394px;
+			gap: 0;
+		}
+	}
+
+	&__text {
+		margin: 0;
+
+		// Резиновая ширина: текст заканчивается у левого края фото врача (right: -109px, ширина 249px).
+		// 125 = 140 (видимая часть фото) - 15 (поле контейнера)
+		max-width: calc(100% - 125px);
+		font-size: 14px;
+
+		// 14 × 1.3, округлено по строкам, как в Figma
+		line-height: 18px;
+
+		@include tablet {
+			max-width: calc(100% - 110px);
+		}
+
+		@include laptop {
+			margin-top: 30px;
+
+			// 547 из макета, но не дальше фото (левый край фото — page-head-fl(768), минус поле 55 и зазор 20)
+			max-width: min(547px, calc(#{768 / 1432 * 100}vw - 75px));
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+
+	&__video {
+		display: flex;
+		align-items: center;
+
+		@include laptop {
+			margin-top: 50px;
+		}
+	}
+
+	&__play {
+		display: none;
+
+		@include laptop {
+			display: flex;
+		}
+	}
+
+	// На мобильном кнопка маленькая (как btn--small), на десктопе обычная
+	&__btn {
+		--btn-notch-width: 24px;
+
+		border-radius: 8px;
+		padding: 0 10px;
+		height: 42px;
+		font-size: 12px;
+		line-height: 12px;
+
+		@include laptop {
+			--btn-notch-width: 34px;
+
+			border-radius: 20px;
+			padding: 0 24px;
+			height: 72px;
+			font-size: 16px;
+			line-height: 16px;
+		}
+	}
+
+	// Крошки услуги в одну строку: помещаются — стоят слева, не помещаются — видно конец,
+	// начало уходит под градиент (класс is-overflow ставит JS)
 	// Шапка услуги: другое фото, обрезанное по фигуре (координаты из макета)
 	&--service &__woman {
 		right: -153px;
@@ -172,8 +251,72 @@
 		max-width: none;
 	}
 
-	// Крошки услуги в одну строку: помещаются — стоят слева, не помещаются — видно конец,
-	// начало уходит под градиент (класс is-overflow ставит JS)
+	// Шапка врача: бирюзовый круг за вырезанным фото, ФИО, должность, видео-визитка
+	&--doctor {
+		--btn-notch: var(--dp-color-surface-canvas);
+	}
+
+	&--doctor &__ellipse,
+	&--doctor &__circle {
+		display: none;
+	}
+
+	&--doctor &__graphic::before {
+		@include laptop {
+			content: "";
+			position: absolute;
+			left: page-head-fl(894);
+			top: page-head-fl(161);
+			border-radius: 50%;
+			width: page-head-fl(574);
+			height: page-head-fl(574);
+			background-color: var(--dp-color-action-secondary);
+		}
+	}
+
+	&--doctor &__woman {
+		right: -109px;
+		top: 28px;
+		width: 249px;
+		height: 369px;
+
+		@include laptop {
+			left: page-head-fl(768);
+			top: page-head-fl(16);
+			width: page-head-fl(604);
+			height: page-head-fl(895);
+		}
+	}
+
+	&--doctor &__container {
+		gap: 30px;
+
+		@include laptop {
+			gap: 40px;
+		}
+	}
+
+	&--doctor &__title {
+		min-height: 0;
+		max-width: none;
+		font-size: 36px;
+		gap: 3px;
+
+		@include laptop {
+			font-size: 96px;
+			gap: 0;
+		}
+	}
+
+	&--doctor &__title-text {
+		font-size: 20px;
+
+		@include laptop {
+			font-size: 56px;
+			line-height: 1.1;
+		}
+	}
+
 	&--service &__breadcrumbs {
 		position: relative;
 		display: flex;

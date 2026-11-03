@@ -16,7 +16,7 @@
 
 section.works#works
 	.container
-		h2.title.works__title Наши работы
+		h2.title.works__title= typeof worksTitle !== 'undefined' ? worksTitle : 'Наши работы'
 		form.works__filters(action="#" data-works-filters)
 			each filter in worksFilters
 				label.select.works__select(class=filter.active ? 'is-active' : null)
@@ -33,14 +33,16 @@ section.works#works
 			each work, index in works
 				.works__slide.swiper-slide
 					+resultCard(Object.assign({ counter: `${String(index + 1).padStart(2, '0')}/16` }, work))
-	.container.works__footer
+	.container.works__footer(class=typeof worksMore !== 'undefined' && !worksMore ? 'works__footer--nav' : null)
 		.works__nav
 			+btnRound('prev').works__prev(data-works-prev)
 			+btnRound('next').works__next(data-works-next)
-		.works__bottom
-			+btn('Смотреть все работы', { href: '#' }).works__all
-			.works__more
-				.works__avatars
-					each avatar in worksAvatars
-						+picture(avatar, '', 80, 80).works__avatar
-				p.works__count +500 до/после
+		//- worksMore = false — без «Смотреть все работы» и аватаров (страница врача)
+		if typeof worksMore === 'undefined' || worksMore
+			.works__bottom
+				+btn('Смотреть все работы', { href: '#' }).works__all
+				.works__more
+					.works__avatars
+						each avatar in worksAvatars
+							+picture(avatar, '', 80, 80).works__avatar
+					p.works__count +500 до/после

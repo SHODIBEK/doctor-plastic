@@ -12,7 +12,7 @@
 
 section.diplomas#diplomas
 	.container.diplomas__container
-		h2.title.diplomas__title Дипломы и сертификаты
+		h2.title.diplomas__title!= typeof diplomasTitle !== 'undefined' ? diplomasTitle : 'Дипломы и сертификаты'
 		.diplomas__slider
 			.diplomas__viewport.swiper(data-diplomas-swiper)
 				.diplomas__track.swiper-wrapper
