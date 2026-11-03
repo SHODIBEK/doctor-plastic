@@ -1,0 +1,104 @@
+// Видео-отзывы: превью 649×400 в две колонки, на мобильном в одну
+.video-reviews {
+	&__items {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 30px;
+
+		@include tablet {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			column-gap: 24px;
+		}
+
+		@include laptop {
+			row-gap: 50px;
+		}
+	}
+
+	&__pagination {
+		margin-top: 30px;
+
+		@include laptop {
+			margin-top: 100px;
+		}
+	}
+}
+
+.video-card {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	@include laptop {
+		gap: 20px;
+	}
+
+	&__link {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		border-radius: 15px;
+		background-color: #e8e8e9;
+		aspect-ratio: 649 / 400;
+
+		&::after {
+			content: "";
+			position: absolute;
+			background-image: linear-gradient(180deg, rgba(19, 25, 35, 0.4) 0%, rgba(19, 25, 35, 0) 126.86%);
+			inset: 0;
+		}
+
+		@include laptop {
+			border-radius: 20px;
+		}
+	}
+
+	&__image {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		inset: 0;
+	}
+
+	&__play {
+		position: relative;
+		z-index: 1;
+		border-radius: 10px;
+		width: 50px;
+		height: 52px;
+		transition: transform $duration-normal;
+
+		@include laptop {
+			border-radius: 15px;
+			width: 70px;
+			height: 72px;
+		}
+	}
+
+	&__link:hover &__play {
+		transform: scale(1.08);
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: normal;
+		text-align: center;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			font-size: 24px;
+			text-align: left;
+		}
+	}
+
+	&__break {
+		@include tablet {
+			display: none;
+		}
+	}
+}

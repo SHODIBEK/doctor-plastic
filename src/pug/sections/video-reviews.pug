@@ -1,0 +1,25 @@
+//- Видео-отзывы пациентов с пагинацией (цикл WP: записи типа «видеоотзыв»)
+//- { title, image, video } — в title допускается <br> для переноса на мобильном
+-
+	const videoReviews = [
+		{ title: 'Дарья Митурина<br class="video-card__break"> о докторе Труфанове Д.И.', image: 'video-reviews/dariya', video: 'https://www.youtube.com/watch?v=' },
+		{ title: 'Отзыв пациента о докторе Сергееве И.В.', image: 'video-reviews/patient', video: 'https://www.youtube.com/watch?v=' },
+		{ title: 'Доктор Сергеев. Замена имплантов', image: 'video-reviews/implants', video: 'https://www.youtube.com/watch?v=' },
+		{ title: 'Маша Горбань о докторе Сергееве И.В.', image: 'video-reviews/gorban', video: 'https://www.youtube.com/watch?v=' },
+		{ title: 'Отзыв Ксении о процедуре Ульфит-липолиз', image: 'video-reviews/kseniya', video: 'https://www.youtube.com/watch?v=' },
+		{ title: 'Мария Скорницкая<br class="video-card__break"> о докторе Сергееве И.В.', image: 'video-reviews/skornitskaya', video: 'https://www.youtube.com/watch?v=' },
+	]
+
+section.video-reviews
+	.container
+		h2.visually-hidden Видео-отзывы пациентов
+		.video-reviews__items
+			each review in videoReviews
+				article.video-card
+					a.video-card__link(href=review.video data-fancybox)
+						- const posterSrc = `${baseDir}images/content/${review.image}`
+						img.video-card__image(src=`${posterSrc}.webp` srcset=`${posterSrc}.webp 649w, ${posterSrc}@2x.webp 1298w` sizes="(min-width: 1432px) 649px, (min-width: 768px) calc(50vw - 67px), calc(100vw - 30px)" width="649" height="400" alt="" loading="lazy" decoding="async")
+						span.btn-play.video-card__play
+							+svg('play').btn-play__icon
+					h3.video-card__title!= review.title
+		+pagination({ current: 1, pages: ['1', '2', { page: '3', desktop: true }, { page: '4', desktop: true }, { page: '5', desktop: true }, '...', '40'] }).video-reviews__pagination
