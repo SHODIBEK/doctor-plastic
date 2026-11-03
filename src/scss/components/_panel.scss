@@ -14,7 +14,8 @@
 	&#{&}--doctor,
 	&#{&}--about,
 	&#{&}--signup,
-	&#{&}--reviews {
+	&#{&}--reviews,
+	&#{&}--docs {
 		@include laptop {
 			padding-top: 70px;
 		}

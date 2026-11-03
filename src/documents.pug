@@ -1,0 +1,20 @@
+extends pug/layout
+
+append vars
+	- title = 'Документы и лицензии клиники «Доктор Пластик»'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Лицензия на медицинскую деятельность, выписки из реестра лицензий, свидетельство ФНС и санитарно-эпидемиологическое заключение клиники пластической хирургии «Доктор Пластик».'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'docs',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'О клинике', href: './about.html' }, { title: 'Лицензии' }],
+			accent: 'Документы',
+			title: 'и лицензии',
+			circle: 'reviews-head/circle',
+			woman: { desktop: 'docs-head/woman', desktopWidth: 1033, desktopHeight: 1064, retina: true, mobile: 'docs-head/woman-mobile', mobileWidth: 161, mobileHeight: 307 },
+		}
+
+block main
+	include pug/sections/page-head
+	.panel.panel--docs
+		include pug/sections/docs

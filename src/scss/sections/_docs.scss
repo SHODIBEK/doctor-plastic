@@ -1,0 +1,72 @@
+// Документы и лицензии. Мобильный: 2 колонки, широкие сканы на всю ширину.
+// С 768: ряды по центру, ширины из макета (538 + 251 + 251 + 2 × 30 = 1100)
+.docs {
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 30px 10px;
+
+		@include tablet {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			margin: 0 auto;
+			max-width: 1100px;
+			gap: 50px 30px;
+		}
+	}
+
+	&__item {
+		&--wide {
+			grid-column: 1 / -1;
+		}
+
+		// На мобильном скан встаёт сразу после первой пары узких (строка 3)
+		&--up {
+			grid-row: 3;
+		}
+
+		@include tablet {
+			width: calc((100% - 60px) * 251 / 1040);
+
+			&--wide {
+				width: calc((100% - 60px) * 538 / 1040);
+			}
+		}
+	}
+
+	&__figure {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		gap: 15px;
+	}
+
+	&__link {
+		display: block;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	&__caption {
+		overflow-wrap: anywhere;
+		font-size: 14px;
+
+		// 14 × 1.2, округлено по строкам, как в Figma
+		line-height: 17px;
+		text-align: center;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+}

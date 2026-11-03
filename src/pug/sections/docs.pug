@@ -1,0 +1,29 @@
+//- Документы и лицензии: сетка сканов, по клику скан открывается в Fancybox.
+//- size: wide — широкий скан, narrow — узкий; width/height — пропорции скана из макета.
+//- up — на мобильном скан поднимается на строку выше (порядок из мобильного макета)
+-
+	const docs = [
+		{ image: 'docs/doc-1', size: 'wide', width: 425, height: 294, title: 'Лицензия на осуществление медицинской деятельности на территории Российской Федерации.' },
+		{ image: 'docs/doc-2', size: 'narrow', width: 136, height: 200, title: 'Выписка из реестра лицензий Л017-01137-77/00148611' },
+		{ image: 'docs/doc-3', size: 'narrow', width: 136, height: 200, title: 'Выписка из реестра лицензий Л017-01137-77/00148611' },
+		{ image: 'docs/doc-4', size: 'narrow', width: 136, height: 200, title: 'Свидетельство Федеральной налоговой службы' },
+		{ image: 'docs/doc-5', size: 'narrow', width: 136, height: 200, title: 'Выписка из реестра лицензий Л017-01137-77/00148611' },
+		{ image: 'docs/doc-6', size: 'wide', width: 289, height: 200, up: true, title: 'Приложение<br> к санитарно-эпидемиологическому заключению' },
+		{ image: 'docs/doc-7', size: 'wide', width: 416, height: 294, title: 'Лицензия на осуществление медицинской деятельности на территории Российской Федерации.' },
+		{ image: 'docs/doc-8', size: 'narrow', width: 136, height: 200, title: 'Свидетельство Федеральной налоговой службы' },
+		{ image: 'docs/doc-9', size: 'narrow', width: 136, height: 200, title: 'Выписка из реестра лицензий Л017-01137-77/00148611' },
+	]
+
+section.docs
+	.container
+		ul.docs__list
+			each item in docs
+				li.docs__item(class=[`docs__item--${item.size}`, item.up ? 'docs__item--up' : null])
+					figure.docs__figure
+						a.docs__link(href=`${baseDir}images/content/${item.image}@2x.webp` data-fancybox="docs" data-caption=item.title.replace('<br>', ''))
+							+lazyImage({
+								src: `${baseDir}images/content/${item.image}.webp`,
+								srcset: `${baseDir}images/content/${item.image}@2x.webp 2x`,
+								alt: item.title.replace('<br>', ''),
+							}).docs__image(width=item.width height=item.height)
+						figcaption.docs__caption!= item.title

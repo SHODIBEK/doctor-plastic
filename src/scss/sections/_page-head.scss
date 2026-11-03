@@ -292,7 +292,24 @@
 		}
 	}
 
-	&--price &__title {
+	// Шапка документов: вырезанное фото, на мобильном прижато к правому краю (координаты из макета)
+	&--docs &__woman {
+		right: 0;
+		top: 18px;
+		width: 161px;
+		height: 307px;
+
+		@include laptop {
+			left: page-head-fl(643);
+			right: auto;
+			top: page-head-fl(-25);
+			width: page-head-fl(1033);
+			height: page-head-fl(1064);
+		}
+	}
+
+	&--price &__title,
+	&--docs &__title {
 		max-width: none;
 	}
 
