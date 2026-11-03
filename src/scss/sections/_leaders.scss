@@ -1,0 +1,48 @@
+// Руководство клиники: заголовок слева (колонка как у .card-slider), карточки справа
+.leaders {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		@include laptop {
+			flex-direction: row;
+			gap: 24px;
+		}
+	}
+
+	&__title {
+		font-size: 32px;
+
+		@include laptop {
+			flex-shrink: 0;
+			width: 300px;
+			font-size: 44px;
+		}
+
+		@include desktop {
+			width: 425px;
+			font-size: 56px;
+		}
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 10px;
+
+		@include laptop {
+			flex: 1;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 24px;
+		}
+	}
+
+	// Панель даёт 50px сверху, в макете блоки начинаются с 70px
+	@include laptop {
+		padding-top: 20px;
+	}
+}

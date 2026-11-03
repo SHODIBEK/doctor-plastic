@@ -13,7 +13,22 @@ section.page-head(class=pageHead.modifier ? `page-head--${pageHead.modifier}` : 
 			img.page-head__woman-image(src=`${baseDir}images/content/${headWoman.mobile}.webp` srcset=`${baseDir}images/content/${headWoman.mobile}@2x.webp 2x` width=headWoman.mobileWidth height=headWoman.mobileHeight alt="" fetchpriority="high")
 	.container.page-head__container
 		+breadcrumbs(pageHead.crumbs).page-head__breadcrumbs(data-overflow-fade)
-		h1.page-head__title
-			span.page-head__title-accent= pageHead.accent
-			= ' '
-			span.page-head__title-text= pageHead.title
+		if pageHead.text
+			//- Шапка врача: ФИО, должность и видео-визитка
+			.page-head__body
+				h1.page-head__title
+					span.page-head__title-accent= pageHead.accent
+					= ' '
+					span.page-head__title-text= pageHead.title
+				p.page-head__text!= pageHead.text
+				if pageHead.video
+					a.page-head__video(href=pageHead.video.href data-fancybox)
+						span.btn-play.page-head__play
+							+svg('play').btn-play__icon
+						span.btn.page-head__btn
+							span= pageHead.video.title
+		else
+			h1.page-head__title
+				span.page-head__title-accent= pageHead.accent
+				= ' '
+				span.page-head__title-text= pageHead.title

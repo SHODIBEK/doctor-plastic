@@ -1,0 +1,12 @@
+//- Текст о враче (биография, образование): заголовок слева, свёрнутый текст с кнопкой «Открыть…»
+//- @demo +doctorText({ id: 'bio', title: 'Биография', more: 'Открыть биографию', text: ['Абзац', 'Абзац'] })
+mixin doctorText(data)
+	section.doctor-text(id=data.id data-expand)
+		.container.doctor-text__container
+			h2.title.doctor-text__title= data.title
+			.doctor-text__body
+				.doctor-text__content
+					each paragraph in data.text
+						p.doctor-text__paragraph!= paragraph
+				.doctor-text__more
+					+btn(data.more).doctor-text__btn(data-expand-toggle)

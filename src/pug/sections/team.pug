@@ -1,0 +1,31 @@
+//- Врачи по категориям (аккордеон). В WP: категории — термины, врачи — записи
+-
+	const teamCategories = [
+		{
+			title: 'Пластические хирурги',
+			open: true,
+			doctors: [
+				{ lastName: 'Володин', name: 'Александр Владимирович', photo: 'doctors/volodin', text: 'Пластический хирург, специалист по эстетической хирургии груди, лица и тела.' },
+				{ lastName: 'Труфанов', name: 'Дмитрий Игоревич', photo: 'doctors/trufanov-team', text: 'Пластический хирург, кандидат медицинских наук, специалист по эстетической хирургии груди и тела.' },
+				{ lastName: 'Морозов', name: 'Владислав Сергеевич', photo: 'doctors/morozov', text: 'Пластический хирург, специалист по эстетической хирургии груди, лица и тела.' },
+				{ lastName: 'Мартынов', name: 'Игорь Витальевич', photo: 'doctors/martynov', text: 'Пластический хирург, специалист по эстетической хирургии груди, лица и тела.' },
+				{ lastName: 'Козлов', name: 'Вадим Дмитриевич', photo: 'doctors/kozlov', text: 'Пластический хирург, специалист по эстетической хирургии груди, лица и тела.' },
+				{ lastName: 'Катаян', name: 'Лариса Артуровна', photo: 'doctors/katayan', text: 'Пластический хирург, специалист по эстетической хирургии груди, лица и тела.' },
+			],
+		},
+		{ title: 'Анестезиологи' },
+		{ title: 'Косметологи' },
+		{ title: 'Косметологи-эстетисты' },
+		{ title: 'Акушеры-гинекологи' },
+	]
+	// Врачи закрытых категорий в макете не показаны — до наполнения из WP выводим пример
+	const teamSample = teamCategories[0].doctors.slice(0, 3)
+
+section.team#team
+	.container.team__categories
+		each category in teamCategories
+			+collapse({ title: category.title, open: category.open, heading: 'h2' }).team__category
+				ul.team__list
+					each doctor in category.doctors || teamSample
+						li.team__item
+							+doctorCard(doctor).doctor-card--compact

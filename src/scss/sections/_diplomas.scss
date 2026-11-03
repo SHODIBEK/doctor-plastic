@@ -9,6 +9,13 @@
 		}
 	}
 
+	// Перенос заголовка только на мобильном
+	&__break {
+		@include laptop {
+			display: none;
+		}
+	}
+
 	&__slider {
 		position: relative;
 		margin-right: -15px;

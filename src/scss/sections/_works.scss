@@ -123,6 +123,15 @@
 		gap: 40px;
 	}
 
+	// Только стрелки (без «Смотреть все работы»): на мобильном стрелок нет — футер прячем
+	&__footer--nav {
+		display: none;
+
+		@include laptop {
+			display: flex;
+		}
+	}
+
 	&__nav {
 		display: none;
 

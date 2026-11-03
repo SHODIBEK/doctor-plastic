@@ -10,6 +10,13 @@
 	background-color: var(--dp-color-surface-panel);
 	gap: 70px;
 
+	// Страница врача: сверху 70px по макету (класс удвоен, чтобы перебить @include laptop ниже)
+	&#{&}--doctor {
+		@include laptop {
+			padding-top: 70px;
+		}
+	}
+
 	@include laptop {
 		margin: 0 auto 80px;
 		border-radius: var(--dp-radius-panel);

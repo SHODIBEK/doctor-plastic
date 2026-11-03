@@ -1,0 +1,110 @@
+// Рейтинги специалиста: на мобильном плитки по две в ряд, на десктопе в одну строку
+.ratings {
+	&__title {
+		margin-bottom: 20px;
+
+		@include laptop {
+			margin-bottom: 50px;
+		}
+	}
+
+	&__break {
+		@include laptop {
+			display: none;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 10px;
+
+		@include laptop {
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			padding: 15px 0;
+		}
+	}
+
+	&__item {
+		width: calc(50% - 5px);
+		max-width: 160px;
+
+		@include laptop {
+			width: auto;
+			max-width: none;
+		}
+	}
+
+	&__link {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		border-radius: 10px;
+		padding: 10px;
+		height: 83px;
+		background-color: var(--dp-color-surface-subtle);
+		gap: 10px;
+
+		@include laptop {
+			padding: 10px 40px;
+			height: auto;
+		}
+	}
+
+	&__logo {
+		display: block;
+		width: auto;
+		height: 18px;
+		max-width: 100%;
+		object-fit: contain;
+		object-position: left top;
+
+		@include laptop {
+			height: 30px;
+		}
+	}
+
+	&__score {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+	}
+
+	&__value {
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 10px;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			font-size: 20px;
+			line-height: 14px;
+		}
+	}
+
+	&__stars {
+		display: block;
+		width: 58px;
+		height: 10px;
+
+		@include laptop {
+			width: 83px;
+			height: 14.25px;
+		}
+	}
+
+	&__count {
+		font-size: 13px;
+		line-height: 1.1;
+		color: #535353;
+
+		@include laptop {
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+}

@@ -1,0 +1,14 @@
+//- Врач: стаж, количество операций, рейтинг. Данные: doctorStats = [{ icon, label, value, stars }]
+section.doctor-stats#stats
+	.container
+		ul.doctor-stats__list
+			each stat in doctorStats
+				li.doctor-stats__item
+					span.doctor-stats__icon
+						img.doctor-stats__icon-image(src=`${baseDir}images/icons/set/${stat.icon}.svg` width="40" height="40" alt="" loading="lazy")
+					span.doctor-stats__info
+						span.doctor-stats__label= stat.label
+						span.doctor-stats__value
+							= stat.value
+							if stat.stars
+								img.doctor-stats__stars(src=`${baseDir}images/icons/footer/stars.svg` width="83" height="14" alt=`${stat.value} из 5` loading="lazy")

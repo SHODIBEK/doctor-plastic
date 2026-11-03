@@ -1,0 +1,128 @@
+// Прайс-лист по категориям. Линии — inset-тень: в макете обводки внутри блоков
+.price-list {
+	&__categories {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include laptop {
+			gap: 40px;
+		}
+	}
+
+	// Первая категория без линии сверху и с отступом 50px до следующих
+	&__category {
+		&:not(:first-child) {
+			padding-top: 30px;
+			box-shadow: inset 0 1px 0 var(--dp-color-line);
+
+			@include laptop {
+				padding-top: 40px;
+			}
+		}
+
+		&:first-child {
+			margin-bottom: 20px;
+
+			@include laptop {
+				margin-bottom: 10px;
+			}
+		}
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		padding-top: 30px;
+		gap: 20px;
+
+		@include laptop {
+			padding-top: 20px;
+			gap: 48px;
+		}
+	}
+
+	&__consult {
+		display: flex;
+		justify-content: space-between;
+		margin: 0;
+		padding-bottom: 32px;
+		box-shadow: inset 0 -1px 0 var(--dp-color-line);
+		font-size: 16px;
+		line-height: 20px;
+		color: var(--dp-color-text);
+	}
+
+	&__consult-name {
+		flex: 1;
+	}
+
+	&__consult-price {
+		font-weight: 700;
+		white-space: nowrap;
+		text-align: right;
+	}
+
+	&__groups {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include laptop {
+			gap: 40px;
+		}
+	}
+
+	// После раскрытой подкатегории отступ в макете 20px (моб.) и 48px (десктоп)
+	&__group.is-open {
+		margin-bottom: -10px;
+
+		@include laptop {
+			margin-bottom: 8px;
+		}
+	}
+
+	&__lines {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&__actions {
+		display: flex;
+		flex-direction: column;
+		margin-top: 30px;
+		padding-top: 30px;
+		box-shadow: inset 0 1px 0 var(--dp-color-line);
+		gap: 10px;
+
+		@include laptop {
+			flex-direction: row;
+			justify-content: center;
+			margin-top: 40px;
+			padding-top: 40px;
+		}
+	}
+
+	&__btn {
+		width: 100%;
+
+		@include laptop {
+			width: auto;
+		}
+	}
+
+	// Калькулятор: в макете 70px от прайса на мобильном, у .calc свой margin-top 30px (80px с laptop)
+	&__calc {
+		padding-top: 40px;
+
+		@include laptop {
+			padding-top: 0;
+		}
+	}
+
+	// Панель даёт 50px сверху, в макете прайс начинается с 70px
+	@include laptop {
+		padding-top: 20px;
+	}
+}

@@ -1,6 +1,6 @@
 -
 	const menu = [
-		{ title: 'Услуги', href: '#services' },
+		{ title: 'Услуги', href: './services.html', mega: true },
 		{ title: 'Цены', href: '#prices' },
 		{ title: 'Специалисты', href: '#doctors' },
 		{ title: 'Наши работы', href: '#works' },
@@ -18,8 +18,15 @@ header.header(data-header)
 		nav.header__nav#header-nav
 			ul.header__menu
 				each item in menu
-					li.header__menu-item
-						a.header__menu-link(href=item.href)= item.title
+					if item.mega
+						li.header__menu-item.header__menu-item--mega(data-mega)
+							a.header__menu-link(href=item.href aria-haspopup="true" aria-controls="mega-menu")= item.title
+							button.header__menu-toggle(type="button" aria-expanded="false" aria-controls="mega-menu" aria-label="Показать услуги" data-mega-toggle)
+								+svg('arrow-right').header__menu-toggle-icon
+							include mega-menu
+					else
+						li.header__menu-item
+							a.header__menu-link(href=item.href)= item.title
 			//- Подвал мобильного меню: поиск
 			.header__nav-footer
 				form.header__search-form(action="/" method="get" role="search")

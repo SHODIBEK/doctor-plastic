@@ -1,5 +1,6 @@
+//- Цены. На странице врача: doctorPrices = { groups } — без заголовков групп и калькулятора
 -
-	const priceGroups = [
+	const priceGroups = typeof doctorPrices !== 'undefined' ? doctorPrices.groups : [
 		{
 			title: 'Все пластические хирурги',
 			items: [
@@ -21,13 +22,14 @@
 		},
 	]
 
-section.prices#prices(data-prices)
+section.prices#prices(class=typeof doctorPrices !== 'undefined' ? 'prices--doctor' : null data-prices)
 	.container
 		h2.title.prices__title Цены
 		.prices__body(data-prices-body)
 			each group in priceGroups
 				.prices__group
-					h3.prices__group-title= group.title
+					if group.title
+						h3.prices__group-title= group.title
 					ul.prices__list
 						each item in group.items
 							+priceLine(item)
@@ -36,4 +38,5 @@ section.prices#prices(data-prices)
 				.prices__actions
 					+btn('Смотреть полный прайс', { href: '#' }).prices__full
 					+btnRound('down', 'Развернуть прайс').prices__toggle(data-prices-expand)
-	include calc
+	if typeof doctorPrices === 'undefined'
+		include calc

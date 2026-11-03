@@ -192,6 +192,62 @@
 		}
 	}
 
+	// «Услуги» с мега-меню: на мобильном ссылка + кнопка раскрытия, на десктопе — по наведению
+	&__menu-item--mega {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		border-bottom: 1px solid var(--dp-color-line-dark);
+
+		@include desktop {
+			display: block;
+			border-bottom: none;
+		}
+	}
+
+	&__menu-item--mega > &__menu-link {
+		flex: 1;
+		border-bottom: none;
+	}
+
+	&__menu-item--mega.is-open > &__menu-link {
+		color: var(--dp-color-action-secondary);
+	}
+
+	&__menu-toggle {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid var(--dp-color-line-dark);
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		color: inherit;
+		transition: border-color $duration-normal, background-color $duration-normal;
+
+		&[aria-expanded="true"] {
+			border-color: var(--dp-color-action-primary);
+			background-color: var(--dp-color-action-primary);
+		}
+
+		@include desktop {
+			display: none;
+		}
+	}
+
+	&__menu-toggle-icon {
+		width: 16px;
+		height: 16px;
+		fill: none;
+		transform: rotate(90deg);
+		transition: transform $duration-normal;
+
+		.header__menu-toggle[aria-expanded="true"] & {
+			transform: rotate(-90deg);
+		}
+	}
+
 	&__menu-link {
 		display: block;
 		border-bottom: 1px solid var(--dp-color-line-dark);
@@ -283,7 +339,10 @@
 		top: 0;
 	}
 
+	// Над шапкой полоса 48px и линия по макету: линия на 48, логотип на 79
 	@include desktop {
+		margin-top: 48px;
+		border-top: 1px solid var(--dp-color-line-dark);
 		border-bottom: none;
 		padding-top: 30px;
 	}

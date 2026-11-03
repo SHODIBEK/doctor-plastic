@@ -1,0 +1,198 @@
+//- Мега-меню «Услуги»: направления (табы) → группы услуг → ссылки.
+//- Десктоп — выпадающая панель под шапкой, мобильный — раскрывающийся блок внутри меню.
+//- '\n' в названии — перенос строки по макету
+-
+	const megaMenu = [
+		{
+			title: 'Пластика',
+			groups: [
+				{
+					title: 'Пластика груди',
+					href: './services.html',
+					image: 'mega-menu/breast',
+					links: [
+						{ title: 'Увеличение груди', href: './service.html' },
+						{ title: 'Подтяжка груди\n(мастопексия)', href: '#' },
+						{ title: 'Коррекция тубулярности\nгруди', href: '#' },
+						{ title: 'Коррекция асимметрии', href: '#' },
+						{ title: 'Уменьшение груди', href: '#' },
+						{ title: 'Липофилинг груди', href: '#' },
+						{ title: 'Повторная пластика груди', href: '#' },
+						{ title: '3D-form', href: '#' },
+						{ title: 'Пластика груди\nпосле мастэктомии', href: '#' },
+						{ title: 'Грудные импланты', href: '#' },
+					],
+				},
+				{
+					title: 'Пластика лица',
+					href: '#',
+					image: 'mega-menu/face',
+					links: [
+						{ title: 'Лифтинг средней зоны лица', href: '#' },
+						{ title: 'Блефаропластика\n(подтяжка век)', href: '#' },
+						{ title: 'Эндотины в эндоскопии\nлица', href: '#' },
+						{ title: 'Подтяжка лица', href: '#' },
+						{ title: 'Подтяжка лба и бровей', href: '#' },
+						{ title: 'Пластика шеи и подбородка', href: '#' },
+						{ title: 'SMAS лифтинг', href: '#' },
+						{ title: 'Лифтинг нижней части лица', href: '#' },
+						{ title: 'Ринопластика', href: '#' },
+						{ title: 'Отопластика', href: '#' },
+					],
+				},
+				{
+					title: 'Пластика тела',
+					href: '#',
+					image: 'mega-menu/body',
+					links: [
+						{ title: 'Липосакция', href: '#' },
+						{ title: 'Липоскульптурирование\nтела', href: '#' },
+						{ title: 'Миниабдоминопластика\nживота', href: '#' },
+						{ title: 'Полная абдоминопластика', href: '#' },
+						{ title: 'Пластика ягодиц', href: '#' },
+						{ title: 'Торсопластика', href: '#' },
+						{ title: 'Подтяжка рук', href: '#' },
+						{ title: 'Пластика голеней', href: '#' },
+						{ title: 'Интимная пластика', href: '#' },
+					],
+				},
+				{
+					title: 'Минипластика',
+					href: '#',
+					image: 'mega-menu/mini',
+					links: [
+						{ title: 'Силуэт Лифт', href: '#' },
+						{ title: 'Чеклифтинг\n(глаза, щеки, скулы)', href: '#' },
+						{ title: 'Лифтинг век и бровей', href: '#' },
+						{ title: 'Липосакция подбородка', href: '#' },
+						{ title: 'Липосакция Body Jet', href: '#' },
+						{ title: 'Устранение рубцов', href: '#' },
+					],
+				},
+			],
+		},
+		{
+			title: 'Косметология',
+			groups: [
+				{
+					title: 'Инъекционная',
+					href: '#',
+					links: [
+						{ title: 'Контурная пластика', href: '#' },
+						{ title: 'Биоревитализация', href: '#' },
+						{ title: 'Ботулинотерапия', href: '#' },
+						{ title: 'Мезотерапия', href: '#' },
+						{ title: 'Плазмолифтинг', href: '#' },
+					],
+				},
+				{
+					title: 'Аппаратная',
+					href: '#',
+					links: [
+						{ title: 'Ультразвуковой SMAS-лифтинг', href: '#' },
+						{ title: 'RF-лифтинг', href: '#' },
+						{ title: 'Лазерное омоложение', href: '#' },
+						{ title: 'Фотоомоложение', href: '#' },
+					],
+				},
+				{
+					title: 'Уход за кожей',
+					href: '#',
+					links: [
+						{ title: 'Чистка лица', href: '#' },
+						{ title: 'Пилинги', href: '#' },
+						{ title: 'Массаж лица', href: '#' },
+						{ title: 'Уходовые программы', href: '#' },
+					],
+				},
+			],
+		},
+		{
+			title: 'Гинекология',
+			groups: [
+				{
+					title: 'Эстетическая гинекология',
+					href: '#',
+					links: [
+						{ title: 'Лабиопластика', href: '#' },
+						{ title: 'Вагинопластика', href: '#' },
+						{ title: 'Интимная контурная пластика', href: '#' },
+					],
+				},
+				{
+					title: 'Диагностика',
+					href: '#',
+					links: [
+						{ title: 'Приём гинеколога', href: '#' },
+						{ title: 'УЗИ органов малого таза', href: '#' },
+						{ title: 'Анализы', href: '#' },
+					],
+				},
+				{
+					title: 'Лечение',
+					href: '#',
+					links: [
+						{ title: 'Лазерное омоложение', href: '#' },
+						{ title: 'Лечение недержания', href: '#' },
+					],
+				},
+			],
+		},
+	]
+
+mixin megaText(text)
+	each line, i in text.split('\n')
+		if i
+			br
+		| #{line}
+
+.mega-menu#mega-menu(data-mega-menu)
+	.mega-menu__wrap
+		.container.mega-menu__container
+			.mega-menu__aside
+				.mega-menu__tabs(role="tablist" aria-label="Направления")
+					each category, i in megaMenu
+						button.mega-menu__tab(
+							class=i === 0 ? 'is-active' : null
+							type="button"
+							role="tab"
+							id=`mega-tab-${i}`
+							aria-selected=i === 0 ? 'true' : 'false'
+							aria-controls=`mega-panel-${i}`
+							tabindex=i === 0 ? null : '-1'
+							data-mega-tab
+						)
+							span.mega-menu__tab-text= category.title
+							span.mega-menu__tab-icon
+								+svg('arrow-right').mega-menu__tab-arrow
+				+picture('mega-menu/aside', '', 270, 350).mega-menu__aside-image
+
+			each category, i in megaMenu
+				.mega-menu__panel(
+					class=i === 0 ? 'is-active' : null
+					role="tabpanel"
+					id=`mega-panel-${i}`
+					aria-labelledby=`mega-tab-${i}`
+					hidden=i !== 0
+					data-mega-panel
+				)
+					each group, j in category.groups
+						.mega-menu__group(data-mega-group)
+							//- Десктоп: карточка с фото и заголовок-ссылка
+							a.mega-menu__card(href=group.href)
+								if group.image
+									+picture(group.image, group.title, 241, 120).mega-menu__image
+								span.mega-menu__title= group.title
+							//- Мобильный: заголовок раскрывает список
+							button.mega-menu__toggle(type="button" aria-expanded="false" aria-controls=`mega-list-${i}-${j}` data-mega-group-toggle)
+								span.mega-menu__toggle-text= group.title
+								span.mega-menu__toggle-icon
+									+svg('arrow-right').mega-menu__toggle-arrow
+							.mega-menu__body(id=`mega-list-${i}-${j}`)
+								ul.mega-menu__list
+									each link in group.links
+										li.mega-menu__item
+											a.mega-menu__link(href=link.href)
+												+megaText(link.title)
+									li.mega-menu__item.mega-menu__item--all
+										a.mega-menu__all(href=group.href) Все услуги раздела

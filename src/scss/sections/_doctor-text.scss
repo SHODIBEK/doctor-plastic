@@ -1,0 +1,76 @@
+// Текст о враче: свёрнут до 350px, снизу затухание и кнопка «Открыть…» (expand.js ставит is-open)
+.doctor-text {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		@include laptop {
+			flex-direction: row;
+			align-items: flex-start;
+		}
+	}
+
+	&__title {
+		@include laptop {
+			flex-shrink: 0;
+			width: 425px;
+		}
+	}
+
+	&__body {
+		position: relative;
+		overflow: hidden;
+		max-height: 350px;
+
+		.doctor-text.is-open & {
+			max-height: none;
+		}
+
+		@include laptop {
+			flex: 1;
+			min-width: 0;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		font-size: 16px;
+		line-height: 22px;
+		color: $color-black;
+		gap: 20px;
+
+		// В макете между абзацами пустая строка: 20 + 22 + 20
+		@include laptop {
+			gap: 62px;
+		}
+	}
+
+	&__paragraph {
+		margin: 0;
+	}
+
+	&__more {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		align-items: flex-end;
+		height: 150px;
+		background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #{$color-white} 52%);
+
+		.doctor-text.is-open & {
+			display: none;
+		}
+	}
+
+	&__btn {
+		width: 100%;
+
+		@include laptop {
+			width: auto;
+		}
+	}
+}
