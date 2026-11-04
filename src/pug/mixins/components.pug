@@ -279,3 +279,31 @@ mixin reviewCard(review)
 			a.btn-play.review-card__play(href=review.video aria-label="Смотреть видеоотзыв" data-fancybox)
 				+svg('play').btn-play__icon
 			+btn('Видеоотзыв', { href: review.video }).review-card__btn(data-fancybox)
+
+//- Кейс «до/после» с ракурсами (вкладки «Спереди» / «Сбоку»): { number, operation, doctor, views: [{ title, icon, before, after }] }
+mixin photoCase(data)
+	article.photo-case(data-photo-case)&attributes(attributes)
+		.photo-case__head
+			h3.visually-hidden= `${data.operation}, ${data.doctor} — до и после`
+			dl.photo-case__meta
+				.photo-case__row
+					dt.photo-case__label Операция:
+					dd.photo-case__value= data.operation
+				.photo-case__row
+					dt.photo-case__label Доктор:
+					dd.photo-case__value= data.doctor
+			span.photo-case__number= data.number
+		each view, index in data.views
+			.photo-case__photos(data-photo-case-panel=index hidden=index > 0)
+				each side in ['before', 'after']
+					figure.photo-case__photo
+						.photo-case__frame
+							+picture(view[side], `${data.operation}, ${view.title.toLowerCase()} — ${side === 'before' ? 'до' : 'после'} операции`, 456, 370).photo-case__image(class=`photo-case__image--${side}`)
+							span.photo-case__mark(class=`photo-case__mark--${side}-left` aria-hidden="true")
+							span.photo-case__mark(class=`photo-case__mark--${side}-right` aria-hidden="true")
+						figcaption.photo-case__caption(class=`photo-case__caption--${side}`)= side === 'before' ? 'До операции' : 'После операции'
+		.photo-case__views
+			each view, index in data.views
+				button.photo-case__tab(type="button" class=index === 0 ? 'is-active' : null aria-pressed=String(index === 0) data-photo-case-tab=index)
+					+svg(view.icon).photo-case__tab-icon
+					span= view.title

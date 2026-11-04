@@ -1,0 +1,30 @@
+//- Фото до и после: примечание, фильтр (вид пластики, телосложение, хирург), кейсы, пагинация (цикл WP: записи «до/после»)
+-
+	const photosFilters = [
+		{ name: 'type', label: 'Выберите вид пластики', value: 'Пластика тела', options: ['Пластика тела', 'Пластика груди', 'Пластика лица'] },
+		{ name: 'body', label: 'Выберите телосложение', options: ['Худощавое', 'Среднее', 'Плотное'] },
+		{ name: 'surgeon', label: 'Все хирурги', options: ['Сергеев И. В.', 'Труфанов Д. И.'] },
+	]
+	const photosViews = [
+		{ title: 'Спереди', icon: 'breast', before: 'photos/case-before', after: 'photos/case-after' },
+		{ title: 'Сбоку', icon: 'breast-side', before: 'photos/case-before', after: 'photos/case-after' },
+	]
+	const photoCases = ['01', '02', '03', '04', '05'].map((number) => ({ number, operation: 'Увеличение груди', doctor: 'Сергеев И.В.', views: photosViews }))
+
+section.photos
+	.container
+		h2.visually-hidden Фотографии пациентов до и после операции
+		.photos__note
+			+svg('asterisk').photos__asterisk
+			p.photos__text Мы бережно относимся к историям наших клиентов. Все фото «До и После» в нашей галерее размещены с их личного разрешения и большой гордости за свой новый образ! Мы всегда заранее обсуждаем с клиентами возможность публикации и с уважением относимся к выбору тех, кто предпочитает остаться в тени.
+		form.photos__filters(action="#")
+			each filter in photosFilters
+				+select(filter).photos__select
+			button.btn.photos__reset(type="reset")
+				span Очистить
+				+svg('close').btn__icon.photos__reset-icon
+		ul.photos__list
+			each photoCase in photoCases
+				li
+					+photoCase(photoCase)
+		+pagination({ current: 1, pages: ['1', '2', { page: '3', desktop: true }, { page: '4', desktop: true }, { page: '5', desktop: true }, '...', '40'] }).photos__pagination

@@ -1,0 +1,21 @@
+extends pug/layout
+
+append vars
+	- title = 'Фото до и после пластических операций — Доктор Пластик'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Фотографии пациентов клиники «Доктор Пластик» до и после пластических операций: пластика груди, лица и тела. Фильтр по виду пластики, телосложению и хирургу.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'photos',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Фото до и после' }],
+			accent: 'Фото',
+			title: 'до и после',
+			woman: { desktop: 'photos-head/woman', desktopWidth: 395, desktopHeight: 927, retina: true, mobile: 'photos-head/woman-mobile', mobileWidth: 247, mobileHeight: 307 },
+		}
+
+block main
+	include pug/sections/page-head
+	.panel.panel--photos
+		include pug/sections/photos
+		include pug/sections/advantages
+		include pug/sections/signup

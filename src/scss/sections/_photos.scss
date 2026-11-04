@@ -1,0 +1,95 @@
+// Фото до и после: примечание, фильтр, кейсы, пагинация
+.photos {
+	&__note {
+		display: flex;
+		align-items: flex-start;
+		gap: 5px;
+
+		@include laptop {
+			gap: 20px;
+		}
+	}
+
+	&__asterisk {
+		flex-shrink: 0;
+		width: 15px;
+		height: 15px;
+		color: var(--dp-color-action-secondary);
+
+		@include laptop {
+			width: 22.12px;
+			height: 21.06px;
+		}
+	}
+
+	&__text {
+		margin: 0;
+		font-size: 14px;
+		line-height: 20px;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			max-width: 954px;
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+
+	&__filters {
+		display: flex;
+		flex-direction: column;
+		margin-top: 20px;
+		gap: 15px;
+
+		@include laptop {
+			flex-direction: row;
+			margin-top: 50px;
+			gap: 20px;
+		}
+	}
+
+	&__select {
+		@include laptop {
+			flex: 1;
+			min-width: 0;
+		}
+	}
+
+	// На мобильном серая с крестиком, с 1024 синяя без иконки
+	&__reset {
+		--btn-notch: var(--dp-color-surface-panel);
+
+		background-color: var(--dp-color-action-disabled);
+
+		@include laptop {
+			flex-shrink: 0;
+			background-color: var(--dp-color-action-primary);
+		}
+	}
+
+	&__reset-icon {
+		@include laptop {
+			display: none;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		margin-top: 20px;
+		gap: 15px;
+
+		@include laptop {
+			margin-top: 50px;
+			gap: 30px;
+		}
+	}
+
+	&__pagination {
+		margin-top: 20px;
+
+		@include laptop {
+			margin-top: 50px;
+		}
+	}
+}

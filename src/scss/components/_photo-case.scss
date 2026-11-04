@@ -1,0 +1,315 @@
+// Кейс «до/после»: мобильная — шапка, фото, вкладки ракурсов снизу; с 1024 вкладки слева колонкой
+.photo-case {
+	display: grid;
+	grid-template-areas:
+		"head"
+		"photos"
+		"views";
+	grid-template-columns: minmax(0, 1fr);
+	border-radius: 15px;
+	padding: 15px 10px;
+	background-color: var(--dp-color-surface-subtle);
+	gap: 15px;
+
+	&__head {
+		display: flex;
+		align-items: flex-start;
+		grid-area: head;
+		gap: 15px;
+
+		@include laptop {
+			gap: 50px;
+		}
+	}
+
+	&__meta {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		margin: 0;
+		min-width: 0;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 14px;
+		gap: 5px;
+
+		@include laptop {
+			flex: none;
+			flex-direction: row;
+			font-size: 16px;
+			line-height: 16px;
+			gap: 50px;
+		}
+	}
+
+	&__row {
+		display: flex;
+		gap: 16px;
+	}
+
+	&__label {
+		flex-shrink: 0;
+		width: 90px;
+		color: var(--dp-color-text-muted);
+
+		@include laptop {
+			width: auto;
+		}
+	}
+
+	&__value {
+		margin: 0;
+		color: var(--dp-color-text);
+	}
+
+	&__number {
+		flex-shrink: 0;
+		margin-left: auto;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 14px;
+		color: var(--dp-color-text-muted);
+
+		@include laptop {
+			font-size: 16px;
+			line-height: 16px;
+			color: var(--dp-color-text);
+		}
+	}
+
+	&__photos {
+		display: flex;
+		grid-area: photos;
+		gap: 10px;
+
+		&[hidden] {
+			display: none;
+		}
+
+		@include laptop {
+			gap: 24px;
+		}
+	}
+
+	&__photo {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		align-items: center;
+		margin: 0;
+		min-width: 0;
+		gap: 5px;
+
+		@include laptop {
+			gap: 15px;
+		}
+	}
+
+	&__frame {
+		position: relative;
+		overflow: hidden;
+		border-radius: 10px;
+		width: 100%;
+		background-color: var(--dp-color-surface-photo);
+		aspect-ratio: 512 / 360;
+
+		@include laptop {
+			border-radius: 20px;
+		}
+	}
+
+	// Исходник в макете чуть растянут и смещён в рамке (кроп из Figma), повторяем
+	&__image {
+		position: absolute;
+		left: 6.73%;
+		top: -2.83%;
+		width: 89.04%;
+		height: 102.89%;
+		max-width: none;
+
+		&--after {
+			left: 5.19%;
+		}
+	}
+
+	// Размытые маски из макета (координаты из рамок 150×105 и 512×360).
+	// Подложка — белая обводка 0.4, блюр по той же форме, но непрозрачной: иначе он виден на 40%
+	&__mark {
+		position: absolute;
+		width: 14.67%;
+		height: 18.96%;
+		background: url("../images/content/photos/mark-m.svg") no-repeat center / 100% 100%;
+
+		&::before {
+			content: "";
+			position: absolute;
+			mask: url("../images/content/photos/mark-m-mask.svg") no-repeat center / 100% 100%;
+			backdrop-filter: blur(5px);
+			inset: 0;
+		}
+
+		&--before-left,
+		&--after-left {
+			transform: scaleX(-1);
+		}
+
+		&--before-left {
+			left: 27.33%;
+			top: 47.81%;
+		}
+
+		&--before-right {
+			left: 61.33%;
+			top: 47.81%;
+		}
+
+		&--after-left,
+		&--after-right {
+			top: 50.66%;
+			height: 17.07%;
+		}
+
+		&--after-left {
+			left: 18.67%;
+		}
+
+		&--after-right {
+			left: 63.33%;
+		}
+
+		@include laptop {
+			width: 10.35%;
+			height: 11.11%;
+			background-image: url("../images/content/photos/mark.svg");
+
+			&::before {
+				mask-image: url("../images/content/photos/mark-mask.svg");
+			}
+
+			&--before-left {
+				left: 29.1%;
+				top: 51.11%;
+			}
+
+			&--before-right {
+				left: 64.65%;
+				top: 51.11%;
+			}
+
+			&--after-left,
+			&--after-right {
+				top: 52.78%;
+				height: 11.11%;
+			}
+
+			&--after-left {
+				left: 21.48%;
+			}
+
+			&--after-right {
+				left: 67.77%;
+			}
+		}
+	}
+
+	&__caption {
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 14px;
+		color: var(--dp-color-text-caption);
+
+		&--after {
+			color: var(--dp-color-action-primary);
+		}
+
+		@include laptop {
+			font-size: 16px;
+			line-height: 16px;
+		}
+	}
+
+	// Линия над вкладками: в макете линия толщиной 1px лежит над ними через 15px
+	&__views {
+		display: flex;
+		grid-area: views;
+		padding-top: 15px;
+		box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+		gap: 10px;
+
+		@include laptop {
+			flex-direction: column;
+			justify-content: center;
+			padding: 0 0 87px;
+			box-shadow: none;
+			gap: 16px;
+		}
+	}
+
+	&__tab {
+		display: flex;
+		flex: 1;
+		align-items: center;
+		overflow: hidden;
+		border: 0;
+		border-radius: 10px;
+		padding: 8px 24px;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 14px;
+		color: var(--dp-color-text);
+		background-color: var(--dp-color-surface-subtle);
+		transition: color $duration-normal, background-color $duration-normal;
+		cursor: pointer;
+		gap: 5px;
+
+		&:not(.is-active) {
+			@include hover {
+				color: var(--dp-color-action-primary);
+			}
+		}
+
+		&.is-active {
+			color: var(--dp-color-action-inverse);
+			background-color: var(--dp-color-action-secondary);
+			cursor: default;
+		}
+
+		@include laptop {
+			flex: none;
+			flex-direction: column;
+			justify-content: center;
+			border-radius: 20px;
+			height: 126px;
+			font-size: 16px;
+			line-height: 20px;
+			gap: 16px;
+		}
+	}
+
+	&__tab-icon {
+		flex-shrink: 0;
+		width: 30px;
+		height: 30px;
+
+		// У контурной иконки «Сбоку» нет заливки (svgo убирает fill="none" из спрайта)
+		fill: none;
+
+		// Обводка иконки «Сбоку»: 1.5px при 30px и 2.5px при 40px (в единицах viewBox 40)
+		stroke-width: 2;
+
+		@include laptop {
+			width: 40px;
+			height: 40px;
+			stroke-width: 2.5;
+		}
+	}
+
+	@include laptop {
+		grid-template:
+			"views head" auto
+			"views photos" 1fr / 150px minmax(0, 1fr);
+		border-radius: 30px;
+		padding: 30px 50px;
+		gap: 24px;
+	}
+}

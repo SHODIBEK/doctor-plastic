@@ -325,6 +325,31 @@
 		}
 	}
 
+	// Шапка «Фото до и после»: вырезанное фото, на мобильном обрезано по краю шапки (координаты из макета)
+	&--photos &__woman {
+		right: 0;
+		top: 18px;
+		width: 247px;
+		height: 307px;
+
+		@include laptop {
+			left: page-head-fl(745);
+			right: auto;
+			top: page-head-fl(17);
+			width: page-head-fl(395);
+			height: page-head-fl(927);
+		}
+	}
+
+	// В макете градиент растянут на весь заголовок («до и после» шире акцента): 202px и 485px
+	&--photos &__title-accent {
+		background-size: 202px 100%;
+
+		@include laptop {
+			background-size: 485px 100%;
+		}
+	}
+
 	// Шапка отзывов: вырезанное фото, на десктопе рука лежит поверх круга (координаты из макета)
 	&--reviews &__woman {
 		right: 0;
@@ -377,7 +402,8 @@
 	&--docs &__title,
 	&--memo &__title,
 	&--faq &__title,
-	&--payment &__title {
+	&--payment &__title,
+	&--photos &__title {
 		max-width: none;
 	}
 

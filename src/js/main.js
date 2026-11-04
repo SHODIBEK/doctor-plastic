@@ -11,6 +11,7 @@ import home from "./modules/home";
 import calc from "./modules/calc";
 import components from "./modules/components";
 import expand from "./modules/expand";
+import photoCase from "./modules/photoCase";
 import overflowFade from "./modules/overflowFade";
 import megaMenu from "./modules/megaMenu";
 
@@ -23,6 +24,7 @@ home.init();
 calc.init();
 components.init();
 expand.init();
+photoCase.init();
 overflowFade.init();
 megaMenu.init();
 Fancybox.bind("[data-fancybox]");
