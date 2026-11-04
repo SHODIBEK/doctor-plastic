@@ -40,13 +40,15 @@
 	}
 }
 
+// Select: поле-кнопка и выпадающий список (drop-list): одиночный выбор — текстом, множественный — с чекбоксами.
+// Выбрано значение (is-active) — бирюзовый фон, крестик очистки и стрелка
 .select {
 	position: relative;
 	display: block;
 
 	&__control {
-		appearance: none;
-		display: block;
+		display: flex;
+		align-items: center;
 		outline: none;
 		border: none;
 		border-radius: 15px;
@@ -55,16 +57,27 @@
 		height: 60px;
 		font-family: inherit;
 		font-size: 16px;
-		color: var(--dp-color-text-input);
+		text-align: left;
+		color: var(--dp-color-text-placeholder);
 		background-color: var(--dp-color-surface-input);
 		cursor: pointer;
+
+		&:focus-visible {
+			outline: 2px solid var(--dp-color-action-primary);
+			outline-offset: 2px;
+		}
 
 		@include laptop {
 			border-radius: 20px;
 			padding: 0 60px 0 24px;
 			height: 72px;
-			color: var(--dp-color-text-placeholder);
 		}
+	}
+
+	&__text {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 
 	&__icon {
@@ -83,18 +96,11 @@
 		}
 	}
 
-	&__icon--close {
-		display: none;
-		fill: currentColor;
-		transform: translateY(-50%);
-	}
-
-	// Кнопка очистки значения (type=clear-icon)
 	&__clear {
 		position: absolute;
 		right: 55px;
 		top: 50%;
-		display: flex;
+		display: none;
 		color: #292d32;
 		transform: translateY(-50%);
 
@@ -113,42 +119,72 @@
 		}
 	}
 
-	// В формах текст выбора того же цвета, что и в остальных полях
-	&--form &__control {
+	&__drop {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: calc(100% + 8px);
+		z-index: 5;
+		display: none;
+		border-radius: 15px;
+
 		@include laptop {
-			color: var(--dp-color-text-input);
+			border-radius: 20px;
 		}
 	}
 
-	&--clearable &__control {
-		padding-right: 90px;
+	// Пункт одиночного выбора: без чекбокса, выбранный — синим
+	&__option {
+		display: block;
+		cursor: pointer;
+	}
 
-		@include laptop {
-			padding-right: 100px;
-		}
+	&__input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	&__option-text {
+		transition: color $duration-normal;
+	}
+
+	&.is-open &__drop {
+		display: block;
+	}
+
+	&.is-open &__icon {
+		transform: translateY(-50%);
+	}
+
+	&__input:checked + &__option-text {
+		font-weight: 500;
+		color: var(--dp-color-action-primary);
+	}
+
+	&__input:focus-visible + &__option-text {
+		outline: 2px solid var(--dp-color-action-primary);
+		outline-offset: 2px;
+	}
+
+	&__option:hover &__option-text {
+		color: var(--dp-color-action-primary);
 	}
 
 	@include active {
-		.select__icon--close {
-			display: block;
-
-			@include laptop {
-				display: none;
-			}
-		}
-
-		.select__icon--dropdown {
-			display: none;
-
-			@include laptop {
-				display: block;
-			}
-		}
-
 		.select__control {
+			padding-right: 90px;
 			font-weight: 500;
 			color: var(--dp-color-text-input);
 			background-color: var(--dp-color-action-secondary);
+
+			@include laptop {
+				padding-right: 100px;
+			}
+		}
+
+		.select__clear {
+			display: flex;
 		}
 	}
 }

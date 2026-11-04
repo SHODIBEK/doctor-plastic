@@ -104,10 +104,10 @@ block main
 				form.ui-kit__grid(action="#")
 					.ui-kit__col
 						input.field(type="text" name="kit-name" placeholder="Имя")
-						+select({ name: 'kit-select', options: ['Имя', 'Вариант 1', 'Вариант 2'] })
-						+select({ name: 'kit-select-clear', options: ['Имя', 'Вариант 1', 'Вариант 2'], clearable: true })
+						+select({ name: 'kit-select', label: 'Имя', options: ['Вариант 1', 'Вариант 2'] })
+						+select({ name: 'kit-select-multi[]', label: 'Имя', multiple: true, options: [{ title: 'Вариант 1', checked: true }, { title: 'Вариант 2', checked: true }, 'Вариант 3'] })
 						+fileField({ name: 'kit-photo', label: 'Прикрепить фото' })
-						+select({ name: 'kit-select-active', options: ['Пластика тела', 'Пластика груди'] }).is-active
+						+select({ name: 'kit-select-active', label: 'Вид пластики', value: 'Пластика тела', options: ['Пластика тела', 'Пластика груди'] })
 					.ui-kit__col
 						+dropList({ name: 'kit-services[]', items: kitDropList })
 						.ui-kit__row

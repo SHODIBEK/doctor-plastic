@@ -1,0 +1,49 @@
+// Статьи: фильтр (раздел, темы, «Очистить»), карточки новостей, пагинация
+.articles {
+	&__filters {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+
+		@include laptop {
+			flex-direction: row;
+			gap: 20px;
+		}
+	}
+
+	&__select {
+		@include laptop {
+			flex: 1;
+			min-width: 0;
+		}
+	}
+
+	&__reset {
+		width: 100%;
+
+		@include laptop {
+			flex-shrink: 0;
+			width: auto;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		margin-top: 20px;
+		gap: 20px;
+
+		@include laptop {
+			margin-top: 24px;
+			gap: 24px;
+		}
+	}
+
+	&__pagination {
+		margin-top: 20px;
+
+		@include laptop {
+			margin-top: 24px;
+		}
+	}
+}

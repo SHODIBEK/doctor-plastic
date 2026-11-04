@@ -1,0 +1,18 @@
+extends pug/layout
+
+append vars
+	- title = 'Статьи и новости клиники пластической хирургии «Доктор Пластик»'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Статьи и новости клиники «Доктор Пластик»: награды хирургов, конференции и мастер-классы, новые услуги и способы оплаты. Блог о пластической хирургии.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'articles',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Статьи' }],
+			accent: 'Статьи',
+			woman: { desktop: 'articles-head/woman', desktopWidth: 482, desktopHeight: 935, mobile: 'payment-head/woman-mobile', mobileWidth: 247, mobileHeight: 307 },
+		}
+
+block main
+	include pug/sections/page-head
+	.panel.panel--articles
+		include pug/sections/articles

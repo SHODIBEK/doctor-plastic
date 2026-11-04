@@ -1,5 +1,5 @@
 /**
- * Модуль "Общие компоненты": collapse, очистка select, поле файла, табы категорий
+ * Модуль "Общие компоненты": collapse, select, поле файла, табы категорий
  */
 
 /**
@@ -72,16 +72,79 @@ const initCollapse = () => {
 	});
 };
 
-const initSelectClear = () => {
-	document.querySelectorAll('[data-select-clear]').forEach((button) => {
-		button.addEventListener('click', (event) => {
-			event.preventDefault();
+// Select: открытие по кнопке, закрытие кликом вне поля и по Esc, текст поля, очистка и reset формы.
+// Одиночный выбор (radio) закрывает список сразу, множественный (checkbox) — нет
+const initSelects = () => {
+	const selects = document.querySelectorAll('[data-select]');
 
-			const select = button.closest('.select').querySelector('select');
+	const setOpen = (field, isOpen) => {
+		field.classList.toggle('is-open', isOpen);
+		field.querySelector('[data-select-toggle]').setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+	};
 
-			select.selectedIndex = 0;
-			select.dispatchEvent(new Event('change', {bubbles: true}));
+	selects.forEach((field) => {
+		const isMultiple = field.dataset.select === 'multiple';
+		const text = field.querySelector('[data-select-text]');
+		const inputs = field.querySelectorAll('[data-select-input]');
+
+		const update = () => {
+			const checked = Array.from(inputs).filter((input) => input.checked);
+
+			field.classList.toggle('is-active', checked.length > 0);
+
+			if (!checked.length) {
+				text.textContent = field.dataset.placeholder;
+			} else if (isMultiple) {
+				text.textContent = `Выбрано ${checked.length}`;
+			} else {
+				text.textContent = checked[0].closest('label').textContent.trim();
+			}
+		};
+
+		field.querySelector('[data-select-toggle]').addEventListener('click', () => {
+			const isOpen = !field.classList.contains('is-open');
+
+			selects.forEach((item) => setOpen(item, false));
+			setOpen(field, isOpen);
 		});
+
+		field.querySelector('[data-select-clear]').addEventListener('click', () => {
+			inputs.forEach((input) => {
+				input.checked = false;
+			});
+			update();
+			inputs[0].dispatchEvent(new Event('change', {bubbles: true}));
+		});
+
+		inputs.forEach((input) => {
+			input.addEventListener('change', () => {
+				update();
+
+				if (!isMultiple) {
+					setOpen(field, false);
+				}
+			});
+		});
+
+		const form = field.closest('form');
+
+		if (form) {
+			form.addEventListener('reset', () => setTimeout(update));
+		}
+	});
+
+	document.addEventListener('click', (event) => {
+		selects.forEach((field) => {
+			if (!field.contains(event.target)) {
+				setOpen(field, false);
+			}
+		});
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape') {
+			selects.forEach((field) => setOpen(field, false));
+		}
 	});
 };
 
@@ -115,7 +178,7 @@ const initCategoryTabs = () => {
 
 const init = () => {
 	initCollapse();
-	initSelectClear();
+	initSelects();
 	initFileFields();
 	initCategoryTabs();
 };

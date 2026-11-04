@@ -18,7 +18,8 @@
 	&#{&}--docs,
 	&#{&}--memo,
 	&#{&}--faq,
-	&#{&}--payment {
+	&#{&}--payment,
+	&#{&}--articles {
 		@include laptop {
 			padding-top: 70px;
 		}

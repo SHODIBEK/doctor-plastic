@@ -308,6 +308,23 @@
 		}
 	}
 
+	// Шапка статей: фото из шапки по умолчанию, крупнее и со своим кадром;
+	// на мобильном как у «Вариантов оплаты» (координаты из макета)
+	&--articles &__woman {
+		right: 0;
+		top: 18px;
+		width: 247px;
+		height: 307px;
+
+		@include laptop {
+			left: page-head-fl(679);
+			right: auto;
+			top: page-head-fl(9);
+			width: page-head-fl(482);
+			height: page-head-fl(935);
+		}
+	}
+
 	// Шапка отзывов: вырезанное фото, на десктопе рука лежит поверх круга (координаты из макета)
 	&--reviews &__woman {
 		right: 0;

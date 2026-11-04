@@ -1,5 +1,5 @@
 /**
- * Модуль "Интерактив главной": меню, сравнение до/после, сторис-отзывы, FAQ, прайс, фильтры работ
+ * Модуль "Интерактив главной": меню, сравнение до/после, сторис-отзывы, FAQ, прайс
  */
 
 const initHeader = () => {
@@ -130,37 +130,12 @@ const initPrices = () => {
 	});
 };
 
-const initWorksFilters = () => {
-	const form = document.querySelector('[data-works-filters]');
-
-	if (!form) {
-		return;
-	}
-
-	const selects = form.querySelectorAll('select');
-
-	selects.forEach((select) => {
-		select.addEventListener('change', () => {
-			select.closest('.select').classList.toggle('is-active', select.selectedIndex > 0 || select.name === 'type');
-		});
-	});
-
-	form.addEventListener('reset', () => {
-		setTimeout(() => {
-			selects.forEach((select) => {
-				select.closest('.select').classList.toggle('is-active', select.name === 'type');
-			});
-		});
-	});
-};
-
 const init = () => {
 	initHeader();
 	initCompare();
 	initTestimonials();
 	initFaq();
 	initPrices();
-	initWorksFilters();
 };
 
 export default {

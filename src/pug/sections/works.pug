@@ -1,8 +1,8 @@
 -
 	const worksFilters = [
-		{ name: 'type', active: true, options: ['Пластика тела', 'Пластика груди', 'Пластика лица'] },
-		{ name: 'body', options: ['Выберите телосложение', 'Худощавое', 'Среднее', 'Плотное'] },
-		{ name: 'surgeon', options: ['Все хирурги', 'Сергеев И. В.', 'Труфанов Д. И.'] },
+		{ name: 'type', label: 'Выберите вид пластики', value: 'Пластика тела', options: ['Пластика тела', 'Пластика груди', 'Пластика лица'] },
+		{ name: 'body', label: 'Выберите телосложение', options: ['Худощавое', 'Среднее', 'Плотное'] },
+		{ name: 'surgeon', label: 'Все хирурги', options: ['Сергеев И. В.', 'Труфанов Д. И.'] },
 	]
 	const works = [
 		{ title: 'Увеличение груди', before: 'works/before', after: 'works/after' },
@@ -17,14 +17,9 @@
 section.works#works
 	.container
 		h2.title.works__title= typeof worksTitle !== 'undefined' ? worksTitle : 'Наши работы'
-		form.works__filters(action="#" data-works-filters)
+		form.works__filters(action="#")
 			each filter in worksFilters
-				label.select.works__select(class=filter.active ? 'is-active' : null)
-					select.select__control(name=filter.name aria-label=filter.options[0])
-						each option in filter.options
-							option= option
-					+svg('dropdown').select__icon.select__icon--dropdown
-					+svg('close').select__icon.select__icon--close
+				+select(filter).works__select
 			button.btn.btn--gray.works__reset(type="reset")
 				span Очистить
 				+svg('close').btn__icon

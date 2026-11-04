@@ -1,6 +1,6 @@
 //- Форма «Оставить отзыв» (под Contact Form 7 / AJAX)
 -
-	const reviewDoctors = ['Выберите врача', 'Сергеев И.В.', 'Труфанов Д.И.']
+	const reviewDoctors = ['Сергеев И.В.', 'Труфанов Д.И.']
 
 section.review-form#review-form
 	.container.container--narrow.review-form__container
@@ -12,7 +12,7 @@ section.review-form#review-form
 		form.review-form__form(action="#" method="post" enctype="multipart/form-data")
 			input.field(type="text" name="your-name" placeholder="Имя" autocomplete="name" aria-label="Имя" required)
 			input.field(type="email" name="your-email" placeholder="E-mail" autocomplete="email" aria-label="E-mail" required)
-			+select({ name: 'doctor', label: 'Выберите врача', options: reviewDoctors }).select--form
+			+select({ name: 'doctor', label: 'Выберите врача', options: reviewDoctors })
 			textarea.field.field--textarea(name="your-review" placeholder="Текст отзыва" aria-label="Текст отзыва" required)
 			+fileField({ name: 'photo[]', label: 'Прикрепить фото', accept: 'image/gif, image/jpeg, image/png' })
 			dl.review-form__info

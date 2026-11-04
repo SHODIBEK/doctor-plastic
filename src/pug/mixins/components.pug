@@ -22,17 +22,38 @@ mixin checkbox(data)
 		if data.label
 			span.checkbox__text= data.label
 
-//- Select. clearable — с кнопкой очистки
-//- @demo +select({ name: 'service', options: ['Имя', 'Вариант'], clearable: true })
+//- Select: поле-кнопка, под ним выпадающий список. Выбранное поле бирюзовое, с крестиком очистки.
+//- multiple — несколько значений с чекбоксами, в поле «Выбрано N»; иначе одно значение (radio без чекбоксов), в поле его название.
+//- options — строки или { title, value, checked }; value — выбранное по умолчанию (для одиночного)
+//- @demo +select({ name: 'doctor', label: 'Выберите врача', options: ['Сергеев И.В.', 'Труфанов Д.И.'] })
+//- @demo +select({ name: 'tags[]', label: 'Выберите тему', multiple: true, options: [{ title: 'Грудь', checked: true }, 'Лицо'] })
 mixin select(data)
-	label.select(class=data.clearable ? 'select--clearable' : null)&attributes(attributes)
-		select.select__control(name=data.name aria-label=data.label || data.options[0] data-select)
-			each option in data.options
-				option= option
-		if data.clearable
-			button.select__clear(type="button" aria-label="Очистить" data-select-clear)
-				+svg('close').select__clear-icon
-		+svg('dropdown').select__icon.select__icon--dropdown
+	-
+		const selectOptions = data.options.map((option) => {
+			const item = typeof option === 'object' ? option : { title: option }
+			return Object.assign({}, item, { value: item.value || item.title, checked: item.checked || item.title === data.value })
+		})
+		const checkedOptions = selectOptions.filter((option) => option.checked)
+		const selectText = !checkedOptions.length ? data.label : data.multiple ? `Выбрано ${checkedOptions.length}` : checkedOptions[0].title
+	.select(class=checkedOptions.length ? 'is-active' : null data-select=data.multiple ? 'multiple' : 'single' data-placeholder=data.label)&attributes(attributes)
+		button.select__control(type="button" aria-expanded="false" aria-label=data.label data-select-toggle)
+			span.select__text(data-select-text)= selectText
+		button.select__clear(type="button" aria-label="Очистить" data-select-clear)
+			+svg('close').select__clear-icon
+		+svg('dropdown').select__icon
+		.drop-list.select__drop
+			ul.drop-list__list
+				each option in selectOptions
+					li
+						if data.multiple
+							label.checkbox.checkbox--plain
+								input.checkbox__input(type="checkbox" name=data.name value=option.value checked=option.checked data-select-input)
+								span.checkbox__box
+								span.drop-list__label= option.title
+						else
+							label.select__option
+								input.select__input(type="radio" name=data.name value=option.value checked=option.checked data-select-input)
+								span.drop-list__label.select__option-text= option.title
 
 //- @demo +fileField({ name: 'photo', label: 'Прикрепить фото' })
 mixin fileField(data)

@@ -31,14 +31,13 @@
 	}
 
 	&__select {
-		color: #292d32;
-
 		@include tablet {
 			flex: 1 1 40%;
 		}
 
 		@include laptop {
 			flex: 1;
+			min-width: 0;
 		}
 	}
 
