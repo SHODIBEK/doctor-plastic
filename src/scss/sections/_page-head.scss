@@ -276,6 +276,22 @@
 		}
 	}
 
+	// Шапка «Ответы на вопросы»: фото как у специалистов, на мобильном обрезано по краю шапки (координаты из макета)
+	&--faq &__woman {
+		right: 0;
+		top: 18px;
+		width: 247px;
+		height: 307px;
+
+		@include laptop {
+			left: page-head-fl(556);
+			right: auto;
+			top: page-head-fl(-3.5);
+			width: page-head-fl(708);
+			height: page-head-fl(708);
+		}
+	}
+
 	// Шапка отзывов: вырезанное фото, на десктопе рука лежит поверх круга (координаты из макета)
 	&--reviews &__woman {
 		right: 0;
@@ -326,7 +342,8 @@
 
 	&--price &__title,
 	&--docs &__title,
-	&--memo &__title {
+	&--memo &__title,
+	&--faq &__title {
 		max-width: none;
 	}
 

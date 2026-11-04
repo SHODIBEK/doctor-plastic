@@ -1,0 +1,108 @@
+// Вопросы по категориям. Линии — тени: в макете линия 1px лежит над точкой отсчёта отступа,
+// поэтому верхняя тень снаружи блока, нижняя у последней категории — внутри
+.faq-categories {
+	&__container {
+		display: flex;
+		flex-direction: column;
+
+		@include laptop {
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 24px;
+		}
+	}
+
+	// На мобильном фото 330×464 по центру, на десктопе колонка 425 из 1322
+	&__media {
+		align-self: center;
+		width: 100%;
+		max-width: 330px;
+
+		@include laptop {
+			flex: 425 1 0;
+			align-self: flex-start;
+			max-width: 425px;
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: auto;
+
+		&--desktop {
+			display: none;
+		}
+
+		@include laptop {
+			&--mobile {
+				display: none;
+			}
+
+			&--desktop {
+				display: block;
+			}
+		}
+	}
+
+	&__body {
+		@include laptop {
+			flex: 873 1 0;
+			min-width: 0;
+		}
+	}
+
+	// Закрытая категория: заголовок, 30/40px, линия. Открытая: заголовок, вопросы, 10/30px, линия
+	&__category {
+		padding-bottom: 30px;
+		transition: padding-bottom 0.4s ease;
+
+		&:not(:first-child) {
+			padding-top: 30px;
+			box-shadow: 0 -1px 0 var(--dp-color-text);
+		}
+
+		&:last-child {
+			box-shadow: 0 -1px 0 var(--dp-color-text), inset 0 -1px 0 var(--dp-color-text);
+		}
+
+		&.is-open {
+			padding-bottom: 0;
+		}
+
+		@include laptop {
+			padding-bottom: 40px;
+
+			&:not(:first-child) {
+				padding-top: 40px;
+			}
+		}
+	}
+
+	// От заголовка до вопросов 10px на мобильном: 20px даёт .collapse__content
+	&__faq {
+		margin-top: -10px;
+		padding-bottom: 10px;
+
+		@include laptop {
+			margin-top: 0;
+			padding-bottom: 30px;
+		}
+	}
+
+	&__footer {
+		padding-top: 30px;
+
+		@include laptop {
+			padding-top: 40px;
+		}
+	}
+
+	&__btn {
+		width: 100%;
+
+		@include tablet {
+			width: auto;
+		}
+	}
+}

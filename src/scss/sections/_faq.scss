@@ -131,4 +131,31 @@
 			width: auto;
 		}
 	}
+
+	// Вопросы внутри категории (страница «Ответы на вопросы»): на десктопе вопрос 24/30px, справа поле 20px
+	&--compact &__list {
+		@include laptop {
+			padding-right: 20px;
+		}
+	}
+
+	// На десктопе первый вопрос стоит сразу под заголовком категории (отступ 30px даёт collapse)
+	&--compact &__item:first-child &__question {
+		@include laptop {
+			padding-top: 0;
+		}
+	}
+
+	&--compact &__question-text {
+		@include laptop {
+			font-size: 24px;
+			line-height: 30px;
+		}
+	}
+
+	&--compact &__answer-text {
+		@include laptop {
+			max-width: none;
+		}
+	}
 }

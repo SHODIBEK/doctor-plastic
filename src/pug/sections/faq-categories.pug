@@ -1,0 +1,37 @@
+//- Вопросы по категориям: слева фото, справа категории-аккордеоны со списками вопросов.
+//- В WP: категории — термины, вопросы — записи
+-
+	const faqCategoryAnswer = 'Методики, применяемые в нашей клинике, сводят такой риск к минимуму. Молочная железа во время коррекции либо не повреждается, либо ее повреждения незначительны. Так что сама операция на грудное вскармливание большого влияния не оказывает.'
+	const faqCategoryQuestions = [
+		{ question: 'Можно ли сохранить способность к грудному вскармливанию после увеличения груди?', answer: faqCategoryAnswer, open: true },
+		{ question: 'Какие анализы сдают перед операцией по увеличению груди?', answer: faqCategoryAnswer },
+		{ question: 'Остаются ли шрамы после увеличения груди?', answer: faqCategoryAnswer },
+		{ question: 'Какой период реабилитации после проведенной операции по увеличению груди?', answer: faqCategoryAnswer },
+		{ question: 'Какие анализы сдают перед операцией по увеличению груди?', answer: faqCategoryAnswer },
+		{ question: 'Остаются ли шрамы после увеличения груди?', answer: faqCategoryAnswer },
+		{ question: 'Какой период реабилитации после проведенной операции по увеличению груди?', answer: faqCategoryAnswer },
+	]
+	const faqCategories = [
+		{ title: 'Гинекология' },
+		{ title: 'Общая медицина' },
+		{ title: 'Пластическая хирургия', open: true, questions: faqCategoryQuestions },
+		{ title: 'Косметология' },
+		{ title: 'Флебология' },
+		{ title: 'Анализы' },
+	]
+	// Вопросы закрытых категорий в макете не показаны — до наполнения из WP выводим пример
+	const faqCategorySample = faqCategoryQuestions.slice(0, 4).map((item, index) => Object.assign({}, item, { open: index === 0 }))
+
+section.faq-categories#faq
+	.container.faq-categories__container
+		.faq-categories__media
+			+picture('faq/woman-mobile', '', 330, 464).faq-categories__image.faq-categories__image--mobile
+			+picture('faq/woman', '', 425, 815).faq-categories__image.faq-categories__image--desktop
+		.faq-categories__body
+			.faq-categories__list
+				each category, index in faqCategories
+					+collapse({ title: category.title, open: category.open, heading: 'h2' }).faq-categories__category
+						.faq.faq--compact.faq-categories__faq
+							+faqList(category.questions || faqCategorySample, `faq-category-${index}`)
+			.faq-categories__footer
+				+btn('Задать свой вопрос', { href: './signup.html' }).faq-categories__btn

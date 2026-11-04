@@ -1,0 +1,19 @@
+extends pug/layout
+
+append vars
+	- title = 'Ответы на вопросы о пластической хирургии — Доктор Пластик'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Ответы врачей клиники «Доктор Пластик» на частые вопросы пациентов: гинекология, общая медицина, пластическая хирургия, косметология, флебология и анализы.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'faq',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Ответы на вопросы' }],
+			accent: 'Ответы',
+			title: 'на вопросы',
+			woman: { desktop: 'team-head/sergeev', desktopWidth: 708, desktopHeight: 708, retina: true, mobile: 'faq/head-mobile', mobileWidth: 247, mobileHeight: 307 },
+		}
+
+block main
+	include pug/sections/page-head
+	.panel.panel--faq
+		include pug/sections/faq-categories
