@@ -1,0 +1,101 @@
+// Памятка пациента: вступление и вопросы хирургу
+.memo-intro {
+	&__container {
+		display: flex;
+		flex-direction: column;
+
+		@include laptop {
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 24px;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	&__text {
+		margin: 0;
+		font-size: 16px;
+		line-height: 22px;
+		color: var(--dp-color-text);
+	}
+
+	&__questions {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	&__title {
+		line-height: 1.3;
+		color: $color-black;
+	}
+
+	// На мобильном фото над текстом, на десктопе — справа на всю высоту колонки (537 × 1030 в макете)
+	&__visual {
+		position: relative;
+		z-index: 0;
+		display: flex;
+		justify-content: center;
+		order: -1;
+		height: 464px;
+
+		// Круг: в макете 330px центр на 18.13px правее середины, радиус 132.74
+		&::before {
+			content: "";
+			position: absolute;
+			left: calc(50% + 18.13px - 132.74px);
+			top: calc(176.14px - 132.74px);
+			z-index: -1;
+			border-radius: 50%;
+			width: 265.48px;
+			height: 265.48px;
+			background-color: var(--dp-color-action-secondary);
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			background-image:
+				linear-gradient(
+					180deg,
+					rgba(255, 255, 255, 0) 63.768%,
+					rgba(255, 255, 255, 0.7) 79.455%,
+					#{$color-white} 95.549%
+				);
+			inset: 0;
+		}
+
+		@include laptop {
+			flex: 1;
+			order: 0;
+			height: auto;
+			aspect-ratio: 537 / 1030;
+
+			&::before {
+				left: percentage(82 / 537);
+				top: percentage(175 / 1030);
+				width: percentage(432 / 537);
+				height: auto;
+				aspect-ratio: 1;
+			}
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 242px;
+		height: 464px;
+		max-width: none;
+
+		@include laptop {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}

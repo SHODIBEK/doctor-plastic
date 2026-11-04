@@ -308,8 +308,25 @@
 		}
 	}
 
+	// Шапка памятки: вырезанное фото, у слоя в макете свой масштаб (координаты из экспорта)
+	&--memo &__woman {
+		right: -186px;
+		top: -12px;
+		width: 481px;
+		height: 481px;
+
+		@include laptop {
+			left: page-head-fl(390);
+			right: auto;
+			top: page-head-fl(-48);
+			width: page-head-fl(1152);
+			height: page-head-fl(1152);
+		}
+	}
+
 	&--price &__title,
-	&--docs &__title {
+	&--docs &__title,
+	&--memo &__title {
 		max-width: none;
 	}
 

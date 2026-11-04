@@ -1,0 +1,54 @@
+extends pug/layout
+
+append vars
+	- title = 'Памятка пациента перед пластической операцией — Доктор Пластик'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Как подготовиться к пластической операции: вопросы хирургу, обследования и анализы, что взять с собой в клинику и какие лекарства купить заранее.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'memo',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'О клинике', href: './about.html' }, { title: 'Памятка пациента' }],
+			accent: 'Памятка',
+			title: 'пациента',
+			circle: 'memo-head/circle',
+			woman: { desktop: 'memo-head/woman', desktopWidth: 1024, desktopHeight: 1024, mobile: 'memo-head/woman-mobile', mobileWidth: 481, mobileHeight: 481 },
+		}
+		const memoExam = {
+			modifier: 'exam',
+			title: 'Вы можете пройти обследование<br class="memo-list__break"> у&nbsp;следующих специалистов:',
+			items: [
+				{ icon: 'heart', text: 'Терапевт, кардиолог;' },
+				{ icon: 'breast-implant-framed', text: 'Онколог-маммолог<br>(УЗИ молочных желез);' },
+				{ icon: 'legs', text: 'Врач флеболог (УЗИ вен нижних конечностей);' },
+				{ icon: 'board-activity', text: 'КТ грудной клетки;' },
+				{ icon: 'stethoscope', text: 'Все виды лабораторных исследований' },
+			],
+			notes: [
+				'Анализы необходимы, чтобы специалист «Бюстклиники» смог гарантировать вам безопасность пластической операции и отсутствие вреда здоровью. Помните, что сдавать анализы следует натощак, и у каждого из них есть срок действия, поэтому лучше не затягивать процесс подготовки и сделать все процедуры сразу.',
+				'Для вашего удобства вы так же можете сдать анализы в любой другой клинике, и результаты исследований, по предварительной договорённости с Вашим доктором, направить на адрес почты.',
+			],
+		}
+		const memoBefore = {
+			modifier: 'before',
+			title: 'Перед операцией помните:',
+			items: [
+				{ icon: 'time-clock', text: 'Вас будут ждать в клинике ровно в строго назначенное время;' },
+				{ icon: 'diet-thin', text: 'В этот день завтракать не стоит;' },
+				{ icon: 'toothbrush-thin', text: 'Захватите из дома привычные средства личной гигиены (зубную щётку и пасту, крема и т.п.);' },
+				{ icon: 'zipper', text: 'Одежда должна быть удобной и на замке, чтобы не было необходимости поднимать руки;' },
+				{ icon: 'necklace', text: 'Готовясь к операции, удалите лак с большого пальца левой руки, а все украшения оставьте дома.' },
+			],
+			subtitle: 'Лекарственные средства,<br class="memo-list__break"> которые понадобятся после операции:',
+			text: 'Точный список лекарств, которые вы будете принимать, составит врач, но некоторые из них лучше купить заранее и взять с собой на операцию:',
+			bullets: ['упаковку Супракса 400 мг;', 'упаковку Бифиформа или Линекса;', 'упаковку шипучих таблеток Панадола;', '20 капсул Омеза 20 мг.'],
+		}
+
+block main
+	include pug/sections/page-head
+	.panel.panel--memo
+		include pug/sections/memo-intro
+		- let memoList = memoExam
+		include pug/sections/memo-list
+		- memoList = memoBefore
+		include pug/sections/memo-list
+		include pug/sections/signup

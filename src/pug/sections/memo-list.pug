@@ -1,0 +1,21 @@
+//- Памятка пациента: список с иконками и дополнительный текст.
+//- Данные: memoList = { modifier, title, items: [{ icon, text }], notes?, subtitle?, text?, bullets? }
+section.memo-list(class=`memo-list--${memoList.modifier}`)
+	.container.container--narrow.memo-list__container
+		h2.title.memo-list__title!= memoList.title
+		ul.memo-list__items
+			each item in memoList.items
+				li.memo-list__item
+					img.memo-list__icon(src=`${baseDir}images/icons/set/${item.icon}.svg` width="40" height="40" alt="" loading="lazy")
+					p.memo-list__text!= nbsp(item.text)
+		if memoList.notes
+			.memo-list__notes
+				each note in memoList.notes
+					p.memo-list__note!= nbsp(note)
+		if memoList.subtitle
+			.memo-list__extra
+				h3.title.title--h3.memo-list__subtitle!= memoList.subtitle
+				p.memo-list__lead!= nbsp(memoList.text)
+				ul.bullets.bullets--wide
+					each bullet in memoList.bullets
+						li.bullets__item!= nbsp(bullet)

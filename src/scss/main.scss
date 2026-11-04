@@ -26,6 +26,7 @@
 @import "components/header";
 @import "components/mega-menu";
 @import "components/footer";
+@import "components/bullets";
 
 // Sections
 @import "sections/hero";
@@ -58,6 +59,8 @@
 @import "sections/review-form";
 @import "sections/video-reviews";
 @import "sections/docs";
+@import "sections/memo-intro";
+@import "sections/memo-list";
 
 // Pages
 @import "pages/pages-list";

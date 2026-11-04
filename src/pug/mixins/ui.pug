@@ -1,3 +1,6 @@
+//- Неразрывный пробел после коротких слов (предлоги, союзы), как в макете: «в&nbsp;клинике»
+- const nbsp = (text) => text.replace(/(?<=^|[\s(«;])([а-яё]{1,2}) /gi, '$1&nbsp;')
+
 //- Контентное изображение: webp @1x + @2x из images/content
 //- @demo +picture('hero/doctor', 'Доктор', 1240, 1238).class
 mixin picture(name, alt, width, height)

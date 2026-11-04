@@ -1,0 +1,40 @@
+// Список с бирюзовыми точками
+.bullets {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 15px;
+
+	&__item {
+		display: flex;
+		align-items: center;
+		font-size: 16px;
+		line-height: 22px;
+		color: $color-black;
+		gap: 10px;
+
+		&::before {
+			content: "";
+			flex-shrink: 0;
+			border-radius: 50%;
+			width: 8px;
+			height: 8px;
+			background-color: var(--dp-color-action-secondary);
+		}
+
+		@include laptop {
+			gap: 24px;
+		}
+	}
+
+	// Отступ от точки до текста 24px на всех ширинах
+	&--wide &__item {
+		gap: 24px;
+	}
+
+	@include laptop {
+		gap: 24px;
+	}
+}
