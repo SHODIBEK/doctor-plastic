@@ -19,7 +19,8 @@
 	&#{&}--memo,
 	&#{&}--faq,
 	&#{&}--payment,
-	&#{&}--articles {
+	&#{&}--articles,
+	&#{&}--article {
 		@include laptop {
 			padding-top: 70px;
 		}
@@ -28,6 +29,11 @@
 	// Варианты оплаты: на мобильном секции через 50px по макету
 	&--payment {
 		gap: 50px;
+	}
+
+	// Статья: на мобильном форма записи через 20px по макету
+	&--article {
+		gap: 20px;
 	}
 
 	@include laptop {

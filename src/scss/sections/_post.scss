@@ -1,0 +1,468 @@
+// Статья: блоки во всю ширину контейнера, текст и карточка эксперта — колонка 874px по центру
+.post {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+
+		@include laptop {
+			gap: 30px;
+		}
+	}
+
+	&__title {
+		margin: 0;
+		width: 100%;
+		font-weight: 300;
+		font-size: 30px;
+		line-height: 1.1;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			font-size: 40px;
+		}
+	}
+
+	&__meta {
+		display: flex;
+		flex-direction: column;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		gap: 10px;
+
+		@include tablet {
+			flex-flow: row wrap;
+			gap: 10px 50px;
+		}
+	}
+
+	&__meta-item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	&__meta-icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__meta-text {
+		font-weight: 500;
+		font-size: 15px;
+		line-height: 16px;
+		white-space: nowrap;
+		color: var(--dp-color-text-muted);
+	}
+
+	&__cover {
+		display: block;
+		border-radius: 15px;
+		width: 100%;
+		height: 160px;
+		object-fit: cover;
+
+		@include tablet {
+			height: 260px;
+		}
+
+		@include laptop {
+			border-radius: 30px;
+			height: 347px;
+			object-position: 50% 23%;
+		}
+	}
+
+	&__contents {
+		display: flex;
+		flex-direction: column;
+		border-radius: 15px;
+		padding: 15px;
+		width: 100%;
+		background-color: var(--dp-color-surface-subtle);
+		gap: 20px;
+
+		@include laptop {
+			border-radius: 30px;
+			padding: 30px 50px 40px;
+			gap: 24px;
+		}
+	}
+
+	&__contents-title {
+		margin: 0;
+		font-weight: 300;
+		font-size: 24px;
+		line-height: 1;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			font-size: 32px;
+			line-height: 40px;
+		}
+	}
+
+	&__contents-list {
+		display: flex;
+		flex-direction: column;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 15px;
+
+		@include laptop {
+			gap: 20px;
+		}
+	}
+
+	&__contents-item {
+		display: flex;
+		align-items: center;
+		font-size: 15px;
+		line-height: 1.2;
+		gap: 15px;
+
+		&::before {
+			content: "";
+			flex-shrink: 0;
+			border-radius: 50%;
+			width: 8px;
+			height: 8px;
+			background-color: var(--dp-color-action-secondary);
+		}
+
+		@include laptop {
+			font-size: 16px;
+			line-height: 1;
+		}
+	}
+
+	&__contents-link {
+		text-decoration: underline dotted;
+		text-underline-position: from-font;
+		color: $color-black;
+		transition: color $duration-normal;
+
+		@include hover {
+			color: var(--dp-color-action-primary);
+		}
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		gap: 20px;
+
+		@include laptop {
+			max-width: 874px;
+			gap: 40px;
+		}
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	&__lead {
+		margin: 0;
+		font-weight: 300;
+		font-size: 24px;
+		line-height: 1.2;
+		color: $color-black;
+
+		@include laptop {
+			font-size: 32px;
+			line-height: 40px;
+		}
+	}
+
+	&__paragraphs {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		&--wide {
+			gap: 24px;
+		}
+	}
+
+	&__paragraph {
+		margin: 0;
+		font-size: 16px;
+		line-height: 22px;
+		color: var(--dp-color-text);
+	}
+
+	&__figure {
+		overflow: hidden;
+		margin: 0;
+		border-radius: 15px;
+		height: 200px;
+
+		@include tablet {
+			height: 400px;
+		}
+
+		@include laptop {
+			border-radius: 30px;
+			height: 540px;
+		}
+	}
+
+	&__figure-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	// В макете у блока видео фиксированная высота 606px (под подписью пустое место)
+	&__video {
+		margin: 0;
+
+		@include laptop {
+			min-height: 606px;
+		}
+	}
+
+	&__note {
+		display: flex;
+		align-items: flex-start;
+		border-radius: 15px;
+		padding: 15px;
+		width: 100%;
+		color: var(--dp-color-text);
+		background-color: var(--dp-color-surface-note);
+		gap: 10px;
+
+		@include laptop {
+			border-radius: 30px;
+			padding: 30px 50px 40px;
+			gap: 24px;
+		}
+	}
+
+	&__note-icon {
+		flex-shrink: 0;
+		margin: 10px 0;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__note-body {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		min-width: 0;
+		gap: 10px;
+	}
+
+	&__note-title {
+		margin: 0;
+		font-weight: 300;
+		font-size: 24px;
+		line-height: 1.2;
+
+		@include laptop {
+			font-size: 32px;
+			line-height: 40px;
+		}
+	}
+
+	&__note-text {
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.3;
+
+		@include laptop {
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+
+	&__expert {
+		display: flex;
+		flex-direction: column;
+		border-radius: 15px;
+		padding: 10px;
+		width: 100%;
+		background-color: var(--dp-color-surface-subtle);
+		gap: 20px;
+
+		@include tablet {
+			flex-direction: row;
+		}
+
+		@include laptop {
+			border-radius: 30px;
+			padding: 30px;
+			max-width: 874px;
+			gap: 30px;
+		}
+	}
+
+	&__expert-photo {
+		display: block;
+		flex-shrink: 0;
+		overflow: hidden;
+		border-radius: 10px;
+		height: 196px;
+
+		@include tablet {
+			width: 230px;
+		}
+	}
+
+	&__expert-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__expert-body {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		min-width: 0;
+		gap: 20px;
+
+		@include tablet {
+			justify-content: space-between;
+		}
+	}
+
+	&__expert-info {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+
+		@include laptop {
+			gap: 3px;
+		}
+	}
+
+	&__expert-label,
+	&__expert-position {
+		margin: 0;
+		font-size: 14px;
+		line-height: 1;
+
+		@include laptop {
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+
+	&__expert-label {
+		color: var(--dp-color-text-muted);
+	}
+
+	&__expert-position {
+		color: var(--dp-color-text);
+	}
+
+	&__expert-name {
+		margin: 0;
+		font-weight: 500;
+		font-size: 22px;
+		line-height: 1.1;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			overflow: hidden;
+			font-size: 24px;
+			line-height: 30px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	}
+
+	&__expert-btn {
+		width: 100%;
+
+		@include tablet {
+			align-self: flex-start;
+			width: auto;
+		}
+	}
+
+	&__summary {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		border-top: 1px solid var(--dp-color-line-light);
+		border-bottom: 1px solid var(--dp-color-line-light);
+		padding: 19px 0;
+		width: 100%;
+		gap: 15px;
+
+		// Линии в макете нулевой толщины: отступы уменьшены на 1px, чтобы высота совпала (175 / 233)
+		@include laptop {
+			padding: 29px 0;
+			gap: 20px;
+		}
+	}
+
+	&__summary-title {
+		margin: 0;
+		font-weight: 300;
+		font-size: 24px;
+		line-height: 1.2;
+		text-align: center;
+		color: var(--dp-color-text-ink);
+
+		@include laptop {
+			font-size: 32px;
+			line-height: 40px;
+		}
+	}
+
+	&__summary-list {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		gap: 10px;
+
+		@include tablet {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+	}
+
+	&__summary-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 30px;
+		padding: 0 20px;
+		height: 55px;
+		font-size: 16px;
+		line-height: 22px;
+		white-space: nowrap;
+		color: var(--dp-color-text-ink);
+		background-color: var(--dp-color-surface-subtle);
+		transition: background-color $duration-normal;
+		gap: 10px;
+
+		@include hover {
+			background-color: var(--dp-color-light-gray);
+		}
+	}
+
+	&__summary-icon {
+		flex-shrink: 0;
+		overflow: visible;
+	}
+}

@@ -1,0 +1,17 @@
+extends pug/layout
+
+append vars
+	- title = 'Хирурги «Доктор Пластик» — лауреаты премии «Хрустальный Лотос»'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Пластические хирурги клиники «Доктор Пластик» получили награды премии «Хрустальный Лотос» и CRYSTAL BEAUTY AWARDS. Подробности церемонии и интервью доктора Володина.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'article',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Статьи', href: './articles.html' }, { title: 'Причины выбрать Бюстклинику для удаления гинекомастии' }],
+		}
+
+block main
+	include pug/sections/page-head
+	.panel.panel--article
+		include pug/sections/post
+		include pug/sections/signup

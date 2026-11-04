@@ -1,0 +1,113 @@
+//- Статья (single post): заголовок, мета, обложка, содержание, текст, «Важно», эксперт, резюме через ИИ
+-
+	const post = {
+		title: 'Причины выбрать Бюстклинику для удаления гинекомастии',
+		date: '25.09.2026',
+		datetime: '2026-09-25',
+		views: 7,
+		readTime: 3,
+		likes: 80,
+		cover: { image: 'article-page/cover', alt: 'Доктор Володин на церемонии CRYSTAL BEAUTY AWARDS 2023' },
+		contents: [
+			{ title: 'Типы доступов для установки имплантов', href: '#post-text' },
+			{ title: 'Наши работы', href: '#post-figure' },
+			{ title: 'Отзывы пациентов', href: '#post-video' },
+			{ title: 'Показания и противопоказания к маммопластике', href: '#post-note' },
+		],
+		lead: 'Состоялась IX церемония награждения лауреатов всемирно известной премии «Хрустальный Лотос».',
+		intro: [
+			'У нас две замечательные новости: пластические хирурги нашей клиники в очередной раз признаны одними из лучших. У «ДокторПластик» сразу две почетные награды.',
+			'23 апреля 2023 года традиционно собрались ведущие эксперты в мире красоты: косметологи, пластические хирурги, звезды шоу-бизнеса и легендарные спикеры. Были проведены презентации работ и торжественно награждены выдающиеся специалисты.',
+			'Мы выиграли в номинации «Лучший пластический хирург по маммопластике». Александр Владимирович Володин был награжден за свои заслуги и безупречную репутацию.',
+		],
+		figure: { image: 'article-page/award', alt: 'Вручение награды CRYSTAL BEAUTY AWARDS на сцене', width: 874, height: 581 },
+		text: [
+			'Это не единственная награда, так как Владислав Сергеевич Морозов также был признан экспертом Всероссийской премии для профессионалов CRYSTAL BEAUTY AWARDS & CONFERENCE-2022 и награжден за заслуги в сфере пластической хирургии нового поколения.',
+			'Нашим специалистам всегда очень приятно, когда их труд получает столь высокую оценку. Несомненно, это еще раз подчеркивает, что клиника «ДокторПластик» идет в ногу со временем.',
+		],
+		video: { title: 'Интервью Доктора Володина', image: 'article-page/interview', href: 'https://www.youtube.com/watch?v=' },
+		note: 'Информация из данного раздела не может служить достаточным основанием для диагноза или назначения лечения. Решение об этом должен принимать врач на основании всех имеющихся у него данных.',
+		expert: { name: 'Володин Александр Владимирович', position: 'Пластический хирург, стаж 14 лет', image: 'article-page/expert', href: '#signup' },
+	}
+	const postMeta = [
+		{ icon: 'calendar', label: 'Дата публикации', text: post.date, datetime: post.datetime },
+		{ icon: 'eye', label: 'Просмотры', text: `Прочитано: ${post.views}` },
+		{ icon: 'timer', label: 'Время на чтение', text: `Время на чтение: ${post.readTime} мин.` },
+		{ icon: 'like', label: 'Нравится', text: post.likes },
+	]
+	const summaryPrompt = encodeURIComponent('Сделай краткое резюме статьи: https://doctor-plastic.ru/article.html')
+	const summaryLinks = [
+		{ title: 'ChatGPT', icon: 'chatgpt', width: 24, height: 24, href: `https://chatgpt.com/?q=${summaryPrompt}` },
+		{ title: 'Perplexity', icon: 'perplexity', width: 18, height: 24, href: `https://www.perplexity.ai/search?q=${summaryPrompt}` },
+		{ title: 'Claude', icon: 'claude', width: 24, height: 24, href: `https://claude.ai/new?q=${summaryPrompt}` },
+		{ title: 'Grok', icon: 'grok', width: 24, height: 23, href: `https://grok.com/?q=${summaryPrompt}` },
+	]
+	const postImg = (name) => `${baseDir}images/content/${name}`
+	const postIcon = (name) => `${baseDir}images/icons/article/${name}.svg`
+
+article.post
+	.container.post__container
+		h1.post__title= post.title
+		ul.post__meta
+			each item in postMeta
+				li.post__meta-item
+					img.post__meta-icon(src=postIcon(item.icon) width="24" height="24" alt=item.label)
+					if item.datetime
+						time.post__meta-text(datetime=item.datetime)= item.text
+					else
+						span.post__meta-text= item.text
+
+		//- Обложка — первый экран, без lazy
+		img.post__cover(src=`${postImg(post.cover.image)}.webp` srcset=`${postImg(post.cover.image)}-mobile.webp 660w, ${postImg(post.cover.image)}.webp 1321w, ${postImg(post.cover.image)}@2x.webp 2642w` sizes="(min-width: 1432px) 1322px, (min-width: 1024px) calc(100vw - 110px), (min-width: 768px) calc(100vw - 60px), calc(100vw - 30px)" width="1321" height="879" alt=post.cover.alt fetchpriority="high")
+
+		nav.post__contents(aria-labelledby="post-contents-title")
+			h2.post__contents-title#post-contents-title Содержание страницы
+			ul.post__contents-list
+				each item in post.contents
+					li.post__contents-item
+						a.post__contents-link(href=item.href)= item.title
+
+		.post__body
+			.post__text#post-text
+				h2.post__lead= post.lead
+				.post__paragraphs
+					each text in post.intro
+						p.post__paragraph= text
+			figure.post__figure#post-figure
+				+picture(post.figure.image, post.figure.alt, post.figure.width, post.figure.height).post__figure-image
+			.post__paragraphs.post__paragraphs--wide
+				each text in post.text
+					p.post__paragraph= text
+			figure.video-card.post__video#post-video
+				a.video-card__link(href=post.video.href data-fancybox)
+					img.video-card__image(src=`${postImg(post.video.image)}.webp` srcset=`${postImg(post.video.image)}.webp 874w, ${postImg(post.video.image)}@2x.webp 1093w` sizes="(min-width: 1024px) 874px, calc(100vw - 30px)" width="874" height="461" alt="" loading="lazy" decoding="async")
+					span.btn-play.video-card__play
+						+svg('play').btn-play__icon
+					span.visually-hidden Смотреть видео
+				figcaption.video-card__title= post.video.title
+
+		aside.post__note#post-note
+			img.post__note-icon(src=postIcon('info') width="24" height="24" alt="")
+			.post__note-body
+				p.post__note-title Важно
+				p.post__note-text= post.note
+
+		.post__expert
+			picture.post__expert-photo
+				source(media="(min-width: 768px)" srcset=`${postImg(post.expert.image)}.webp 1x, ${postImg(post.expert.image)}@2x.webp 2x` width="230" height="196")
+				img.post__expert-image(src=`${postImg(post.expert.image)}-mobile.webp` srcset=`${postImg(post.expert.image)}-mobile@2x.webp 2x` width="310" height="196" alt=post.expert.name loading="lazy" decoding="async")
+			.post__expert-body
+				.post__expert-info
+					p.post__expert-label Информация проверена экспертом
+					p.post__expert-name= post.expert.name
+					p.post__expert-position= post.expert.position
+				+btn('Записаться', { href: post.expert.href }).post__expert-btn
+
+		.post__summary
+			h2.post__summary-title Создайте резюме этой публикации
+			ul.post__summary-list
+				each link in summaryLinks
+					li.post__summary-item
+						a.post__summary-link(href=link.href target="_blank" rel="noopener nofollow")
+							img.post__summary-icon(src=postIcon(link.icon) width=link.width height=link.height alt="")
+							span= link.title
