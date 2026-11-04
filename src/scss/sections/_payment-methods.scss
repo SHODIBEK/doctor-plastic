@@ -1,0 +1,98 @@
+// Варианты оплаты: способы оплаты карточками и текст
+.payment-methods {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		@include laptop {
+			gap: 50px;
+		}
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		gap: 10px;
+
+		@include tablet {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		@include laptop {
+			gap: 24px;
+		}
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+
+		// Обводка в макете внутри блока: поля 15/10 и 15/20 считаются от внешнего края
+		border: 3px solid var(--dp-color-action-secondary);
+		border-radius: 15px;
+		padding: 12px 7px;
+		gap: 10px;
+
+		@include laptop {
+			border-radius: 20px;
+			height: 110px;
+		}
+
+		// На 1024 четыре карточки узкие: полные поля из макета только с desktop
+		@include desktop {
+			padding: 12px 17px;
+			gap: 20px;
+		}
+	}
+
+	&__icon {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		background-color: var(--dp-color-surface-subtle);
+
+		@include laptop {
+			width: 60px;
+			height: 60px;
+		}
+	}
+
+	&__icon-image {
+		display: block;
+		width: 24px;
+		height: 24px;
+
+		@include laptop {
+			width: 40px;
+			height: 40px;
+		}
+	}
+
+	&__title {
+		flex: 1;
+		min-width: 0;
+		font-size: 14px;
+		line-height: 14px;
+		color: $color-black;
+
+		@include laptop {
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+
+	&__text {
+		margin: 0;
+		font-size: 16px;
+		line-height: 22px;
+		color: var(--dp-color-text);
+	}
+}

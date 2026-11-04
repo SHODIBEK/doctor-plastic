@@ -17,10 +17,16 @@
 	&#{&}--reviews,
 	&#{&}--docs,
 	&#{&}--memo,
-	&#{&}--faq {
+	&#{&}--faq,
+	&#{&}--payment {
 		@include laptop {
 			padding-top: 70px;
 		}
+	}
+
+	// Варианты оплаты: на мобильном секции через 50px по макету
+	&--payment {
+		gap: 50px;
 	}
 
 	@include laptop {

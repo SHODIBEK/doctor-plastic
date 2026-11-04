@@ -1,0 +1,12 @@
+//- Способы оплаты: карточки с иконками и текст
+//- Данные: paymentMethods = { items: [{ icon, title }], text }
+section.payment-methods
+	.container.container--narrow.payment-methods__container
+		h2.visually-hidden Способы оплаты
+		ul.payment-methods__list
+			each item in paymentMethods.items
+				li.payment-methods__item
+					span.payment-methods__icon
+						img.payment-methods__icon-image(src=`${baseDir}images/icons/set/${item.icon}.svg` width="40" height="40" alt="" loading="lazy")
+					span.payment-methods__title= item.title
+		p.payment-methods__text!= nbsp(paymentMethods.text)

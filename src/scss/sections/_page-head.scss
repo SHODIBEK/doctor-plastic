@@ -292,6 +292,22 @@
 		}
 	}
 
+	// Шапка «Варианты оплаты»: вырезанное фото, на мобильном обрезано по краю шапки (координаты из макета)
+	&--payment &__woman {
+		right: 0;
+		top: 18px;
+		width: 247px;
+		height: 307px;
+
+		@include laptop {
+			left: page-head-fl(389);
+			right: auto;
+			top: page-head-fl(-72);
+			width: page-head-fl(1024);
+			height: page-head-fl(1016);
+		}
+	}
+
 	// Шапка отзывов: вырезанное фото, на десктопе рука лежит поверх круга (координаты из макета)
 	&--reviews &__woman {
 		right: 0;
@@ -343,7 +359,8 @@
 	&--price &__title,
 	&--docs &__title,
 	&--memo &__title,
-	&--faq &__title {
+	&--faq &__title,
+	&--payment &__title {
 		max-width: none;
 	}
 

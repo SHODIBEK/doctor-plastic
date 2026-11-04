@@ -1,6 +1,11 @@
 .calc {
 	margin-top: 30px;
 
+	// Отдельная секция в .panel (страница «Варианты оплаты»): отступы задаёт панель (класс удвоен, чтобы перебить @include laptop ниже)
+	&#{&}--standalone {
+		margin-top: 0;
+	}
+
 	&__card {
 		--btn-notch: var(--dp-color-surface-subtle);
 

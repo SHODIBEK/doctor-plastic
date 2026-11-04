@@ -39,4 +39,4 @@ section.page-head(class=pageHead.modifier ? `page-head--${pageHead.modifier}` : 
 				span.page-head__title-accent= pageHead.accent
 				if pageHead.title
 					= ' '
-					span.page-head__title-text= pageHead.title
+					span.page-head__title-text!= pageHead.title

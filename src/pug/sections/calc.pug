@@ -4,7 +4,7 @@
 		{ name: 'term', label: 'Срок в меяц:', min: 1, max: 120, step: 1, value: 12, marks: ['1', '60', '120'] },
 	]
 
-.calc#calc
+.calc#calc(class=typeof calcModifier !== 'undefined' ? `calc--${calcModifier}` : null)
 	.container
 		form.calc__card(action="#" method="post" data-calc-rate="0.0629" data-calc)
 			h3.title.title--h3.calc__title

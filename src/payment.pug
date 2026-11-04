@@ -1,0 +1,31 @@
+extends pug/layout
+
+append vars
+	- title = 'Варианты оплаты пластической операции — наличные, карта, кредит, рассрочка | Доктор Пластик'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Как оплатить пластическую операцию в клинике «Доктор Пластик»: наличными, банковской картой, в кредит или в рассрочку. Онлайн-калькулятор рассрочки и запись на консультацию.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'payment',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Варианты оплаты' }],
+			accent: 'Варианты',
+			title: 'оплаты<br>операции',
+			woman: { desktop: 'payment-head/woman', desktopWidth: 1024, desktopHeight: 1016, retina: true, mobile: 'payment-head/woman-mobile', mobileWidth: 247, mobileHeight: 307 },
+		}
+		const paymentMethods = {
+			items: [
+				{ icon: 'wallet', title: 'Наличными' },
+				{ icon: 'cards', title: 'По карте' },
+				{ icon: 'document', title: 'В кредит' },
+				{ icon: 'calendar', title: 'В рассрочку' },
+			],
+			text: 'Готовиться к пластической операции вы начинаете задолго до прихода в «Бюстклинику», когда впервые возникает желание изменить размер или форму груди. Конечно, у вас появляется множество вопросов, касающихся безопасности проведения операции, её результата и сохранения эффекта. Не стесняйтесь все их выписать на лист бумаги, чтобы озвучить на консультации в кабинете врача. Неплохо посмотреть на фотографии результатов его работы и отметить, какие из них вам больше всего нравятся и почему.',
+		}
+		const calcModifier = 'standalone'
+
+block main
+	include pug/sections/page-head
+	.panel.panel--payment
+		include pug/sections/payment-methods
+		include pug/sections/calc
+		include pug/sections/signup
