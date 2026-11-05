@@ -1,10 +1,10 @@
 -
 	const menu = [
 		{ title: 'Услуги', href: './services.html', mega: true },
-		{ title: 'Цены', href: '#prices' },
-		{ title: 'Специалисты', href: '#doctors' },
-		{ title: 'Наши работы', href: '#works' },
-		{ title: 'О клинике', href: '#advantages' },
+		{ title: 'Цены', href: './price-list.html' },
+		{ title: 'Специалисты', href: './team.html' },
+		{ title: 'Наши работы', href: './photos.html' },
+		{ title: 'О клинике', href: './about.html' },
 		{ title: 'Контакты', href: './contacts.html' },
 	]
 
@@ -13,7 +13,7 @@ header.header(data-header)
 		button.header__burger(type="button" aria-label="Меню" aria-expanded="false" aria-controls="header-nav" data-header-burger)
 			+svg('menu').header__burger-icon.header__burger-icon--open
 			+svg('close').header__burger-icon.header__burger-icon--close
-		a.header__logo(href="./index.html" aria-label="Доктор Пластик")
+		a.header__logo(href="./home.html" aria-label="Доктор Пластик")
 			img.header__logo-image(src="./images/icons/logo.svg" width="126" height="32" alt="Доктор Пластик")
 		nav.header__nav#header-nav
 			ul.header__menu

@@ -36,7 +36,7 @@ section.prices#prices(class=typeof doctorPrices !== 'undefined' ? 'prices--docto
 			.prices__more
 				button.prices__expand(type="button" data-prices-expand) Развернуть прайс
 				.prices__actions
-					+btn('Смотреть полный прайс', { href: '#' }).prices__full
+					+btn('Смотреть полный прайс', { href: './price-list.html' }).prices__full
 					+btnRound('down', 'Развернуть прайс').prices__toggle(data-prices-expand)
 	if typeof doctorPrices === 'undefined'
 		include calc

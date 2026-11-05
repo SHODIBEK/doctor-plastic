@@ -35,3 +35,17 @@ section.faq-categories#faq
 							+faqList(category.questions || faqCategorySample, `faq-category-${index}`)
 			.faq-categories__footer
 				+btn('Задать свой вопрос', { href: '#signup-popup' }).faq-categories__btn(data-signup-open)
+
+//- Микроразметка FAQPage: только уникальные вопросы (в WP — из записей-вопросов)
+-
+	const faqSchemaSeen = {}
+	const faqSchema = {
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: faqCategoryQuestions.filter((item) => !faqSchemaSeen[item.question] && (faqSchemaSeen[item.question] = true)).map((item) => ({
+			'@type': 'Question',
+			name: item.question,
+			acceptedAnswer: { '@type': 'Answer', text: item.answer },
+		})),
+	}
+script(type="application/ld+json")!= JSON.stringify(faqSchema).replace(/</g, '\u003c')

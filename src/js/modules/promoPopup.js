@@ -67,10 +67,11 @@ const init = () => {
 
 	if (!wasShown()) {
 		setTimeout(() => {
+			// Если открыт другой попап — не показываем и не помечаем: промо покажется на следующей странице
 			if (!Fancybox.getInstance()) {
 				open();
+				markShown();
 			}
-			markShown();
 		}, DELAY);
 	}
 };

@@ -1,9 +1,9 @@
 /* eslint-disable func-names */
 import "./vendor";
 import "./helpers";
-import { ieFix } from "./vendor/ie-fix";
 import { vhFix } from "./vendor/vh-fix";
 import { Fancybox } from "@fancyapps/ui/dist/fancybox/fancybox.esm.js";
+import "./modules/fancyboxRu";
 import { actualYear } from "./modules/actualYear";
 import lazyLoading from "./modules/lazyLoading";
 import sliders from "./modules/sliders";
@@ -19,8 +19,8 @@ import promoPopup from "./modules/promoPopup";
 import chatPopup from "./modules/chatPopup";
 import cookie from "./modules/cookie";
 import feedback from "./modules/feedback";
+import phoneMask from "./modules/phoneMask";
 
-ieFix();
 vhFix();
 actualYear();
 lazyLoading.init();
@@ -37,4 +37,5 @@ promoPopup.init();
 chatPopup.init();
 cookie.init();
 feedback.init();
+phoneMask.init();
 Fancybox.bind("[data-fancybox]");

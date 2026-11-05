@@ -13,13 +13,29 @@ const laptopQuery = window.matchMedia('(min-width: 1024px)');
  */
 const initLaptopOnly = (el, options) => {
 	let swiper = null;
+	let destroyFrame = null;
 
+	// Swiper с loop откладывает slideTo на requestAnimationFrame (slideToLoop). Если уничтожить слайдер
+	// в том же кадре, отложенный вызов падает: «Cannot read properties of undefined (reading 'slidesPerGroupSkip')».
+	// Поэтому destroy — через два кадра, а при обратном расширении окна он отменяется.
 	const toggle = () => {
-		if (laptopQuery.matches && !swiper) {
-			swiper = new window.Swiper(el, options);
-		} else if (!laptopQuery.matches && swiper) {
-			swiper.destroy(true, true);
-			swiper = null;
+		if (laptopQuery.matches) {
+			if (destroyFrame) {
+				cancelAnimationFrame(destroyFrame);
+				destroyFrame = null;
+			}
+
+			if (!swiper) {
+				swiper = new window.Swiper(el, options);
+			}
+		} else if (swiper && !destroyFrame) {
+			destroyFrame = requestAnimationFrame(() => {
+				destroyFrame = requestAnimationFrame(() => {
+					destroyFrame = null;
+					swiper.destroy(true, true);
+					swiper = null;
+				});
+			});
 		}
 	};
 

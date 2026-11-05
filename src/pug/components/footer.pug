@@ -1,9 +1,9 @@
 -
 	const footerRequisites = ['ИНН: 7708698635', 'ОГРН: 1097746190970', 'Лицензия: № Л041-01137-77/00368153', 'Юр.адрес: Россия, 105066, г. Москва, ул. Ольховская, д. 27']
 	const footerMenus = [
-		{ title: 'Направления', mod: 'directions', items: ['Пластика', 'Косметология', 'Гинекология'] },
-		{ title: 'Популярные услуги', mod: 'services', items: ['Увеличение груди', 'Подтяжка груди', 'Ринопластика', 'Отопластика'] },
-		{ title: 'О клинике', mod: 'about', items: ['Цены', 'Наши работы', 'Специалисты', 'Пациентам'] },
+		{ title: 'Направления', mod: 'directions', items: [{ title: 'Пластика', href: './services.html' }, { title: 'Косметология', href: '#' }, { title: 'Гинекология', href: '#' }] },
+		{ title: 'Популярные услуги', mod: 'services', items: [{ title: 'Увеличение груди', href: './service.html' }, { title: 'Подтяжка груди', href: '#' }, { title: 'Ринопластика', href: '#' }, { title: 'Отопластика', href: '#' }] },
+		{ title: 'О клинике', mod: 'about', items: [{ title: 'Цены', href: './price-list.html' }, { title: 'Наши работы', href: './photos.html' }, { title: 'Специалисты', href: './team.html' }, { title: 'Пациентам', href: './memo.html' }] },
 	]
 	const footerPayments = [
 		{ src: 'icons/footer/pay-mir.svg', width: 79, alt: 'МИР' },
@@ -26,7 +26,7 @@ footer.footer#contacts
 				+picture('footer/map', 'Карта проезда', 600, 354).footer__map-image
 			.footer__info
 				.footer__head
-					a.footer__logo(href="./index.html" aria-label="Доктор Пластик")
+					a.footer__logo(href="./home.html" aria-label="Доктор Пластик")
 						img.footer__logo-image(src=`${baseDir}images/icons/logo.svg` width="126" height="32" alt="Доктор Пластик")
 					a.footer__phone(href="tel:+74992262189") +7 (499) 226 21 89
 				address.footer__address
@@ -59,7 +59,7 @@ footer.footer#contacts
 						ul.footer__menu
 							each item in menu.items
 								li.footer__menu-item
-									a.footer__menu-link(href="#")= item
+									a.footer__menu-link(href=item.href)= item.title
 			.footer__payments
 				p.footer__column-title Принимаем к оплате:
 				ul.footer__payments-list

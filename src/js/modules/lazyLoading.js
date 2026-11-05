@@ -1,4 +1,4 @@
-import lozad from "lozad";
+import lozad from 'lozad';
 
 let observer;
 
@@ -7,12 +7,12 @@ let observer;
  * https://github.com/ApoorvSaxena/lozad.js
  */
 const init = () => {
-	observer = lozad(".js-lazy", {
-		rootMargin: "10px 0px", // syntax similar to that of CSS Margin
+	observer = lozad('.js-lazy', {
+		rootMargin: '10px 0px', // syntax similar to that of CSS Margin
 		threshold: 0.1, // ratio of element convergence
 		enableAutoReload: true, // it will reload the new image when validating attributes changes
 		loaded(el) {
-			el.classList.add("is-loaded");
+			el.classList.add('is-loaded');
 		},
 	});
 

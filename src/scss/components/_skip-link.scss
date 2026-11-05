@@ -1,0 +1,19 @@
+// Ссылка «Перейти к содержимому»: видна только при фокусе с клавиатуры
+.skip-link {
+	position: fixed;
+	top: 8px;
+	left: 8px;
+	z-index: 10000;
+	padding: 12px 20px;
+	border-radius: 8px;
+	color: var(--dp-color-action-inverse);
+	background-color: var(--dp-color-action-primary);
+	font-weight: 700;
+	text-decoration: none;
+	transform: translateY(calc(-100% - 16px));
+	transition: transform 0.2s ease;
+
+	&:focus {
+		transform: none;
+	}
+}

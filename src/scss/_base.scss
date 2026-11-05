@@ -60,6 +60,10 @@ main {
 
 .main {
 	position: relative;
+
+	&:focus {
+		outline: none;
+	}
 }
 
 p {
@@ -158,3 +162,16 @@ iframe {
 	text-transform: uppercase !important;
 }
 
+// Пользователь просит меньше анимаций — отключаем переходы и плавный скролл
+/* stylelint-disable declaration-no-important */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition-duration: 10ms !important;
+		animation-duration: 10ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
+/* stylelint-enable declaration-no-important */

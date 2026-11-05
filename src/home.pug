@@ -2,6 +2,8 @@ extends pug/layout
 
 append vars
 	- title = 'Доктор Пластик — пластика у ведущего российского хирурга'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Клиника пластической хирургии «Доктор Пластик» в Москве: пластика груди, лица и тела у хирургов со стажем от 15 лет. Фото до и после, цены, рассрочка, отзывы пациентов, запись на консультацию.'
+	- meta.ogTitle = meta.twitterTitle = title
 
 block main
 	include pug/sections/hero

@@ -2,12 +2,14 @@
 extends base
 
 block content
+	a.skip-link(href="#main") Перейти к содержимому
 	.site
 		include components/header
-		main.main
+		main.main#main(tabindex="-1")
 			block main
 		include components/footer
 	include components/signup-popup
 	include components/promo-popup
 	include components/chat-popup
 	include components/cookie
+	include components/schema-clinic

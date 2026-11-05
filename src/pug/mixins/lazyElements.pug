@@ -6,18 +6,15 @@
 	}).class(attrs)
 
 mixin lazyImage(data)
-	img.image.js-lazy(
+	//- Нативная ленивая загрузка: src/srcset сразу в разметке (индексация, работа без JS)
+	img.image(
 		draggable="false"
-		src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAQAAAAnOwc2AAAAD0lEQVR42mNkwAIYh7IgAAVVAAuInjI5AAAAAElFTkSuQmCC"
-		data-src=data.src
-		data-srcset=data.srcset
-		data-placeholder-background=data.placeholder
+		src=data.src
+		srcset=data.srcset
 		alt=data.alt
+		loading="lazy"
+		decoding="async"
 	)&attributes(attributes)
-
-	if data.appear
-		noscript
-			img(src=data.src alt=data.alt)
 
 //- @demo +lazyPicture({
 	src: 'photo.jpg',

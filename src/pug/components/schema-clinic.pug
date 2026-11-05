@@ -1,0 +1,26 @@
+//- Микроразметка клиники (schema.org MedicalClinic) для поисковиков.
+//- В WP: данные из настроек темы/ACF; url и logo — абсолютные (home_url()).
+-
+	const schemaClinic = {
+		'@context': 'https://schema.org',
+		'@type': 'MedicalClinic',
+		name: 'Доктор Пластик',
+		description: 'Клиника пластической хирургии и косметологии',
+		medicalSpecialty: 'PlasticSurgery',
+		telephone: '+7 (499) 226-21-89',
+		email: 'info@doctorplastic.ru',
+		address: {
+			'@type': 'PostalAddress',
+			streetAddress: 'ул. Мясницкая, 32',
+			addressLocality: 'Москва',
+			addressCountry: 'RU',
+		},
+		openingHoursSpecification: {
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+			opens: '09:00',
+			closes: '21:00',
+		},
+	}
+
+script(type="application/ld+json")!= JSON.stringify(schemaClinic).replace(/</g, '\u003c')
