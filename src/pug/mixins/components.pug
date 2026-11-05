@@ -197,18 +197,19 @@ mixin newsCard(data)
 			a.btn-play.news-card__more(href=data.href aria-label="Читать новость")
 				+svg('arrow-right').btn-play__icon.btn-play__icon--stroke
 
-//- Карточка врача с кнопкой «Оставить отзыв»: { lastName, name, position, image, href }
+//- Карточка врача с кнопкой «Оставить отзыв»: { lastName, name, position, image, imageWidth, imageHeight, href, btnAttrs }
+//- Без href кнопка — <button>; btnAttrs — атрибуты кнопки (JS-хуки)
 mixin doctorTeaser(data)
 	article.doctor-teaser&attributes(attributes)
 		.doctor-teaser__main
 			.doctor-teaser__photo
-				+picture(data.image, `${data.lastName} ${data.name}`, 130, 87).doctor-teaser__image
+				+picture(data.image, `${data.lastName} ${data.name}`, data.imageWidth || 130, data.imageHeight || 87).doctor-teaser__image
 			.doctor-teaser__info
 				h3.doctor-teaser__name
 					span.doctor-teaser__last-name= data.lastName
 					span.doctor-teaser__first-name= data.name
 				p.doctor-teaser__position= data.position
-		+btn('Оставить отзыв', { href: data.href }).doctor-teaser__btn
+		+btn('Оставить отзыв', { href: data.href }).doctor-teaser__btn&attributes(data.btnAttrs || {})
 
 //- Карточка услуги с фото: { title, image, href }
 mixin serviceCard(item)

@@ -1,0 +1,10 @@
+extends pug/base
+
+append vars
+	- title = 'Оставить отзыв о враче или клинике | Доктор Пластик'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Оставьте отзыв о пластическом хирурге или о клинике «Доктор Пластик»: выберите врача, поставьте оценку и площадку для отзыва — Яндекс Карты, 2ГИС, ПроДокторов, СберЗдоровье, Med-Otzyv.'
+	- meta.ogTitle = meta.twitterTitle = title
+
+block content
+	main.main
+		include pug/sections/feedback

@@ -1,0 +1,102 @@
+//- Форма отзыва в 3 шага: врач или клиника → оценка 1–5 → площадка для отзыва. Шаги переключает js/modules/feedback.js
+//- Каждый пункт шага 1 несёт данные для шага 2 и ссылки на площадки (data-feedback-item); в WP — поля ACF врача
+-
+	const feedbackSrc = `${baseDir}images/content/review-steps`
+	const feedbackPlatforms = [
+		{ key: 'yandex', src: 'icons/ratings-yandex.svg', width: 189, alt: 'Яндекс Карты' },
+		{ key: '2gis', src: 'icons/ratings-2gis.svg', width: 109, alt: '2ГИС' },
+		{ key: 'prodoctorov', src: 'icons/footer/prodoctorov.svg', width: 197, alt: 'ПроДокторов' },
+		{ key: 'sber', src: 'icons/footer/sber-health.svg', width: 255, alt: 'СберЗдоровье' },
+		{ key: 'medotzyv', src: 'icons/footer/medotzyv.png', width: 115, alt: 'Med-Otzyv.ru' },
+	]
+	const feedbackLinks = { yandex: '#', '2gis': '#', prodoctorov: '#', sber: '#', medotzyv: '#' }
+	const feedbackClinic = {
+		id: 'clinic',
+		name: 'Доктор Пластик',
+		position: 'Специализированный центр пластической хирургии груди',
+		photo: `${baseDir}images/icons/logo-sign.svg`,
+		logo: true,
+		links: feedbackLinks,
+	}
+	const feedbackDoctors = [
+		{ id: 'volodin', lastName: 'Володин', name: 'Александр Владимирович', position: 'Пластический хирург' },
+		{ id: 'trufanov', lastName: 'Труфанов', name: 'Дмитрий Игоревич', position: 'Пластический хирург' },
+		{ id: 'morozov', lastName: 'Морозов', name: 'Владислав Сергеевич', position: 'Пластический хирург' },
+		{ id: 'martynov', lastName: 'Мартынов', name: 'Игорь Витальевич', position: 'Пластический хирург' },
+		{ id: 'kozlov', lastName: 'Козлов', name: 'Вадим Дмитриевич', position: 'Пластический хирург' },
+		{ id: 'katayan', lastName: 'Катаян', name: 'Лариса Артуровна', position: 'Пластический хирург' },
+	]
+	const feedbackItem = (doctor) => ({
+		id: doctor.id,
+		name: `${doctor.lastName} ${doctor.name}`,
+		position: doctor.position,
+		photo: `${feedbackSrc}/${doctor.id}-big.webp`,
+		photo2x: `${feedbackSrc}/${doctor.id}-big@2x.webp`,
+		links: feedbackLinks,
+	})
+	//- Шаг 2 до выбора (и в макете) показывает последнего врача
+	const feedbackCurrent = feedbackItem(feedbackDoctors[feedbackDoctors.length - 1])
+
+section.feedback(data-feedback)
+	form.feedback__panel(action="#" method="post")
+		input(type="hidden" name="review-target" value=feedbackCurrent.id data-feedback-target)
+
+		//- Шаг 1: выбор врача или клиники
+		.feedback__step.feedback__step--choice(data-feedback-step="choice")
+			.feedback__head
+				h1.feedback__title Отзывы помогают нам становиться ещё лучше!
+				p.feedback__text Выберите врача для которого хотите оставить отзыв или поделитесь впечатлением о нашей клинике в целом:
+			article.feedback__clinic(data-feedback-item=feedbackClinic)
+				.feedback__clinic-main
+					img.feedback__clinic-logo(src=feedbackClinic.photo width="49" height="50" alt="")
+					.feedback__clinic-info
+						h2.feedback__clinic-name= feedbackClinic.name
+						p.feedback__clinic-text специализированный центр пластической хирургии груди
+				+btn('Оставить отзыв').feedback__clinic-btn(data-feedback-choose)
+			ul.feedback__doctors
+				each doctor in feedbackDoctors
+					li.feedback__doctor
+						+doctorTeaser({
+							lastName: doctor.lastName,
+							name: doctor.name,
+							position: doctor.position,
+							image: `review-steps/${doctor.id}`,
+							imageWidth: 130,
+							imageHeight: 130,
+							btnAttrs: { 'data-feedback-choose': true },
+						})(data-feedback-item=feedbackItem(doctor))
+
+		//- Шаг 2: оценка
+		.feedback__step.feedback__step--rating(data-feedback-step="rating" hidden)
+			.feedback__person
+				.feedback__photo(data-feedback-photo-wrap)
+					img.feedback__photo-image(
+						src=feedbackCurrent.photo
+						srcset=`${feedbackCurrent.photo2x} 2x`
+						width="200"
+						height="200"
+						alt=feedbackCurrent.name
+						loading="lazy"
+						decoding="async"
+						data-feedback-photo
+					)
+				.feedback__person-info
+					h2.feedback__name(data-feedback-name)= feedbackCurrent.name
+					p.feedback__position(data-feedback-position)= feedbackCurrent.position
+			fieldset.feedback__rating
+				legend.feedback__legend Выберите оценку от 1 до 5
+				.feedback__stars
+					each value in [1, 2, 3, 4, 5]
+						label.feedback__star
+							input.feedback__star-input(type="radio" name="rating" value=value data-feedback-rating)
+							+svg('star').feedback__star-icon(aria-hidden="true")
+							span.feedback__star-value= value
+
+		//- Шаг 3: площадка
+		.feedback__step.feedback__step--platform(data-feedback-step="platform" hidden)
+			h2.feedback__title.feedback__title--platform Выберите площадку, где хотите оставить отзыв:
+			ul.feedback__platforms
+				each platform in feedbackPlatforms
+					li.feedback__platform
+						a.feedback__platform-link(href=feedbackCurrent.links[platform.key] target="_blank" rel="noopener" data-feedback-link=platform.key)
+							img.feedback__platform-logo(src=`${baseDir}images/${platform.src}` width=platform.width height="30" alt=platform.alt loading="lazy" decoding="async")
