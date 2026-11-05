@@ -17,6 +17,7 @@ import megaMenu from "./modules/megaMenu";
 import signupPopup from "./modules/signupPopup";
 import promoPopup from "./modules/promoPopup";
 import chatPopup from "./modules/chatPopup";
+import cookie from "./modules/cookie";
 import feedback from "./modules/feedback";
 
 ieFix();
@@ -34,5 +35,6 @@ megaMenu.init();
 signupPopup.init();
 promoPopup.init();
 chatPopup.init();
+cookie.init();
 feedback.init();
 Fancybox.bind("[data-fancybox]");

@@ -1,0 +1,68 @@
+// Cookie-баннер внизу экрана
+.cookie {
+	position: fixed;
+	left: 10px;
+	right: 10px;
+	bottom: 10px;
+	z-index: 90;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	border-radius: 15px;
+	padding: 20px;
+	background-color: var(--dp-color-action-secondary);
+	gap: 15px;
+
+	&__text {
+		margin: 0;
+		font-size: 16px;
+		line-height: 20px;
+		color: $color-black;
+	}
+
+	&__br {
+		display: none;
+	}
+
+	&__btn {
+		--btn-notch: var(--dp-color-action-secondary);
+
+		flex-shrink: 0;
+	}
+
+	&[hidden] {
+		display: none;
+	}
+
+	@include tablet {
+		left: 50%;
+		right: auto;
+		bottom: 30px;
+		flex-direction: row;
+		align-items: center;
+		width: calc(100% - 60px);
+		max-width: 1000px;
+		transform: translateX(-50%);
+		gap: 30px;
+
+		&__text {
+			flex: 1 1 0;
+			min-width: 0;
+		}
+	}
+
+	@include laptop {
+		bottom: 50px;
+		border-radius: 20px;
+		padding: 30px 40px;
+
+		&__text {
+			font-size: 24px;
+			line-height: 30px;
+		}
+
+		&__br {
+			display: inline;
+		}
+	}
+}
