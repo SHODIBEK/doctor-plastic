@@ -14,6 +14,7 @@ import expand from "./modules/expand";
 import photoCase from "./modules/photoCase";
 import overflowFade from "./modules/overflowFade";
 import megaMenu from "./modules/megaMenu";
+import signupPopup from "./modules/signupPopup";
 
 ieFix();
 vhFix();
@@ -27,4 +28,5 @@ expand.init();
 photoCase.init();
 overflowFade.init();
 megaMenu.init();
+signupPopup.init();
 Fancybox.bind("[data-fancybox]");

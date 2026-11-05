@@ -34,4 +34,4 @@ section.faq-categories#faq
 						.faq.faq--compact.faq-categories__faq
 							+faqList(category.questions || faqCategorySample, `faq-category-${index}`)
 			.faq-categories__footer
-				+btn('Задать свой вопрос', { href: './signup.html' }).faq-categories__btn
+				+btn('Задать свой вопрос', { href: '#signup-popup' }).faq-categories__btn(data-signup-open)

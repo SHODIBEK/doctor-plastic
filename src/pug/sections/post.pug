@@ -27,7 +27,7 @@
 		],
 		video: { title: 'Интервью Доктора Володина', image: 'article-page/interview', href: 'https://www.youtube.com/watch?v=' },
 		note: 'Информация из данного раздела не может служить достаточным основанием для диагноза или назначения лечения. Решение об этом должен принимать врач на основании всех имеющихся у него данных.',
-		expert: { name: 'Володин Александр Владимирович', position: 'Пластический хирург, стаж 14 лет', image: 'article-page/expert', href: '#signup' },
+		expert: { name: 'Володин Александр Владимирович', position: 'Пластический хирург, стаж 14 лет', image: 'article-page/expert', href: '#signup-popup' },
 	}
 	const postMeta = [
 		{ icon: 'calendar', label: 'Дата публикации', text: post.date, datetime: post.datetime },
@@ -101,7 +101,7 @@ article.post
 					p.post__expert-label Информация проверена экспертом
 					p.post__expert-name= post.expert.name
 					p.post__expert-position= post.expert.position
-				+btn('Записаться', { href: post.expert.href }).post__expert-btn
+				+btn('Записаться', { href: post.expert.href }).post__expert-btn(data-signup-open)
 
 		.post__summary
 			h2.post__summary-title Создайте резюме этой публикации

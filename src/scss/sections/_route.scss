@@ -1,0 +1,117 @@
+// Как добраться: схема проезда и маршруты
+.route {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include laptop {
+			gap: 50px;
+		}
+	}
+
+	// На мобильном схема на всю ширину экрана, с планшета — со скруглением
+	&__map {
+		display: block;
+		margin: 0 -15px;
+
+		@include tablet {
+			overflow: hidden;
+			margin: 0;
+			border-radius: 20px;
+		}
+
+		// Ширина схемы 1321 по макету — картинка без масштабирования
+		@include laptop {
+			margin: 0 auto;
+			width: 100%;
+			max-width: 1321px;
+		}
+	}
+
+	&__picture {
+		display: block;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	&__columns {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include laptop {
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 50px;
+		}
+	}
+
+	&__column {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		min-width: 0;
+		gap: 15px;
+
+		@include laptop {
+			gap: 20px;
+		}
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 300;
+		font-size: 24px;
+		line-height: 1;
+		color: var(--dp-color-text);
+
+		@include laptop {
+			font-size: 32px;
+			line-height: 40px;
+		}
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	&__text,
+	&__item {
+		font-size: 16px;
+		line-height: 22px;
+		color: var(--dp-color-text);
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		padding-left: 10px;
+		gap: 10px;
+
+		@include laptop {
+			padding-left: 20px;
+		}
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+
+		&::before {
+			content: "";
+			flex-shrink: 0;
+			border-radius: 50%;
+			width: 6px;
+			height: 6px;
+			background-color: var(--dp-color-action-secondary);
+		}
+	}
+}

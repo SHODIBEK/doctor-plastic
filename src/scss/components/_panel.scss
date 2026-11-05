@@ -13,7 +13,6 @@
 	// Страница врача: сверху 70px по макету (класс удвоен, чтобы перебить @include laptop ниже)
 	&#{&}--doctor,
 	&#{&}--about,
-	&#{&}--signup,
 	&#{&}--reviews,
 	&#{&}--docs,
 	&#{&}--memo,
@@ -21,7 +20,8 @@
 	&#{&}--payment,
 	&#{&}--articles,
 	&#{&}--article,
-	&#{&}--photos {
+	&#{&}--photos,
+	&#{&}--contacts {
 		@include laptop {
 			padding-top: 70px;
 		}
@@ -34,7 +34,8 @@
 	}
 
 	// Статья: на мобильном форма записи через 20px по макету
-	&--article {
+	&--article,
+	&--contacts {
 		gap: 20px;
 	}
 

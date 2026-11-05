@@ -83,7 +83,7 @@ section.price-list#price-list
 								each item in priceSample
 									+priceLine(Object.assign({ note: priceNote }, item)).price-line--divided
 		.price-list__actions
-			+btn('Записаться на прием', { href: '#signup' }).price-list__btn
+			+btn('Записаться на прием', { href: '#signup-popup' }).price-list__btn(data-signup-open)
 			+btn('Скачать полный прайс-лист', { href: '#' }).btn--secondary.price-list__btn(download)
 	.price-list__calc
 		include calc

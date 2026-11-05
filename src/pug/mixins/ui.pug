@@ -11,7 +11,7 @@ mixin picture(name, alt, width, height)
 	})(width=width height=height)&attributes(attributes)
 
 //- Кнопка с вырезами. href → <a>, иначе <button>
-//- @demo +btn('Записаться', { href: '#signup' }).btn--full
+//- @demo +btn('Записаться', { href: '#signup-popup' }).btn--full(data-signup-open)
 mixin btn(text, options)
 	- const opts = options || {}
 	if opts.href

@@ -93,3 +93,52 @@
 		object-fit: fill;
 	}
 }
+
+// Попап «Записаться»: до открытия скрыт, Fancybox показывает его как .fancybox__content
+.signup--popup {
+	display: none;
+	border-radius: 20px;
+	padding: 50px 20px 20px;
+	width: 100%;
+	max-width: 1240px;
+	background-color: var(--dp-color-surface-panel);
+
+	@include laptop {
+		border-radius: var(--dp-radius-panel);
+		padding: 70px 80px;
+	}
+}
+
+// Оверлей и крестик Fancybox для попапа записи
+.signup-modal {
+	--fancybox-bg: rgba(19, 25, 35, 0.6);
+
+	.fancybox__slide {
+		padding: 20px 10px;
+
+		@include laptop {
+			padding: 40px;
+		}
+	}
+
+	// Крестик внутри карточки (селектор сильнее, чем у Fancybox для inline)
+	.has-inline .fancybox__content > .f-button.is-close-btn {
+		--f-button-color: #{$color-canvas};
+		--f-button-hover-color: #{$color-canvas};
+		--f-button-bg: transparent;
+		--f-button-hover-bg: rgba(19, 25, 35, 0.06);
+		--f-button-width: 40px;
+		--f-button-height: 40px;
+		--f-button-svg-width: 24px;
+		--f-button-svg-height: 24px;
+
+		right: 10px;
+		top: 10px;
+		opacity: 1;
+
+		@include laptop {
+			right: 30px;
+			top: 30px;
+		}
+	}
+}

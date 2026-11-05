@@ -1,0 +1,57 @@
+//- Контакты: адрес, режим работы, телефон, e-mail, мессенджеры и соцсети + фото входа.
+//- В WP: данные из настроек темы (ACF Options)
+-
+	const contactsInfo = {
+		address: { main: 'г. Москва, ул. Мясницкая 32, м. Чистые Пруды', note: 'Вход с улицы, вывеска "Доктор Пластик", 2 этаж' },
+		hours: { main: 'с 9.00 до 21.00', note: 'Без выходных' },
+		phone: { title: '+7 (499) 226 16 54', href: 'tel:+74992261654' },
+		email: { title: 'info@doctorplastic.ru', href: 'mailto:info@doctorplastic.ru' },
+		links: [
+			{ title: 'Мессенджеры:', items: [{ icon: 'telegram', label: 'Telegram', href: '#' }, { icon: 'vk', label: 'ВКонтакте', href: '#' }] },
+			{ title: 'Мы в соц. сетях:', items: [{ icon: 'telegram', label: 'Telegram', href: '#' }, { icon: 'vk', label: 'ВКонтакте', href: '#' }] },
+		],
+	}
+
+section.contacts
+	.container.container--narrow.contacts__container
+		h1.visually-hidden Контакты клиники «Доктор Пластик»
+		.contacts__row
+			//- Фото входа — первый экран (LCP), без lazy
+			picture.contacts__media
+				source(media="(min-width: 768px)" srcset=`${baseDir}images/content/contacts/photo.webp 1x, ${baseDir}images/content/contacts/photo@2x.webp 2x` width="511" height="430")
+				img.contacts__photo(src=`${baseDir}images/content/contacts/photo-mobile.webp` srcset=`${baseDir}images/content/contacts/photo-mobile@2x.webp 2x` width="360" height="247" alt="Вход в клинику «Доктор Пластик» с вывеской" fetchpriority="high")
+			.contacts__info
+				.contacts__group.contacts__group--address
+					h2.contacts__title Адрес:
+					address.contacts__item
+						+svg('map').contacts__icon.contacts__icon--stroke
+						span.contacts__text
+							span.contacts__main= contactsInfo.address.main
+							span.contacts__note= contactsInfo.address.note
+					.contacts__item
+						+svg('time-alarm').contacts__icon
+						span.contacts__text
+							span.contacts__main= contactsInfo.hours.main
+							span.contacts__note= contactsInfo.hours.note
+				.contacts__pair.contacts__pair--column
+					.contacts__group
+						h2.contacts__title Телефон:
+						a.contacts__item.contacts__item--link(href=contactsInfo.phone.href)
+							+svg('phone').contacts__icon.contacts__icon--stroke
+							span.contacts__main= contactsInfo.phone.title
+					.contacts__group
+						h2.contacts__title E-mail:
+						a.contacts__item.contacts__item--link(href=contactsInfo.email.href)
+							+svg('mail').contacts__icon.contacts__icon--stroke
+							span.contacts__main= contactsInfo.email.title
+				.contacts__pair
+					each group in contactsInfo.links
+						.contacts__group
+							h2.contacts__title= group.title
+							ul.contacts__socials
+								each item in group.items
+									li.contacts__socials-item
+										a.contacts__social(class=`contacts__social--${item.icon}` href=item.href target="_blank" rel="noopener" aria-label=item.label)
+											+svg(item.icon).contacts__social-icon
+		.contacts__footer
+			+btn('Записаться на консультацию', { href: '#signup-popup' }).contacts__btn(data-signup-open)

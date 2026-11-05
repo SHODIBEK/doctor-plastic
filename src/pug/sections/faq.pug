@@ -11,4 +11,4 @@ section.faq#faq
 	.container.faq__container
 		h2.title.faq__title Вопрос-ответ
 		+faqList(faq, 'faq-answer')
-		+btn('Задать свой вопрос', { href: '#signup' }).faq__btn
+		+btn('Задать свой вопрос', { href: '#signup-popup' }).faq__btn(data-signup-open)

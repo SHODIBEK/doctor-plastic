@@ -1,0 +1,196 @@
+// Контакты: адрес, часы, телефон, e-mail, мессенджеры + фото входа
+.contacts {
+	&__row {
+		display: flex;
+		flex-direction: column;
+
+		@include laptop {
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 29px;
+		}
+	}
+
+	// На мобильном фото на всю ширину экрана, с планшета — по центру в размер макета
+	&__media {
+		display: block;
+		margin: 0 -15px;
+
+		@include tablet {
+			margin: 0 auto 30px;
+			max-width: 511px;
+		}
+
+		@include laptop {
+			flex: 0 1 511px;
+			order: 1;
+			margin: 0;
+		}
+	}
+
+	&__photo {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include laptop {
+			flex: 0 1 558px;
+			gap: 50px;
+		}
+	}
+
+	&__group {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		align-items: flex-start;
+		min-width: 0;
+		gap: 10px;
+
+		&--address {
+			gap: 15px;
+		}
+
+		@include laptop {
+			gap: 30px;
+		}
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 1;
+		color: var(--dp-color-text-input);
+
+		@include laptop {
+			font-size: 24px;
+			line-height: 30px;
+		}
+	}
+
+	&__item {
+		display: flex;
+		align-items: flex-start;
+		font-style: normal;
+		font-feature-settings: "lnum" 1, "tnum" 1;
+		font-size: 16px;
+		line-height: 20px;
+		color: var(--dp-color-text);
+		gap: 10px;
+
+		&--link {
+			transition: color $duration-normal;
+
+			@include hover {
+				color: var(--dp-color-action-primary);
+			}
+		}
+
+		@include laptop {
+			gap: 20px;
+		}
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+		color: var(--dp-color-action-secondary);
+
+		// svgo в спрайте убирает fill="none" у контурных иконок
+		&--stroke {
+			fill: none;
+		}
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	&__note {
+		opacity: 0.6;
+	}
+
+	&__pair {
+		display: flex;
+		gap: 10px;
+
+		&--column {
+			flex-direction: column;
+			gap: 24px;
+		}
+
+		@include laptop {
+			&,
+			&--column {
+				flex-direction: row;
+				gap: 24px;
+			}
+		}
+	}
+
+	&__socials {
+		display: flex;
+		align-items: flex-start;
+		gap: 25px;
+
+		@include laptop {
+			gap: 32px;
+		}
+	}
+
+	&__social {
+		display: block;
+		color: var(--dp-color-text);
+		transition: color $duration-normal;
+
+		@include hover {
+			color: var(--dp-color-action-primary);
+		}
+	}
+
+	&__social-icon {
+		display: block;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: center;
+		margin-top: 20px;
+
+		@include laptop {
+			margin-top: 40px;
+		}
+	}
+
+	&__btn {
+		width: 100%;
+
+		@include tablet {
+			width: auto;
+		}
+	}
+
+	// Telegram на мобильном 20px по макету
+	&__social--telegram &__social-icon {
+		width: 20px;
+		height: 20px;
+
+		@include laptop {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}

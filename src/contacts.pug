@@ -1,0 +1,18 @@
+extends pug/layout
+
+append vars
+	- title = 'Контакты клиники «Доктор Пластик» — адрес, телефон, как добраться'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Клиника «Доктор Пластик»: Москва, ул. Мясницкая 32, м. Чистые Пруды. Работаем с 9:00 до 21:00 без выходных. Телефон +7 (499) 226 16 54, схема проезда на метро и машине.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const pageHead = {
+			modifier: 'contacts',
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Контакты' }],
+		}
+
+block main
+	include pug/sections/page-head
+	.panel.panel--contacts
+		include pug/sections/contacts
+		include pug/sections/route
+		include pug/sections/signup
