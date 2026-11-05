@@ -1,0 +1,20 @@
+//- Попап «Telegram-чат пациентов»: открывается сам через 40 с (раз за сессию, если не открыт другой попап), по ссылке #chat-popup и по [data-chat-open], см. js/modules/chatPopup.js
+-
+	const chat = {
+		title: 'Послушайте реальные истории наших пациентов!',
+		text: 'Переходите в Telegram-чат, где пациенты делятся своим опытом операций, результатами и советами из первых уст',
+		btn: 'Вступить в чат',
+		href: '#',
+		image: 'chat/patient',
+	};
+
+.chat-popup#chat-popup(role="dialog" aria-modal="true" aria-labelledby="chat-popup-title")
+	- const chatSrc = `${baseDir}images/content/${chat.image}`
+	img.chat-popup__image(src=`${chatSrc}.webp` srcset=`${chatSrc}@2x.webp 2x` width="317" height="422" alt="" loading="lazy")
+	button.chat-popup__close(type="button" aria-label="Закрыть" data-fancybox-close)
+		+svg('close').chat-popup__close-icon(width="24" height="24")
+	.chat-popup__body
+		h2.chat-popup__title#chat-popup-title= chat.title
+		p.chat-popup__text= chat.text
+		+btn(chat.btn, { href: chat.href }).chat-popup__btn(target="_blank" rel="noopener")
+			+svg('telegram-plane').chat-popup__btn-icon(width="25" height="22")
