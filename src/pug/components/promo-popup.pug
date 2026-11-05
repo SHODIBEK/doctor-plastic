@@ -1,0 +1,34 @@
+//- Промо-попап: открывается сам через 10 с (раз за сессию), по ссылке #promo-popup и по [data-promo-open], см. js/modules/promoPopup.js
+-
+	const promo = {
+		title: 'Увеличение груди<br>имплантами под ключ',
+		items: [
+			'Всё включено: операция, наркоз, имплантаты, палата, лекарства, питание, белье, перевязки, послеоперационная служба заботы',
+			'Год бесплатных осмотров',
+			'3D моделирование',
+			'Консультация хирурга',
+		],
+		price: '279 900 ₽',
+		oldPrice: '468 000 ₽',
+		badge: 'До конца зимы',
+		image: 'promo/woman',
+	};
+	const promoSrc = `${baseDir}images/content/${promo.image}`;
+
+.promo#promo-popup(role="dialog" aria-modal="true" aria-labelledby="promo-popup-title")
+	picture.promo__picture
+		source(media="(min-width: 1024px)" srcset=`${promoSrc}.webp 1x, ${promoSrc}@2x.webp 2x` width="861" height="861")
+		img.promo__image(src=`${promoSrc}-mobile.webp` srcset=`${promoSrc}-mobile@2x.webp 2x` width="431" height="412" alt="" loading="lazy")
+	button.promo__close(type="button" aria-label="Закрыть" data-fancybox-close)
+		+svg('close-thin').promo__close-icon(width="16" height="18")
+	.promo__body
+		h2.promo__title#promo-popup-title!= promo.title
+		ul.promo__list
+			each item in promo.items
+				li.promo__item= item
+	p.promo__prices
+		span.promo__price= promo.price
+		del.promo__old-price= promo.oldPrice
+	+btn('Записаться на приём', { href: '#signup-popup' }).promo__btn(data-signup-open)
+	.promo__badge(aria-hidden="true")
+		span.promo__badge-text= promo.badge
