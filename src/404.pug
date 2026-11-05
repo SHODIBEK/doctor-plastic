@@ -1,0 +1,15 @@
+extends pug/layout
+
+append vars
+	- title = 'Страница не найдена — ошибка 404 | Доктор Пластик'
+	- meta.description = meta.ogDescription = meta.twitterDescription = 'Страница не найдена: возможно, она была удалена или адрес введён с ошибкой. Вернитесь на главную страницу клиники «Доктор Пластик» или запишитесь на консультацию.'
+	- meta.ogTitle = meta.twitterTitle = title
+	-
+		const notFound = {
+			crumbs: [{ title: 'Главная', href: './home.html' }, { title: 'Ошибка 404' }],
+			code: '404',
+			title: 'Страница не найдена',
+		}
+
+block main
+	include pug/sections/not-found

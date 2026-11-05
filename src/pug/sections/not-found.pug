@@ -1,0 +1,26 @@
+//- Страница 404: крошки, код ошибки, текст и кнопка записи. Фото — первый экран, без lazy
+//- Данные: notFound = { crumbs, code, title }
+-
+	const notFoundSrc = `${baseDir}images/content/not-found`
+
+section.not-found
+	.not-found__graphic(aria-hidden="true")
+		picture.not-found__woman
+			source(media="(min-width: 1024px)" srcset=`${notFoundSrc}/woman.webp 1x, ${notFoundSrc}/woman@2x.webp 2x` width="1062" height="708")
+			img.not-found__woman-image(src=`${notFoundSrc}/woman-mobile.webp` srcset=`${notFoundSrc}/woman-mobile@2x.webp 2x` width="247" height="392" alt="" fetchpriority="high")
+	.container.not-found__container
+		+breadcrumbs(notFound.crumbs).not-found__breadcrumbs
+		.not-found__body
+			h1.not-found__title
+				span.not-found__code= notFound.code
+				= ' '
+				span.not-found__name= notFound.title
+			p.not-found__text
+				| Попробуйте вернуться назад
+				br.not-found__br
+				= ' или начните с '
+				a.not-found__link(href="./home.html") главной страницы
+				| .
+				br
+				| Код ошибки: #{notFound.code}
+			+btn('Записаться на консультацию', { href: '#signup-popup' }).not-found__btn(data-signup-open)

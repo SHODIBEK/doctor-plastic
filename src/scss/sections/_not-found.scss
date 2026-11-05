@@ -1,0 +1,183 @@
+// Координаты графики — из макета (контейнер 1432), ниже 1432 пропорционально сжимаются
+@function not-found-fl($value) {
+	@if $value < 0 {
+		@return unquote("max(#{$value}px, #{$value / 1432 * 100}vw)");
+	}
+
+	@return unquote("min(#{$value}px, #{$value / 1432 * 100}vw)");
+}
+
+.not-found {
+	--btn-notch: var(--dp-color-surface-canvas);
+
+	position: relative;
+	z-index: 0;
+	// Фото выходит за секцию: сверху (под шапку) оставляем, снизу и по бокам режем, чтобы не легло на футер
+	clip-path: inset(-200px 0 0 0);
+	padding: 30px 0;
+	color: var(--dp-color-action-inverse);
+
+	&__graphic {
+		position: absolute;
+		z-index: -1;
+		pointer-events: none;
+		inset: 0;
+
+		// Бирюзовый круг за фото (только десктоп)
+		&::before {
+			@include laptop {
+				content: "";
+				position: absolute;
+				left: not-found-fl(778);
+				top: not-found-fl(78);
+				border-radius: 50%;
+				width: not-found-fl(452);
+				height: not-found-fl(452);
+				background-color: var(--dp-color-action-secondary);
+			}
+		}
+
+		@include laptop {
+			left: 50%;
+			width: 100%;
+			max-width: 1432px;
+			transform: translateX(-50%);
+		}
+	}
+
+	// Видимая часть фото 247×392 (в макете 392×392 со сдвигом 113 и обрезкой по краю экрана)
+	&__woman {
+		position: absolute;
+		right: 0;
+		top: 18px;
+		display: block;
+		width: 247px;
+		height: 392px;
+
+		@include laptop {
+			left: not-found-fl(600);
+			right: auto;
+			top: not-found-fl(-57);
+			width: not-found-fl(1062);
+			height: not-found-fl(708);
+		}
+	}
+
+	&__woman-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 50px;
+
+		@include laptop {
+			gap: 40px;
+		}
+	}
+
+	// На десктопе крошки скрыты, место под них остаётся (как в макете)
+	&__breadcrumbs {
+		@include laptop {
+			visibility: hidden;
+		}
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-end;
+		min-height: 330px;
+		gap: 20px;
+
+		@include laptop {
+			justify-content: center;
+			min-height: 394px;
+			gap: 30px;
+		}
+	}
+
+	// На десктопе кегль сжимается вместе с графикой (ниже 1432), чтобы заголовок не заходил на фото
+	&__title {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		font-weight: 300;
+		font-size: 19px;
+		line-height: 1;
+
+		@include laptop {
+			font-size: not-found-fl(56);
+		}
+	}
+
+	// Ширина по слову: градиент с background-clip рисуется в пределах блока
+	&__code {
+		width: max-content;
+		font-feature-settings: "lnum" 1, "tnum" 1;
+		font-size: 90px;
+		color: transparent;
+		background-image:
+			linear-gradient(
+				74.68deg,
+				var(--dp-color-action-primary) 0%,
+				var(--dp-color-action-secondary) 35.873%,
+				var(--dp-color-action-primary) 76.497%
+			);
+		// stylelint-disable-next-line property-no-vendor-prefix
+		-webkit-background-clip: text;
+		background-clip: text;
+
+		@include laptop {
+			font-weight: 400;
+			font-size: not-found-fl(150);
+		}
+	}
+
+	&__text {
+		font-size: 14px;
+
+		// 14 × 1.4, округлено по строкам, как в Figma
+		line-height: 20px;
+
+		@include laptop {
+			max-width: 547px;
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+
+	&__br {
+		@include laptop {
+			display: none;
+		}
+	}
+
+	&__link {
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		color: inherit;
+		transition: text-decoration-color $duration-normal;
+		text-underline-offset: 3px;
+
+		@include hover {
+			text-decoration-color: currentColor;
+		}
+	}
+
+	&__btn {
+		width: 100%;
+
+		@include tablet {
+			width: auto;
+		}
+	}
+
+	@include laptop {
+		padding: 80px 0;
+	}
+}
